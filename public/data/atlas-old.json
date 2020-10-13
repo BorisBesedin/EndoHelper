@@ -1,6 +1,7 @@
-{
-    "esophagus": {
-        "name": "Пищевод",
+[
+    {
+        "category": "esophagus",
+        "title": "Пищевод",
         "pathology": [
             {
                 "name": "Рефлюкс-эзофагит",
@@ -99,4 +100,4 @@
             }
         ]
     }
-}
+]

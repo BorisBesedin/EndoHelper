@@ -1,33 +1,43 @@
 <template>
     <div class="atlas">
         <div class="atlas__menu">
+            <h2 class="atlas__menu-title">Атлас</h2>
+            <button class="atlas__add button small" @click="popupIsShowing = true">Добавить</button>
             <AtlasSection v-for="category in atlasData"
                           :key="category.category"
                           v-bind:data="category"
                           @show="show"/>
         </div>
-        <AtlasContent  class="atlas__content" v-bind:showData="showingPathology" />
+        <AtlasContent v-if="showingPathology" class="atlas__content" v-bind:showData="showingPathology" />
+        <div v-if="!showingPathology" class="atlas__hidden">Выберите патологию для просмотра</div>
+        <div class="atlas__overlay" v-if="popupIsShowing">
+            <AddPhoto v-if="popupIsShowing" class="atlas__add-photo" @close-popup="close" />
+        </div>
     </div>
 </template>
 
 <script>
 import AtlasSection from '../components/AtlasSection'
 import AtlasContent from '../components/AtlasContent'
+import AddPhoto from '../components/AddPhoto'
 import atlas from '../../public/data/atlas'
 export default {
     components: {
-        AtlasSection, AtlasContent
+        AtlasSection, AtlasContent, AddPhoto
     },
     data() {
         return {
+            popupIsShowing: false,
             atlasData: atlas,
-            showingPathology: {}
+            showingPathology: null
         }
     },
     methods: {
         show(data) {
-            console.log(data)
             this.showingPathology = data
+        },
+        close() {
+            this.popupIsShowing = false
         }
     }
     
@@ -40,6 +50,23 @@ export default {
     flex-grow: 2;
 }
 
+.atlas__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.atlas__add-photo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .atlas__menu {
     position: relative;
     padding-left: 30px;
@@ -49,6 +76,12 @@ export default {
     border-right: 2px solid #a2a2a2; 
 }
 
+.atlas__add {
+    position: absolute;
+    top: 0;
+    right: 30px;
+}
+
 ul {
     list-style: none;
 }
@@ -56,5 +89,20 @@ ul {
 .atlas__content {
     margin-left: 50px;
     flex-grow: 1;
+}
+
+.atlas__menu-title {
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.atlas__hidden {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    opacity: 0.4;
 }
 </style>

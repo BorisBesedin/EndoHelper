@@ -1,6 +1,6 @@
 <template>
     <div class="item">
-        <h3> {{ data.title }} </h3>
+        <h3> {{ data.name }} </h3>
         <ul>
             <li v-for="pathology in data.pathology"
                 :key="pathology.name"
