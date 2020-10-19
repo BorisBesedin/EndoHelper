@@ -39,7 +39,7 @@ export default {
     methods: {
         update(data) {
             axios
-                .get('http://localhost:3000/api/photos')
+                .get('https://afternoon-lowlands-89209.herokuapp.com/api/photos')
                 .then(response => {
                     const index = this.atlasData[data.category].pathology.findIndex(p => p.id === data.pathology)
                     this.atlasData = response.data
