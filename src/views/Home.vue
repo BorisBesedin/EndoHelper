@@ -65,7 +65,7 @@ export default {
             formData.append('text', data.text)
             formData.append('photo', photo.files[0])
 
-            await axios.post('http://localhost:3000/api/photos', formData, {
+            await axios.post('https://afternoon-lowlands-89209.herokuapp.com/api/photos', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -76,7 +76,7 @@ export default {
     },
     mounted() {
         axios
-            .get('http://localhost:3000/api/photos')
+            .get('https://afternoon-lowlands-89209.herokuapp.com/api/photos')
             .then(response => (this.atlasData = response.data))
     }
     

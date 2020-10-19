@@ -1,9 +1,6 @@
 const express = require('express');
 // const mongoose = require('mongoose');
-const morgan = require('morgan');
 const path = require('path');
-const helmet = require('helmet');
-
 const app = express();
 
 const PORT = process.env.PORT || 3000;
@@ -14,14 +11,12 @@ const PORT = process.env.PORT || 3000;
 //     .then((db) => console.log('[OK] DB is connected', db))
 //     .catch(err => console.error(err));
 
-
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
-app.use(morgan('dev'));
-app.use(helmet());
+app.use(express.urlencoded({extended: true}));
 app.use('/api/photos', require('./routes/photos'));
 app.use('/', express.static(path.join(__dirname, '../dist')));
 app.use('/photos', express.static(path.join(__dirname, '../photos')));
+
 
 app.listen(PORT, () => {
     console.log(`server has been started on port ${PORT}`);
