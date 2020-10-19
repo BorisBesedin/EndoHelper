@@ -45,7 +45,7 @@ class Photo {
     static getData() {
         return new Promise((resolve, reject) => {
             fs.readFile(
-                path.join(__dirname, '..', 'data', 'atlas.json'),
+                path.join(__dirname, '../data', 'atlas.json'),
                 'utf-8',
                 (err, content) => {
                     if (err) {
