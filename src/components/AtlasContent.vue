@@ -4,7 +4,8 @@
         <ul class="images">
             <li v-for="image in showData.images" :key="image.id" :data-text="image.text">
                 <img :src="image.url" width="250px" height="250px">
-                <span> {{ image.description }} </span>
+                <span class="images__description"> {{ image.description }} </span>
+                <span class="images__author"> {{ image.author }} </span>
             </li>
         </ul>
     </div>
@@ -28,9 +29,16 @@ h3 {
     text-align: left;
 }
 
-span {
+.images__description {
+    margin-top: 10px;
     font-size: 14px;
     font-weight: bold;
+}
+
+.images__author {
+    font-size: 12px;
+    font-weight: normal;
+    opacity: 0.6;
 }
 
 @keyframes fade {
@@ -48,6 +56,9 @@ li {
     width: 250px;
     margin-right: 20px;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     &:hover::after {
         box-sizing: border-box;

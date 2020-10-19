@@ -11,16 +11,20 @@
         <AtlasContent v-if="showingPathology" class="atlas__content" v-bind:showData="showingPathology" />
         <div v-if="!showingPathology" class="atlas__hidden">Выберите патологию для просмотра</div>
         <div class="atlas__overlay" v-if="popupIsShowing">
-            <AddPhoto v-if="popupIsShowing" class="atlas__add-photo" @close-popup="close" />
+            <AddPhoto v-if="popupIsShowing"
+                      class="atlas__add-photo"
+                      @close-popup="close"
+                      @send-photo="sendPhoto"
+                      v-bind:atlas="atlasData" />
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
 import AtlasSection from '../components/AtlasSection'
 import AtlasContent from '../components/AtlasContent'
 import AddPhoto from '../components/AddPhoto'
-import atlas from '../../public/data/atlas'
 export default {
     components: {
         AtlasSection, AtlasContent, AddPhoto
@@ -28,17 +32,52 @@ export default {
     data() {
         return {
             popupIsShowing: false,
-            atlasData: atlas,
+            atlasData: null,
             showingPathology: null
         }
     },
     methods: {
+        update(data) {
+            axios
+                .get('http://localhost:3000/api/photos')
+                .then(response => {
+                    const index = this.atlasData[data.category].pathology.findIndex(p => p.id === data.pathology)
+                    this.atlasData = response.data
+                    this.close()
+                    this.show(this.atlasData[data.category].pathology[index])
+                    })
+        },
         show(data) {
             this.showingPathology = data
         },
         close() {
             this.popupIsShowing = false
+        },
+        async sendPhoto(data) {
+            const photo = document.querySelector('#photo')
+            const formData = new FormData()
+            
+            formData.append('author', data.author)
+            formData.append('date', new Date())
+            formData.append('category', data.category)
+            formData.append('pathology', data.pathology)
+            formData.append('description', data.description)
+            formData.append('text', data.text)
+            formData.append('photo', photo.files[0])
+
+            await axios.post('http://localhost:3000/api/photos', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+
+            this.update(data)
         }
+    },
+    mounted() {
+        axios
+            .get('http://localhost:3000/api/photos')
+            .then(response => (this.atlasData = response.data))
     }
     
 }

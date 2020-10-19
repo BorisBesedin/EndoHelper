@@ -3,6 +3,7 @@
         <h3> {{ data.name }} </h3>
         <ul>
             <li v-for="pathology in data.pathology"
+                :class="pathology.id"
                 :key="pathology.name"
                 @click="$emit('show', pathology)"> {{ pathology.name }} </li>
         </ul>

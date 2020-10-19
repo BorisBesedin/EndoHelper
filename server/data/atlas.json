@@ -4,33 +4,40 @@
         "pathology": [
             {
                 "name": "Рефлюкс-эзофагит",
+                "id": "reflux",
                 "images": [
                     {
-                        "url": "../images/esophagus/reflux/photo-0.JPG",
+                        "author": "Olympus atlas",
+                        "url": "./images/esophagus/reflux/photo-0.JPG",
                         "description": "Нормальная слизистая",
                         "text": "Слизистая бледно-розовая, гладкая, блестящая. Зубчатая линия просматривается четко, ровная без очагов метаплазии"
                     },
                     {
+                        "author": "Olympus atlas",
                         "url": "../images/esophagus/reflux/photo-1.JPG",
                         "description": "Рефлюкс-эзофагит LA степень A",
                         "text": "У зубчатой линии определяется единичная линейная эрозия до 4мм длинной. Слизистая вокруг утолщена, белесая, сосудистый рисунок стерт"
                     },
                     {
+                        "author": "Olympus atlas",
                         "url": "../images/esophagus/reflux/photo-2.JPG",
                         "description": "Рефлюкс-эзофагит LA степень A",
                         "text": "У зубчатой линии определяется единичная линейная эрозия до 4мм длинной со сторожевым бугорком у основания."
                     },
                     {
+                        "author": "Olympus atlas",
                         "url": "../images/esophagus/reflux/photo-3.JPG",
                         "description": "Рефлюкс-эзофагит LA степень В",
                         "text": "Определются несколько линейных эрозий длиной >5 мм, ограниченные складками пищевода."
                     },
                     {
+                        "author": "Olympus atlas",
                         "url": "../images/esophagus/reflux/photo-4.JPG",
                         "description": "Рефлюкс-эзофагит LA степень С",
                         "text": "Определются несколько линейных повреждений слизистой оболочки пищевода, располагающееся по складкам и между ними, но занимающее менее 75% окружности пищевода."
                     },
                     {
+                        "author": "Olympus atlas",
                         "url": "../images/esophagus/reflux/photo-5.JPG",
                         "description": "Рефлюкс-эзофагит LA степень D",
                         "text": "Множественные повреждения по всей окружности пищевода, рубцовый стеноз."
@@ -39,28 +46,34 @@
             },
             {
                 "name": "Пищевод Барретта",
+                "id": "barrett",
                 "images": [
                     {
+                        "author": "Olympus atlas",
                         "url": "../images/esophagus/barrett/photo-0.JPG",
                         "description": "Пищевод Барретта, короткий сегмент",
                         "text": "Пражская классификация(2004): указывается длина кругового сегмента(C) и общая длинна(М) метаплазированного эпителия, начинающегося с верхних участков желудочных складок."
                     },
                     {
+                        "author": "Olympus atlas",
                         "url": "../images/esophagus/barrett/photo-2.JPG",
                         "description": "Пищевод Барретта, короткий сегмент",
                         "text": "Пражская классификация(2004): указывается длина кругового сегмента(C) и общая длинна(М) метаплазированного эпителия, начинающегося с верхних участков желудочных складок."
                     },
                     {
+                        "author": "Olympus atlas",
                         "url": "../images/esophagus/barrett/photo-1.JPG",
                         "description": "Пищевод Барретта, длинные сегмент, С7 М8",
                         "text": "Пражская классификация(2004): указывается длина кругового сегмента(C) и общая длинна(М) метаплазированного эпителия, начинающегося с верхних участков желудочных складок."
                     },
                     {
+                        "author": "Olympus atlas",
                         "url": "../images/esophagus/barrett/photo-3.JPG",
                         "description": "Пищевод Барретта в режиме NBI",
                         "text": "Пражская классификация(2004): указывается длина кругового сегмента(C) и общая длинна(М) метаплазированного эпителия, начинающегося с верхних участков желудочных складок."
                     },
                     {
+                        "author": "Olympus atlas",
                         "url": "../images/esophagus/barrett/photo-4.JPG",
                         "description": "Пищевод Барретта в режиме NBI",
                         "text": "Пражская классификация(2004): указывается длина кругового сегмента(C) и общая длинна(М) метаплазированного эпителия, начинающегося с верхних участков желудочных складок."
@@ -69,13 +82,16 @@
             },
             {
                 "name": "Грыжа пищеводного отверстия диафрагмы",
+                "id": "hernia",
                 "images": [
                     {
+                        "author": "Olympus atlas",
                         "url": "../images/esophagus/hernia/photo-1.JPG",
                         "description": "ГПОД, осмотр из положения в ретрофлексии из просвета желудка",
                         "text": "Угол Гиса тупой, через хиатальное отверстие видно куполообразное грыжевое выпячивание."
                     },
                     {
+                        "author": "Olympus atlas",
                         "url": "../images/esophagus/hernia/photo-2.JPG",
                         "description": "ГПОД, из просвета пищевода",
                         "text": "Кардия зияет. Уровень пищеводного отверстия диафрагмы ниже уровня кардии, пролапс слизистой желудка"
@@ -84,19 +100,151 @@
             },
             {
                 "name": "Варикозное расширение вен",
+                "id": "varices",
                 "images": [
                     {
+                        "author": "Olympus atlas",
                         "url": "../images/esophagus/varices/photo-1.JPG",
                         "description": "ГПОД, осмотр из положения в ретрофлексии из просвета желудка",
                         "text": "Угол Гиса тупой, через хиатальное отверстие видно куполообразное грыжевое выпячивание."
                     },
                     {
+                        "author": "Olympus atlas",
                         "url": "../images/esophagus/varices/photo-2.JPG",
                         "description": "ГПОД, из просвета пищевода",
                         "text": "Кардия зияет. Уровень пищеводного отверстия диафрагмы ниже уровня кардии, пролапс слизистой желудка"
                     }
                 ]
+            },
+            {
+                "name": "Ахалазия",
+                "id": "achalasia",
+                "images": [
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/esophagus/achalasia/photo-1.JPG",
+                        "description": "Ахалазия кардии",
+                        "text": "Увеличенный просвет пищевода в дистальной части, застой содержимого"
+                    },
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/esophagus/achalasia/photo-2.JPG",
+                        "description": "Ахалазия кардии. Вид в ретрофлексии",
+                        "text": "Аппарат проходит с трудом"
+                    },
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/esophagus/achalasia/photo-3.JPG",
+                        "description": "Ахалазия кардии. Рентгеноскопия",
+                        "text": "Наблюдается задержка бария в пищеводе"
+                    },
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/esophagus/achalasia/photo-4.JPG",
+                        "description": "Ахалазия кардии",
+                        "text": "Кардиальный жом"
+                    }
+                ]
+            },
+            {
+                "name": "Дивертикул",
+                "id": "diverticulum",
+                "images": [
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/esophagus/diverticulum/photo-1.JPG",
+                        "description": "Дивертикул пищевода",
+                        "text": "Дивертикул ср/3 пищевода."
+                    },
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/esophagus/diverticulum/photo-2.JPG",
+                        "description": "Дивертикул пищевода",
+                        "text": "Дивертикул ср/3 пищевода."
+                    }
+                ]
+            },
+            {
+                "name": "Кандидоз",
+                "id": "miotic",
+                "images": [
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/esophagus/miotic/photo-1.JPG",
+                        "description": "Кандидоз",
+                        "text": "На всем протяжении пищевода наблюдаеются множественные творожистые наложения белого цвета."
+                    },
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/esophagus/miotic/photo-2.JPG",
+                        "description": "Кандидоз",
+                        "text": "На всем протяжении пищевода наблюдаеются множественные творожистые наложения белого цвета."
+                    },
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/esophagus/miotic/photo-3.JPG",
+                        "description": "Кандидоз",
+                        "text": "На всем протяжении пищевода наблюдаеются множественные творожистые наложения белого цвета."
+                    }
+                ]
+            },
+            {
+                "name": "Синдром Меллори-Вейса",
+                "id": "mellory",
+                "images": [
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/esophagus/mellory/photo-1.JPG",
+                        "description": "Синдром Меллори-Вейса",
+                        "text": "Из положения в ретрофлексии видны линейные разрывы слизистой с наложением фибрина и слемади гематина."
+                    },
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/esophagus/mellory/photo-2.JPG",
+                        "description": "Синдром Меллори-Вейса",
+                        "text": "Вид из пищевода."
+                    },
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/esophagus/mellory/photo-3.JPG",
+                        "description": "Синдром Меллори-Вейса",
+                        "text": "Разрывы слизистой в области субкардии."
+                    }
+                ]
             }
         ]
+    },
+    "gaster": {
+        "name": "Желудок",
+        "pathology": [
+            {
+                "name": "Норма",
+                "id": "normal",
+                "images": [
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/gaster/normal/photo-1.JPG",
+                        "description": "Желудок. ср/3 тела",
+                        "text": "Нормальная слизистая."
+                    },
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/gaster/normal/photo-2.JPG",
+                        "description": "Желудок",
+                        "text": "Структура нормальной слизистой. Слизистая бледно-розовая, гладкая, блестящая. Сосудистый рисунок четкий"
+                    },
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/gaster/normal/photo-3.JPG",
+                        "description": "Желудок",
+                        "text": "Режим NBI."
+                    }
+                ]
+            }
+        ]
+    },
+    "colon": {
+        "name": "Толстая кишка",
+        "pathology": []
     }
 }

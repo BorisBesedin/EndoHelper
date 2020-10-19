@@ -1,12 +1,12 @@
 <template>
-    <form class="form" action="">
+    <form class="form" @submit.prevent="$emit('send-photo', userData)" enctype="multipart/form-data">
         <button class="form__close" @click="$emit('close-popup')"></button>
         <p class="form__field">
             <label for="author">Автор:</label>
             <input v-model="userData.author" type="text" id="author" name="author">
         </p>
         <p class="form__field">
-            <label for="category">Категория</label>
+            <label for="category">Категория:</label>
             <select v-model="userData.category" name="category" id="category" @change="setPathology">
                 <option value="none">Не выбрано</option>
                 <option value="esophagus">Пищевод</option>
@@ -15,16 +15,21 @@
             </select>
         </p>
         <p class="form__field">
-            <label for="pathology">Патология</label>
+            <label for="pathology">Патология:</label>
             <select v-model="userData.pathology" name="pathology" id="pathology">
                 <option value="none">Не выбрано</option>
-                <option v-for="pathology in pathologyList" :key="pathology.name" :value="pathology.name"> {{pathology.name}} </option>
+                <option v-for="pathology in pathologyList" :key="pathology.id" :value="pathology.id"> {{pathology.name}} </option>
             </select>
         </p>
 
         <p class="form__field">
-            <label for="description">Описание</label>
-            <textarea name="description" id="description" cols="30" rows="4"></textarea>
+            <label for="description">Подпись к фото:</label>
+            <input v-model="userData.description" type="text" id="description" name="description">
+        </p>
+
+        <p class="form__field">
+            <label for="text">Описание картины:</label>
+            <textarea v-model="userData.text" name="text" id="text" cols="30" rows="4"></textarea>
         </p>
 
         <p class="form__field">
@@ -37,8 +42,8 @@
 </template>
 
 <script>
-import atlas from '../../public/data/atlas'
 export default {
+    props: ['atlas'],
     data() {
         return {   
             pathologyList: [],         
@@ -46,7 +51,9 @@ export default {
                 author: '',
                 date: '',
                 category: '',
-                pathology: ''
+                pathology: '',
+                description: '',
+                text: ''
             }
         }
     },
@@ -55,14 +62,13 @@ export default {
             const name = document.querySelector('#category').value
 
             if (name !== 'none') {
-                const category = Object.keys(atlas).find(p => p === name)
-
-                this.pathologyList = atlas[category].pathology
+                this.pathologyList = this.atlas[name].pathology
             } else {
                 this.pathologyList = []
             }            
-        }
+        }        
     }
+    
 }
 </script>
 
