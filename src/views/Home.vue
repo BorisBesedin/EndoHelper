@@ -17,6 +17,7 @@
                       @send-photo="sendPhoto"
                       v-bind:atlas="atlasData" />
         </div>
+        <Loader v-if="isLoading"/>
     </div>
 </template>
 
@@ -24,13 +25,15 @@
 import axios from 'axios'
 import AtlasSection from '../components/AtlasSection'
 import AtlasContent from '../components/AtlasContent'
+import Loader from '../components/Loader'
 import AddPhoto from '../components/AddPhoto'
 export default {
     components: {
-        AtlasSection, AtlasContent, AddPhoto
+        AtlasSection, AtlasContent, AddPhoto, Loader
     },
     data() {
         return {
+            isLoading: false,
             popupIsShowing: false,
             atlasData: null,
             showingPathology: null
@@ -38,6 +41,7 @@ export default {
     },
     methods: {
         update(data) {
+            this.isLoading = true
             axios
                 .get('https://afternoon-lowlands-89209.herokuapp.com/api/photos')
                 .then(response => {
@@ -45,6 +49,7 @@ export default {
                     this.atlasData = response.data
                     this.close()
                     this.show(this.atlasData[data.category].pathology[index])
+                    this.isLoading = false
                     })
         },
         show(data) {
@@ -64,6 +69,8 @@ export default {
             formData.append('description', data.description)
             formData.append('text', data.text)
             formData.append('photo', photo.files[0])
+
+            this.isLoading = true
 
             await axios.post('https://afternoon-lowlands-89209.herokuapp.com/api/photos', formData, {
                 headers: {

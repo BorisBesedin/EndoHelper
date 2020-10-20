@@ -19,6 +19,7 @@ export default {
 <style lang="scss" scoped>
 .item {
     text-align: left;
+    margin-bottom: 20px;
 }
 
 h3 {
