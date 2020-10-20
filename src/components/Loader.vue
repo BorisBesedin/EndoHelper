@@ -17,6 +17,7 @@ export default {
   transform: translate(-50%, -50%);
   width: 80px;
   height: 80px;
+  z-index: 20;
 }
 .lds-facebook div {
   display: inline-block;

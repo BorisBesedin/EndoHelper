@@ -13,11 +13,14 @@
         <div class="atlas__overlay" v-if="popupIsShowing">
             <AddPhoto v-if="popupIsShowing"
                       class="atlas__add-photo"
-                      @close-popup="close"
+                      @close-popup="closePopup"
                       @send-photo="sendPhoto"
                       v-bind:atlas="atlasData" />
         </div>
         <Loader v-if="isLoading"/>
+        <div class="atlas__overlay" v-if="messageIsShowing">
+            <StatusMessage v-bind:message="message" v-if="messageIsShowing" @close-message="closeMessage" />
+        </div>        
     </div>
 </template>
 
@@ -26,15 +29,21 @@ import axios from 'axios'
 import AtlasSection from '../components/AtlasSection'
 import AtlasContent from '../components/AtlasContent'
 import Loader from '../components/Loader'
+import StatusMessage from '../components/StatusMessage'
 import AddPhoto from '../components/AddPhoto'
 export default {
     components: {
-        AtlasSection, AtlasContent, AddPhoto, Loader
+        AtlasSection, AtlasContent, AddPhoto, Loader, StatusMessage
     },
     data() {
         return {
             isLoading: false,
             popupIsShowing: false,
+            messageIsShowing: false,
+            message: {
+                title: '',
+                text: ''
+            },
             atlasData: null,
             showingPathology: null
         }
@@ -44,6 +53,7 @@ export default {
             this.isLoading = true
             axios
                 .get('https://afternoon-lowlands-89209.herokuapp.com/api/photos')
+                // .get('http://localhost:3000/api/photos')
                 .then(response => {
                     const index = this.atlasData[data.category].pathology.findIndex(p => p.id === data.pathology)
                     this.atlasData = response.data
@@ -51,12 +61,21 @@ export default {
                     this.show(this.atlasData[data.category].pathology[index])
                     this.isLoading = false
                     })
+                .catch(err => {
+                    this.isLoading = false
+                    this.messageIsShowing = true
+                    this.message.title = 'Ой! Что-то не так:'
+                    this.message.text = err
+                })
         },
         show(data) {
             this.showingPathology = data
         },
-        close() {
-            this.popupIsShowing = false
+        closePopup() {
+            this.popupIsShowing = false          
+        },
+        closeMessage() {
+            this.messageIsShowing = false
         },
         async sendPhoto(data) {
             const photo = document.querySelector('#photo')
@@ -69,7 +88,7 @@ export default {
             formData.append('description', data.description)
             formData.append('text', data.text)
             formData.append('photo', photo.files[0])
-
+            
             this.isLoading = true
 
             await axios.post('https://afternoon-lowlands-89209.herokuapp.com/api/photos', formData, {
@@ -77,7 +96,23 @@ export default {
                     'Content-Type': 'multipart/form-data'
                 }
             })
-
+            // await axios.post('http://localhost:3000/api/photos', formData, {
+            //     headers: {
+            //         'Content-Type': 'multipart/form-data'
+            //     }
+            // })
+            .then(() => {
+                this.isLoading = false
+                this.messageIsShowing = true
+                this.message.title = 'Всё хорошо!'
+                this.message.text = 'Изображение добавлено'
+            })
+            .catch(err => {
+                this.isLoading = false
+                this.messageIsShowing = true
+                this.message.title = 'Ой! Что-то пошло не так:'
+                this.message.text = err
+            })
             this.update(data)
         }
     },
@@ -85,9 +120,16 @@ export default {
         this.isLoading = true
         axios
             .get('https://afternoon-lowlands-89209.herokuapp.com/api/photos')
+            // .get('http://localhost:3000/api/photos')
             .then(response => {
                 this.atlasData = response.data
                 this.isLoading = false            
+            })
+            .catch(err => {
+                this.isLoading = false
+                this.messageIsShowing = true
+                this.message.title = `Упс...ошибка подключения:`
+                this.message.text = err
             })
     }
     
