@@ -82,9 +82,13 @@ export default {
         }
     },
     mounted() {
+        this.isLoading = true
         axios
             .get('https://afternoon-lowlands-89209.herokuapp.com/api/photos')
-            .then(response => (this.atlasData = response.data))
+            .then(response => {
+                this.atlasData = response.data
+                this.isLoading = false            
+            })
     }
     
 }
