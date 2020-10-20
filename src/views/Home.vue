@@ -57,7 +57,7 @@ export default {
                 .then(response => {
                     const index = this.atlasData[data.category].pathology.findIndex(p => p.id === data.pathology)
                     this.atlasData = response.data
-                    this.close()
+                    this.closePopup()
                     this.show(this.atlasData[data.category].pathology[index])
                     this.isLoading = false
                     })
