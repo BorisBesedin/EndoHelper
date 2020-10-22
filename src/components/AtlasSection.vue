@@ -1,7 +1,7 @@
 <template>
     <div class="item">
-        <h3> {{ data.name }} </h3>
-        <ul>
+        <h3 @click="isShowing = !isShowing"> {{ data.name }} ({{data.pathology.length}}) </h3>
+        <ul v-if="isShowing">
             <li v-for="pathology in data.pathology"
                 :class="pathology.id"
                 :key="pathology.name"
@@ -12,7 +12,12 @@
 
 <script>
 export default {
-    props: ['data']
+    props: ['data'],
+    data() {
+        return {
+            isShowing: false
+        }
+    }
 }
 </script>
 
@@ -24,6 +29,7 @@ export default {
 
 h3 {
     background-color: #e5e5e5;
+    cursor: pointer;
 }
 
 ul {

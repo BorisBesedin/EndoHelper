@@ -211,6 +211,42 @@
                         "text": "Разрывы слизистой в области субкардии."
                     }
                 ]
+            },
+            {
+                "name": "Доброкачественные опухоли",
+                "id": "tumors",
+                "images": [
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/esophagus/tumors/photo-1.JPG",
+                        "description": "",
+                        "text": ""
+                    }
+                ]
+            },
+            {
+                "name": "Злокачественные образования",
+                "id": "cancer",
+                "images": [
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/esophagus/cancer/photo-1.JPG",
+                        "description": "",
+                        "text": ""
+                    }
+                ]
+            },
+            {
+                "name": "Разное",
+                "id": "others",
+                "images": [
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/esophagus/others/photo-1.JPG",
+                        "description": "",
+                        "text": ""
+                    }
+                ]
             }
         ]
     },
@@ -240,11 +276,145 @@
                         "text": "Режим NBI."
                     }
                 ]
+            },
+            {
+                "name": "Гастропатии",
+                "id": "gastropathy",
+                "images": [
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/gaster/gastropathy/photo-1.JPG",
+                        "description": "",
+                        "text": ""
+                    }
+                ]
+            },
+            {
+                "name": "Язва желудка",
+                "id": "ulcer",
+                "images": [
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/gaster/ulcer/photo-1.JPG",
+                        "description": "",
+                        "text": ""
+                    }
+                ]
+            },
+            {
+                "name": "Оперированный желудок",
+                "id": "operation",
+                "images": [
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/gaster/operation/photo-1.JPG",
+                        "description": "",
+                        "text": ""
+                    }
+                ]
+            },
+            {
+                "name": "Доброкачественные образования",
+                "id": "tumors",
+                "images": [
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/gaster/tumors/photo-1.JPG",
+                        "description": "",
+                        "text": ""
+                    }
+                ]
+            },
+            {
+                "name": "Злокачественные образования",
+                "id": "cancer",
+                "images": [
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/gaster/cancer/photo-1.JPG",
+                        "description": "",
+                        "text": ""
+                    }
+                ]
+            },
+            {
+                "name": "Разное",
+                "id": "others",
+                "images": [
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/gaster/others/photo-1.JPG",
+                        "description": "",
+                        "text": ""
+                    }
+                ]
             }
+            
         ]
     },
     "colon": {
         "name": "Толстая кишка",
-        "pathology": []
+        "pathology": [
+            {
+                "name": "Болеезнь Крона",
+                "id": "chrone",
+                "images": [
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/colon/chrone/photo-1.JPG",
+                        "description": "",
+                        "text": ""
+                    }
+                ]
+            },
+            {
+                "name": "Язвенный колит",
+                "id": "ulcer-col",
+                "images": [
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/colon/ulcer-col/photo-1.JPG",
+                        "description": "",
+                        "text": ""
+                    }
+                ]
+            },
+            {
+                "name": "Дивертикулы",
+                "id": "diverticulum",
+                "images": [
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/colon/diverticulum/photo-1.JPG",
+                        "description": "",
+                        "text": ""
+                    }
+                ]
+            },
+            {
+                "name": "Доброкачественные образования",
+                "id": "tumors",
+                "images": [
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/colon/tumors/photo-1.JPG",
+                        "description": "",
+                        "text": ""
+                    }
+                ]
+            },
+            {
+                "name": "Злокачественные образования",
+                "id": "cancer",
+                "images": [
+                    {
+                        "author": "Olympus atlas",
+                        "url": "../images/colon/cancer/photo-1.JPG",
+                        "description": "",
+                        "text": ""
+                    }
+                ]
+            }
+        ]
     }
 }
