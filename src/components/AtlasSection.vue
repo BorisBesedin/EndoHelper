@@ -5,7 +5,7 @@
             <li v-for="pathology in data.pathology"
                 :class="pathology.id"
                 :key="pathology.name"
-                @click="$emit('show', pathology)"> {{ pathology.name }} </li>
+                @click="$emit('show', pathology)"> {{ pathology.name }} ({{pathology.images.length}} фото) </li>
         </ul>
     </div>
 </template>

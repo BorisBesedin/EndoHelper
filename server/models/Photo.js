@@ -23,9 +23,7 @@ class Photo {
 
         const index = atlas[category].pathology.findIndex(p => p.id === pathology);
 
-        console.log(JSON.stringify(this))
-
-        atlas[category].pathology[index].images.push(this);
+        atlas[category].pathology[index].images.unshift(this);
 
         return new Promise((resolve, reject)=> {
             fs.writeFile(

@@ -119,8 +119,8 @@ export default {
     mounted() {
         this.isLoading = true
         axios
-            .get('https://afternoon-lowlands-89209.herokuapp.com/api/photos')
-            // .get('http://localhost:3000/api/photos')
+            // .get('https://afternoon-lowlands-89209.herokuapp.com/api/photos')
+            .get('http://localhost:3000/api/photos')
             .then(response => {
                 this.atlasData = response.data
                 this.isLoading = false            

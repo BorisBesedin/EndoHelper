@@ -1,43 +1,51 @@
 <template>
     <form class="form" @submit.prevent="$emit('send-photo', userData)" enctype="multipart/form-data">
         <button class="form__close" @click="$emit('close-popup')"></button>
-        <p class="form__field">
-            <label for="author">Автор:</label>
-            <input v-model="userData.author" type="text" id="author" name="author" placeholder="Ваше имя" required>
-        </p>
-        <p class="form__field">
-            <label for="category">Категория:</label>
-            <select v-model="userData.category" name="category" id="category" @change="setPathology" required>
-                <option value="">Не выбрано</option>
-                <option value="esophagus">Пищевод</option>
-                <option value="gaster">Желудок</option>
-                <option value="colon">Толстая кишка</option>
-            </select>
-        </p>
-        <p class="form__field">
-            <label for="pathology">Патология:</label>
-            <select v-model="userData.pathology" name="pathology" id="pathology" required>
-                <option value="">Не выбрано</option>
-                <option v-for="pathology in pathologyList" :key="pathology.id" :value="pathology.id"> {{pathology.name}} </option>
-            </select>
-        </p>
+        <div class="form__container">        
+            <p class="form__field">
+                <label for="author">Автор:</label>
+                <input v-model="userData.author" type="text" id="author" name="author" placeholder="Ваше имя" required>
+            </p>
+            <p class="form__field">
+                <label for="category">Категория:</label>
+                <select v-model="userData.category" name="category" id="category" @change="setPathology" required>
+                    <option value="">Не выбрано</option>
+                    <option value="esophagus">Пищевод</option>
+                    <option value="gaster">Желудок</option>
+                    <option value="colon">Толстая кишка</option>
+                </select>
+            </p>
+            <p class="form__field">
+                <label for="pathology">Патология:</label>
+                <select v-model="userData.pathology" name="pathology" id="pathology" required>
+                    <option value="">Не выбрано</option>
+                    <option v-for="pathology in pathologyList" :key="pathology.id" :value="pathology.id"> {{pathology.name}} </option>
+                </select>
+            </p>
+        </div>
 
-        <p class="form__field">
-            <label for="description">Подпись к фото:</label>
-            <input v-model="userData.description" type="text" id="description" placeholder="Что это?" name="description" required>
-        </p>
+        <div class="form__container">
+            <p class="form__field">
+                <label for="description">Подпись к фото:</label>
+                <input v-model="userData.description" type="text" id="description" placeholder="Что это?" name="description" required>
+            </p>
 
-        <p class="form__field">
-            <label for="text">Описание картины:</label>
-            <textarea v-model="userData.text" name="text" id="text" cols="30" placeholder="Краткое описание находки" rows="4" maxlength="200" required></textarea>
-        </p>
+            <p class="form__field">
+                <label for="text">Описание картины:</label>
+                <textarea v-model="userData.text" name="text" id="text" cols="30" placeholder="Краткое описание находки" rows="5" maxlength="200" required></textarea>
+            </p>            
+        </div>   
 
-        <p class="form__field">
-            <label class="form__file" for="photo">Изображение</label>
-            <input class="form__file-input" type="file" name="photo" id="photo" accept="image/*,image/jpeg" required>
-        </p>
+        <div class="form__container">
+            <p class="form__field">
+                <label class="form__file" for="photo">Изображение:</label>
+                <input class="form__file-input" type="file" name="photo" id="photo" accept="image/*,image/jpeg" required>
+            </p>
 
-        <button type="submit" class="button form__submit">Отправить</button>
+            <button type="submit" class="button form__submit">Отправить</button>
+        </div>     
+
+        
     </form>
 </template>
 
@@ -76,13 +84,18 @@ export default {
 .form {
     position: relative;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 500px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
     padding: 40px;
+    width: 650px;
     background-color: #ffffff;
     color: #000000;
     border-radius: 10px;
+}
+
+.form__container {
+    width: 250px;
 }
 
 .form__close {
@@ -120,6 +133,10 @@ select, input, textarea {
     font-size: 16px;
     border: 2px solid #000000;
     border-radius: 10px;
+}
+
+textarea {
+    resize: none;
 }
 
 .form__field {
