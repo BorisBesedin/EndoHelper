@@ -7,7 +7,7 @@
               v-bind:class="[{active: currentProcedure === procedure.name}]"
               v-on:click="currentProcedure = procedure.name"> {{procedure.title}} </button>
     </div>
-    <p>Терминология: <a href="files/MST3_EE.pdf" target="_blank">МСТ 3.0</a></p>
+    <p class="file-link">Терминология: <a href="files/MST3_EE.pdf" target="_blank">МСТ 3.0</a></p>
     <component class="content" v-bind:is="currentComponent"></component>
   </div>
 </template>
@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style lang="scss">
-p {
+.file-link {
   margin-top: 20px;
   color: #000000;
   font-size: 16px;
