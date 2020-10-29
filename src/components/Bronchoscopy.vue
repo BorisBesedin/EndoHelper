@@ -5,6 +5,8 @@
             <button class="button small" @click="clearFields">Очистить</button>
         </div>
 
+        <Passport v-bind:passport="passport" />
+
         <div class="description__broncho part">
             <h3 class="description__title">Бронхоскопия:</h3>
             <DescriptionItem class="item" v-for="sign in descriptionData.view"
@@ -56,7 +58,7 @@
                       v-bind:userData="userData"/>
         </div>
 
-        <router-link class="button" :to="{name: 'Preview', params: {description: userData, procedure: 'broncho'}}"
+        <router-link class="button" :to="{name: 'Preview', params: {passport: passport, description: userData, procedure: 'bronchoscopy'}}"
                      v-bind:description="userData">Создать</router-link>
     </div>
 </template>
@@ -65,13 +67,23 @@
 import DescriptionItem from '../components/DescriptionItem'
 import data from '../../public/data/bronchoscopy'
 import Diagnose from '../components/Diagnose'
+import Passport from '../components/Passport'
 export default {
     name: 'Colonoscopy',
     components: {
-        DescriptionItem, Diagnose
+        DescriptionItem, Diagnose, Passport
     },
     data() {
         return {
+            passport: {
+                name: '',
+                complain: '',
+                diagnose: '',
+                anamnesis: '',
+                anestesia: '',
+                endoscope: '',
+                doctor: ''
+            },
             descriptionData: {},
             userData: {
                 view: "",

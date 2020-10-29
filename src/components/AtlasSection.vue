@@ -1,6 +1,6 @@
 <template>
     <div class="item">
-        <h3 @click="isShowing = !isShowing"> {{ data.name }} ({{data.pathology.length}}) </h3>
+        <h3 @click="isShowing = !isShowing"> {{ data.name }} </h3>
         <ul v-if="isShowing">
             <li v-for="pathology in data.pathology"
                 :class="pathology.id"
@@ -24,16 +24,24 @@ export default {
 <style lang="scss" scoped>
 .item {
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 h3 {
     background-color: #e5e5e5;
+    padding: 5px;
     cursor: pointer;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+        background-color: #d4cece;
+        transition: 0.3s ease-in-out;
+    }
 }
 
 ul {
-    margin-top: 10px;
+    padding: 10px;
+    background-color: #f2f2f2;
 }
 
 li {

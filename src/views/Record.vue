@@ -1,14 +1,15 @@
 <template>
-  <div class="create-record">    
-    <div class="menu">
-      <button class="tab"
+  <div class="record">    
+    <div class="record__menu">
+      <button class="record__tab"
               v-for="procedure in procedures"
               :key = "procedure.name"
               v-bind:class="[{active: currentProcedure === procedure.name}]"
               v-on:click="currentProcedure = procedure.name"> {{procedure.title}} </button>
     </div>
-    <p class="file-link">Терминология: <a href="files/MST3_EE.pdf" target="_blank">МСТ 3.0</a></p>
-    <component class="content" v-bind:is="currentComponent"></component>
+    <p class="record__file-link">Терминология: <a href="files/MST3_EE.pdf" target="_blank">МСТ 3.0</a></p>
+    
+    <component class="record__content" v-bind:is="currentComponent"></component>
   </div>
 </template>
 
@@ -56,15 +57,15 @@ export default {
 </script>
 
 <style lang="scss">
-.file-link {
+.record__file-link {
   margin-top: 20px;
   color: #000000;
   font-size: 16px;
 }
-.menu {
+.record__menu {
   margin-top: 40px;
 }
-.tab {
+.record__tab {
   border: none;
   border: 4px solid transparent;
   border-radius: 10px;
@@ -83,7 +84,7 @@ export default {
     margin-right: 10px;
   }
 }
-.content {
+.record__content {
   margin-top: 40px;
 }
 

@@ -4,6 +4,8 @@
             <button class="button small description__normal-btn" @click="setNormal">Норма</button>
             <button class="button small" @click="clearFields">Очистить</button>
         </div>
+
+        <Passport v-bind:passport="passport" />
         
         <div class="description__esophagus part">
             <h3 class="description__title">Пищевод:</h3>
@@ -46,7 +48,7 @@
                       v-bind:userData="userData"/>
         </div>
 
-        <router-link class="button" :to="{name: 'Preview', params: {description: userData, procedure: 'gastro'}}"
+        <router-link class="button" :to="{name: 'Preview', params: {passport: passport, description: userData, procedure: 'gastroscopy'}}"
                      v-bind:description="userData">Создать</router-link>
     </div>
 </template>
@@ -55,13 +57,24 @@
 import DescriptionItem from '../components/DescriptionItem'
 import data from '../../public/data/gastroscopy'
 import Diagnose from '../components/Diagnose'
+import Passport from '../components/Passport'
+
 export default {
     name: 'Gastroscopy',
     components: {
-        DescriptionItem, Diagnose
+        DescriptionItem, Diagnose, Passport
     },
     data() {
         return {
+            passport: {
+                name: '',
+                complain: '',
+                diagnose: '',
+                anamnesis: '',
+                anestesia: '',
+                endoscope: '',
+                doctor: ''
+            },
             descriptionData: {},
             userData: {
                 esophagus: {

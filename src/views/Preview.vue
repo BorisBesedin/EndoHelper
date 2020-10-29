@@ -1,6 +1,34 @@
 <template>
     <div class="preview">
-        <div class="preview__template preview__gastro" v-if="this.procedure === 'gastro'">
+        <h1 class="preview__name"> {{this.title}} </h1>
+        <div class="preview__passport">
+            <p class="preview__item">
+                <span>Пациент:</span>
+                <span>: {{passport.name}}</span>
+            </p>
+            <p class="preview__item">
+                <span>Жалобы:</span>
+                <span>: {{passport.complain}}</span>
+            </p>
+            <p class="preview__item">
+                <span>Диагноз:</span>
+                <span>: {{passport.diagnose}}</span>
+            </p>
+            <p class="preview__item">
+                <span>Анамнез:</span>
+                <span>: {{passport.anamnesis}}</span>
+            </p>
+            <p class="preview__item">
+                <span>Анестезия:</span>
+                <span>: {{passport.anestesia}}</span>
+            </p>
+            <p class="preview__item">
+                <span>Модель аппарата:</span>
+                <span>: {{passport.endoscope}}</span>
+            </p>            
+        </div>
+        
+        <div class="preview__template preview__gastro" v-if="this.procedure === 'gastroscopy'">
             <h3 class="preview__title">Пищевод</h3>
             <p class="preview__item" v-for="item in this.templateGastro.esophagus" :key="item.id">
                 <span>{{item.title}}</span>
@@ -18,30 +46,20 @@
             </p>
 
             <h3 class="preview__title">Заключение</h3>
-            <p class="preview__item" v-if="description">{{description.diagnose}}</p>
-            <div class="preview__buttons">
-                <router-link type="button" to="/record"><button class="preview__back preview__button"></button></router-link>
-                <button class="preview__copy preview__button" @click="copy"></button>
-            </div>            
+            <p class="preview__item" v-if="description">{{description.diagnose}}</p>                      
         </div>
 
-        <div class="preview__template preview__colono" v-if="this.procedure === 'colono'">
-            <h3 class="preview__title">Видеоколоноскопия</h3>
+        <div class="preview__template preview__colono" v-if="this.procedure === 'colonoscopy'">
             <p class="preview__item" v-for="item in this.templateColono.protocol" :key="item.id">
                 <span>{{item.title}}</span>
                 <span v-if="description">: {{description[item.name]}}</span>
             </p>
             
             <h3 class="preview__title">Заключение</h3>
-            <p class="preview__item" v-if="description">{{description.diagnose}}</p>
-            <div class="preview__buttons">
-                <router-link type="button" :to="{name: 'Record', params: {tab: 'colonoscopy'}}"><button class="preview__back preview__button"></button></router-link>
-                <button class="preview__copy preview__button" @click="copy"></button>
-            </div>            
+            <p class="preview__item" v-if="description">{{description.diagnose}}</p>                      
         </div>
 
-        <div class="preview__template preview__broncho" v-if="this.procedure === 'broncho'">
-            <h3 class="preview__title">Бронхоскопия</h3>
+        <div class="preview__template preview__broncho" v-if="this.procedure === 'bronchoscopy'">
             <p class="preview__item" v-for="item in this.templateBroncho.view" :key="item.id">
                 <span>{{item.title}}</span>
                 <span v-if="description">: {{description.view[item.name]}}</span>
@@ -66,14 +84,18 @@
             </p>
             
             <h3 class="preview__title">Заключение</h3>
-            <p class="preview__item" v-if="description">{{description.diagnose}}</p>
-            <div class="preview__buttons">
-                <router-link type="button" :to="{name: 'Record', params: {tab: 'bronchoscopy'}}"><button class="preview__back preview__button"></button></router-link>
-                <button class="preview__copy preview__button" @click="copy"></button>
-            </div>            
-        </div>
+            <p class="preview__item" v-if="description">{{description.diagnose}}</p>                      
+        </div> 
 
-
+        <p class="preview__doctor">
+            <span>Эндоскопист:</span>
+            <span>: {{passport.doctor}}</span>
+        </p>
+        <div class="preview__buttons">
+            <router-link type="button" :to="{name: 'Record', params: {tab: this.procedure}}"><button class="preview__back preview__button"></button></router-link>
+            <button class="preview__copy preview__button" @click="copy"></button>
+            <button class="preview__print preview__button" @click="print"></button>
+        </div>         
     </div>
 </template>
 
@@ -82,25 +104,29 @@ import gastroscopy from '../../public/data/gastroscopy'
 import colonoscopy from '../../public/data/colonoscopy'
 import bronchoscopy from '../../public/data/bronchoscopy'
 export default {
-    props: ['procedure', 'description'],
+    props: ['procedure', 'description', 'passport'],
     data() {
         return {
             templateGastro: gastroscopy,
             templateColono: colonoscopy,
-            templateBroncho: bronchoscopy
+            templateBroncho: bronchoscopy,
+            title: ''
         }
     },
     mounted() {
         switch(this.procedure) {
             case 'gastro':
                 localStorage.setItem('gastroscopy', JSON.stringify(this.description))
+                this.title = 'Видеогастроскопия'
                 break
 
             case 'colono':
                 localStorage.setItem('colonoscopy', JSON.stringify(this.description))
+                this.title = 'Видеоколоноскопия'
                 break
             case 'broncho':
                 localStorage.setItem('bronchoscopy', JSON.stringify(this.description))
+                this.title = 'Бронхоскопия'
                 break
         }
         
@@ -115,6 +141,21 @@ export default {
             selection.removeAllRanges()
             selection.addRange(range)
             document.execCommand("copy")
+        },
+        print() {
+            const blockToPrint = document.querySelector('.preview')
+            const printCSS = '<link rel="stylesheet" href="/styles/print.css" type="text/css" />';
+            let print = window.open()
+
+            print.document.write(`
+                <div class="print-doc">
+                    ${printCSS}
+                    ${blockToPrint.innerHTML}
+                </div>
+            `)
+            print.document.close()
+            print.focus()
+            print.print()
         }
     }
 }
@@ -129,8 +170,18 @@ export default {
     color: #000;
 }
 
+.preview__name {
+    font-size: 18px;
+    text-align: center;
+}
+
+.preview__passport {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
 .preview__item {
-    margin-bottom: 5px;
+    margin: 0;
     padding-left: 10px;
 }
 .preview__title {
@@ -164,13 +215,17 @@ export default {
         transition: 0.3s ease-in-out;
     }
 
-    &:first-child {
-        margin-right: 20px;
+    &:not(:first-child) {
+        margin-left: 20px;
     }
 }
 
 .preview__copy {
     background-image: url('../../public/icons/copy.png');
+}
+
+.preview__print {
+    background-image: url('../../public/icons/printer.png');
 }
 
 .preview__back {
@@ -196,5 +251,10 @@ p {
 
 .preview__item {
     display: flex;
+}
+
+.preview__doctor {
+    text-align: center;
+    margin-top: 40px;
 }
 </style>
