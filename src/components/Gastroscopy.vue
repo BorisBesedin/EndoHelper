@@ -1,13 +1,14 @@
 <template>
     <div class="description description--gastro" >
-        <div class="description__buttons">
-            <button class="button small description__normal-btn" @click="setNormal">Норма</button>
-            <button class="button small" @click="clearFields">Очистить</button>
-        </div>
+        
 
-        <Passport v-bind:passport="passport" />
+        <Passport v-bind:patient="patient" v-bind:doctor="doctor" />
         
         <div class="description__esophagus part">
+            <div class="description__buttons">
+                <button class="button small description__normal-btn" @click="setNormal">Норма</button>
+                <button class="button small" @click="clearFields">Очистить</button>
+            </div>
             <h3 class="description__title">Пищевод:</h3>
             <DescriptionItem class="item" v-for="sign in descriptionData.esophagus"
                             :key="sign.name"
@@ -48,7 +49,7 @@
                       v-bind:userData="userData"/>
         </div>
 
-        <router-link class="button" :to="{name: 'Preview', params: {passport: passport, description: userData, procedure: 'gastroscopy'}}"
+        <router-link class="button submit" :to="{name: 'Preview', params: {patient: patient, doctor: doctor, description: userData, procedure: 'gastroscopy'}}"
                      v-bind:description="userData">Создать</router-link>
     </div>
 </template>
@@ -66,12 +67,14 @@ export default {
     },
     data() {
         return {
-            passport: {
-                name: '',
-                complain: '',
-                diagnose: '',
-                anamnesis: '',
+            patient: {
+                patient: '',
+                birth: '',
                 anestesia: '',
+            },
+            doctor: {
+                hospital: '',
+                phone: '',                
                 endoscope: '',
                 doctor: ''
             },
@@ -117,14 +120,14 @@ export default {
             elem.classList.add('focus')   
         },
         clearFields() {
-            const inputs = document.querySelectorAll('input')
+            const inputs = document.querySelectorAll('description-input')
             const textarea = document.querySelector('textarea')
 
             inputs.forEach(item => item.value = '')
             textarea.value = ''
 
-            if (localStorage) {
-                localStorage.clear() 
+            if (localStorage.gastroscopy) {
+                localStorage.gastroscopy = '' 
             }        
             this.userData = {
                     esophagus: {
@@ -174,6 +177,9 @@ export default {
         if (localStorage.gastroscopy) {
             this.userData = JSON.parse(localStorage.gastroscopy)
         }
+        if (localStorage.doctor) {
+            this.doctor = JSON.parse(localStorage.doctor)
+        }
     }    
 }
 </script>
@@ -183,8 +189,9 @@ export default {
 .part {
     width: 100%;
     margin-top: 40px;
+    position: relative;
 }
-.button {
+.submit {
     margin-top: 20px;
 }
 

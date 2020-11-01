@@ -1,7 +1,7 @@
 <template>
     <div class="field">
         <label :for="sign.name"> {{sign.title}}: </label>
-        <input class="input" type="text" :id="sign.name + place" :data-place="place" 
+        <input class="input description-input" type="text" :id="sign.name + place" :data-place="place" 
                 v-model="userData[sign.name]"
                 @click="$emit('clear', $event.target)"
                 autocomplete="off"

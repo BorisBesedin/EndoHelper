@@ -109,7 +109,7 @@ export default {
 
 .description__buttons {
     position: absolute;
-    top: 50px;
+    top: 0;
     right: 0;
 }
 </style>

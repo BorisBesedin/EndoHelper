@@ -3,28 +3,28 @@
         <h1 class="preview__name"> {{this.title}} </h1>
         <div class="preview__passport">
             <p class="preview__item">
+                <span>ЛПУ:</span>
+                <span>: {{doctor.hospital}}</span>
+            </p>
+            <p class="preview__item">
+                <span>Телефон:</span>
+                <span>: {{doctor.phone}}</span>
+            </p>
+            <p class="preview__item">
                 <span>Пациент:</span>
-                <span>: {{passport.name}}</span>
+                <span>: {{patient.patient}}</span>
             </p>
             <p class="preview__item">
-                <span>Жалобы:</span>
-                <span>: {{passport.complain}}</span>
-            </p>
-            <p class="preview__item">
-                <span>Диагноз:</span>
-                <span>: {{passport.diagnose}}</span>
-            </p>
-            <p class="preview__item">
-                <span>Анамнез:</span>
-                <span>: {{passport.anamnesis}}</span>
+                <span>Дата рождения:</span>
+                <span>: {{patient.birth}}</span>
             </p>
             <p class="preview__item">
                 <span>Анестезия:</span>
-                <span>: {{passport.anestesia}}</span>
+                <span>: {{patient.anestesia}}</span>
             </p>
             <p class="preview__item">
                 <span>Модель аппарата:</span>
-                <span>: {{passport.endoscope}}</span>
+                <span>: {{doctor.endoscope}}</span>
             </p>            
         </div>
         
@@ -89,7 +89,7 @@
 
         <p class="preview__doctor">
             <span>Эндоскопист:</span>
-            <span>: {{passport.doctor}}</span>
+            <span>: {{doctor.doctor}}</span>
         </p>
         <div class="preview__buttons">
             <router-link type="button" :to="{name: 'Record', params: {tab: this.procedure}}"><button class="preview__back preview__button"></button></router-link>
@@ -104,7 +104,7 @@ import gastroscopy from '../../public/data/gastroscopy'
 import colonoscopy from '../../public/data/colonoscopy'
 import bronchoscopy from '../../public/data/bronchoscopy'
 export default {
-    props: ['procedure', 'description', 'passport'],
+    props: ['procedure', 'description', 'patient', 'doctor'],
     data() {
         return {
             templateGastro: gastroscopy,
@@ -113,18 +113,21 @@ export default {
             title: ''
         }
     },
-    mounted() {
+    mounted() {        
+        if (this.doctor) {
+            localStorage.setItem('doctor', JSON.stringify(this.doctor))
+        }
         switch(this.procedure) {
-            case 'gastro':
+            case 'gastroscopy':
                 localStorage.setItem('gastroscopy', JSON.stringify(this.description))
                 this.title = 'Видеогастроскопия'
                 break
 
-            case 'colono':
+            case 'colonoscopy':
                 localStorage.setItem('colonoscopy', JSON.stringify(this.description))
                 this.title = 'Видеоколоноскопия'
                 break
-            case 'broncho':
+            case 'bronchoscopy':
                 localStorage.setItem('bronchoscopy', JSON.stringify(this.description))
                 this.title = 'Бронхоскопия'
                 break

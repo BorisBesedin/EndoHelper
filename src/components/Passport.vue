@@ -1,39 +1,39 @@
 <template>
   <div class="record__passport">
     <p class="record__passport-item">
-      <label for="patient">Пациент:</label>
-      <input type="text" id="patient" v-model="passport.name" placeholder="Иванов Иван Иванович, 1964 г.р." />
+      <label for="patient">ЛПУ:</label>
+      <input type="text" id="patient" v-model="doctor.hospital"/>
     </p>
     <p class="record__passport-item">
-      <label for="complain">Жалобы:</label>
-      <input type="text" id="complain" v-model="passport.complain" placeholder="На жизнь"/>
+      <label for="complain">Телефон:</label>
+      <input type="text" id="complain" v-model="doctor.phone"/>
     </p>
     <p class="record__passport-item">
-      <label for="diagnose">Диагноз при направлении:</label>
-      <input type="text" id="diagnose" v-model="passport.diagnose" placeholder="Болезнь"/>
+      <label for="diagnose">Пациент:</label>
+      <input type="text" id="diagnose" v-model="patient.patient"/>
     </p>
     <p class="record__passport-item">
-      <label for="anamnesis">Анамнез:</label>
-      <input type="text" id="anamnesis" v-model="passport.anamnesis" placeholder="Вкратце"/>
+      <label for="anamnesis">Дата рождения:</label>
+      <input type="text" id="anamnesis" v-model="patient.birth"/>
     </p>
     <p class="record__passport-item">
       <label for="anestesia">Анестезия:</label>
-      <input type="text" id="anestesia" v-model="passport.anestesia" placeholder="для слабаков" />
+      <input type="text" id="anestesia" v-model="patient.anestesia" />
     </p>
     <p class="record__passport-item">
       <label for="endoscope">Модель аппарата:</label>
-      <input type="text" id="endoscope" v-model="passport.endoscope" placeholder="olympus" />
+      <input type="text" id="endoscope" v-model="doctor.endoscope"/>
     </p>
     <p class="record__passport-item">
       <label for="doctor">Эндоскопист:</label>
-      <input type="text" id="doctor" v-model="passport.doctor" placeholder="Ваше имя" />
+      <input type="text" id="doctor" v-model="doctor.doctor"/>
     </p>
   </div>
 </template>
 
 <script>
 export default {
-    props: ['passport']
+    props: ['patient', 'doctor']
 }
 </script>
 
