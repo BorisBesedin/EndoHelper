@@ -3,7 +3,6 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const cors = require('cors');
-const helmet = require('helmet');
 
 const PORT = process.env.PORT || 3000;
 
@@ -13,7 +12,6 @@ const PORT = process.env.PORT || 3000;
 //     .then((db) => console.log('[OK] DB is connected', db))
 //     .catch(err => console.error(err));
 app.use(cors());
-app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use('/api/photos', require('./routes/photos'));
