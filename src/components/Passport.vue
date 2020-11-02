@@ -1,8 +1,13 @@
 <template>
   <div class="record__passport">
+    <button class="button small" @click="$emit('clear-doctor')">Очистить</button>
     <p class="record__passport-item">
       <label for="patient">ЛПУ:</label>
       <input type="text" id="patient" v-model="doctor.hospital"/>
+    </p>
+    <p class="record__passport-item">
+      <label for="adress">Адрес:</label>
+      <input type="text" id="adress" v-model="doctor.adress"/>
     </p>
     <p class="record__passport-item">
       <label for="complain">Телефон:</label>
@@ -39,9 +44,16 @@ export default {
 
 <style lang="scss" scoped>
 .record__passport {
+  position: relative;
   width: 700px;
   margin: 0 auto;
   margin-top: 80px;
+
+  & .button {
+    position: absolute;
+    top: -40px;
+    right: 0;
+  }
 }
 
 .record__passport-item {

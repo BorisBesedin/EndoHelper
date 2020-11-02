@@ -1,15 +1,12 @@
 <template>
     <div class="preview">
-        <h1 class="preview__name"> {{this.title}} </h1>
-        <div class="preview__passport">
-            <p class="preview__item">
-                <span>ЛПУ:</span>
-                <span>: {{doctor.hospital}}</span>
-            </p>
-            <p class="preview__item">
-                <span>Телефон:</span>
-                <span>: {{doctor.phone}}</span>
-            </p>
+        <div class="preview__hospital">
+            <p>{{doctor.hospital}}</p>
+            <p>{{doctor.adress}}</p>
+            <p>{{doctor.phone}}</p>
+        </div>
+        <h1 class="preview__name"> {{this.title}} </h1>        
+        <div class="preview__passport">            
             <p class="preview__item">
                 <span>Пациент:</span>
                 <span>: {{patient.patient}}</span>
@@ -166,6 +163,8 @@ export default {
 
 <style lang="scss" scoped>
 .preview {
+    display: flex;
+    flex-direction: column;
     padding-top: 40px;
     padding-bottom: 80px;    
     width: 600px;
@@ -174,6 +173,7 @@ export default {
 }
 
 .preview__name {
+    margin-top: 40px;
     font-size: 18px;
     text-align: center;
 }

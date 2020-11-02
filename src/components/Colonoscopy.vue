@@ -1,7 +1,5 @@
 <template>
     <div class="description" >
-        <Passport v-bind:patient="patient" v-bind:doctor="doctor" />
-
         <div class="description__colono part">
             <div class="description__buttons">
                 <button class="button small description__normal-btn" @click="setNormal">Норма</button>
@@ -33,25 +31,14 @@
 import DescriptionItem from '../components/DescriptionItem'
 import data from '../../public/data/colonoscopy'
 import Diagnose from '../components/Diagnose'
-import Passport from '../components/Passport'
 export default {
+    props: ['patient', 'doctor'],
     name: 'Colonoscopy',
     components: {
-        DescriptionItem, Diagnose, Passport
+        DescriptionItem, Diagnose
     },
     data() {
         return {
-            patient: {
-                patient: '',
-                birth: '',
-                anestesia: '',
-            },
-            doctor: {
-                hospital: '',
-                phone: '',                
-                endoscope: '',
-                doctor: ''
-            },
             descriptionData: {},
             userData: {
                 level: '',
@@ -82,12 +69,6 @@ export default {
             elem.classList.add('focus')   
         },
         clearFields() {
-            const inputs = document.querySelectorAll('description-input')
-            const textarea = document.querySelector('textarea')
-
-            inputs.forEach(item => item.value = '')
-            textarea.value = ''
-
             if (localStorage.colonoscopy) {
                 localStorage.colonoscopy = '' 
             }
@@ -125,9 +106,6 @@ export default {
         })
         if (localStorage.colonoscopy) {
             this.userData = JSON.parse(localStorage.colonoscopy)
-        }
-        if (localStorage.doctor) {
-            this.doctor = JSON.parse(localStorage.doctor)
         }
     }    
 }

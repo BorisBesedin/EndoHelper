@@ -9,7 +9,12 @@
     </div>
     <p class="record__file-link">Терминология: <a href="files/MST3_EE.pdf" target="_blank">МСТ 3.0</a></p>
     
-    <component class="record__content" v-bind:is="currentComponent"></component>
+    <Passport v-bind:patient="patient" v-bind:doctor="doctor" @clear-doctor="clearDoctorInfo" />
+
+    <component class="record__content"
+               v-bind:is="currentComponent"
+               v-bind:patient="patient"
+               v-bind:doctor="doctor"></component>
   </div>
 </template>
 
@@ -17,11 +22,12 @@
 import Gastroscopy from '../components/Gastroscopy'
 import Colonoscopy from '../components/Colonoscopy'
 import Bronchoscopy from '../components/Bronchoscopy'
+import Passport from '../components/Passport'
 export default {
   name: 'Record',
   props:['tab'],
   components: {
-    Gastroscopy, Colonoscopy, Bronchoscopy
+    Gastroscopy, Colonoscopy, Bronchoscopy, Passport
     },
   data() {
     return {
@@ -40,7 +46,19 @@ export default {
         }      
       ],
       currentProcedure: this.tab || "gastroscopy",
-      descriprion: {}
+      descriprion: {},
+      patient: {
+        patient: '',
+        birth: '',
+        anestesia: '',
+      },
+      doctor: {
+        hospital: '',
+        adress: '',
+        phone: '',                
+        endoscope: '',
+        doctor: ''
+      }
     }
   },
   computed: {
@@ -48,9 +66,26 @@ export default {
       return this.currentProcedure.toLowerCase()
     }
   },
+  mounted() {
+    if (localStorage.doctor) {
+      this.doctor = JSON.parse(localStorage.doctor)
+    }
+  },
   methods: {
     setTab(tab) {
       this.currentProcedure = tab
+    },
+    clearDoctorInfo() {
+      if (localStorage.doctor) {
+        localStorage.doctor = ''
+      }
+      this.doctor = {
+        hospital: '',
+        adress: '',
+        phone: '',                
+        endoscope: '',
+        doctor: ''
+      }
     }
   }
 }

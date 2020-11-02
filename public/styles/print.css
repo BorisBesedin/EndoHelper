@@ -5,6 +5,7 @@
 }
 
 .preview__name {
+    margin-top: 40px;
     font-size: 18px;
     text-align: center;
 }
@@ -85,6 +86,7 @@ span:first-child {
 }
 
 p {
+    margin: 0;
     text-align: left;
     font-size: 13px;
     line-height: 16px;
