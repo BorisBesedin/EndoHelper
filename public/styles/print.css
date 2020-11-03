@@ -32,8 +32,8 @@
 }
 .preview__title {
     padding: 5px;
-    font-size: 14px;
-    line-height: 18px;
+    font-size: 16px;
+    line-height: 20px;
     margin-top: 15px;
     margin-bottom: 15px;
     text-align: left;
@@ -76,8 +76,8 @@
 
 span {    
     text-align: left;
-    font-size: 13px;
-    line-height: 16px;
+    font-size: 16px;
+    line-height: 20px;
 }
 
 span:first-child {
@@ -88,8 +88,8 @@ span:first-child {
 p {
     margin: 0;
     text-align: left;
-    font-size: 13px;
-    line-height: 16px;
+    font-size: 16px;
+    line-height: 20px;
 }
 
 .preview__item {
