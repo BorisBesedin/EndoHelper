@@ -31,11 +31,10 @@
     padding-left: 10px;
 }
 .preview__title {
-    padding: 5px;
-    font-size: 16px;
-    line-height: 20px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    line-height: 22px;
     text-align: left;
     text-decoration: underline;
     background-color: #e5e5e5;
@@ -76,8 +75,8 @@
 
 span {    
     text-align: left;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 18px;
+    line-height: 22px;
 }
 
 span:first-child {
@@ -88,8 +87,8 @@ span:first-child {
 p {
     margin: 0;
     text-align: left;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 18px;
+    line-height: 22px;
 }
 
 .preview__item {

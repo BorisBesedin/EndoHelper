@@ -2,8 +2,8 @@
     <div class="atlas">
         <div class="atlas__menu">
             <h2 class="atlas__menu-title">Атлас</h2>
-            <button class="atlas__add button small" @click="popupIsShowing = true">Добавить</button>
-            <AtlasSection v-for="category in atlasData"
+            <button class="atlas__add button small" @click="popupIsShowing = true">Добавить фото</button>
+            <AtlasSection class="atlas__menu-content" v-for="category in atlasData"
                           :key="category.category"
                           v-bind:data="category"
                           @show="show"/>
@@ -160,18 +160,25 @@ export default {
 }
 
 .atlas__menu {
+    display: flex;
+    flex-direction: column;
     position: relative;
-    padding-left: 30px;
-    padding-right: 30px;
     width: 300px;
     flex-shrink: 0;
-    border-right: 2px solid #a2a2a2; 
+    background-color: #ffffff;
+    border-right: 4px solid #03416A
+}
+
+.atlas__menu-content {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .atlas__add {
-    position: absolute;
-    top: 0;
-    right: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    align-self: flex-end;
 }
 
 ul {
@@ -184,8 +191,14 @@ ul {
 }
 
 .atlas__menu-title {
-    margin-bottom: 40px;
+    padding: 20px;
+    font-family: inherit;
+    font-weight: normal;
+    font-size: 20px;
     text-align: left;
+    color: #ffffff;
+
+    background-color: #03416A;
 }
 
 .atlas__hidden {

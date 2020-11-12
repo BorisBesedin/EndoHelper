@@ -102,16 +102,22 @@ export default {
 }
 .record__tab {
   border: none;
-  border: 4px solid transparent;
-  border-radius: 10px;
+  border-bottom: 4px solid transparent;
   background-color: #fff;
   padding: 10px;
   font-size: 18px;
   outline: none;
   cursor: pointer;
+  font-family: inherit;
+
+  &:hover {
+    background-color: #7aafd37e;
+  }
 
   &.active {
-    border-color: green;
+    border-color: #0A67A3;
+    background-color: #65A6D1;
+    color: #ffffff;
     transition: 0.3s ease-in-out;
   }
 

@@ -30,26 +30,28 @@ html {
     scrollbar-width: none; /* Firefox */
 }
 
+body {
+  font-family: 'Roboto Mono', 'Arial', monospace;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   display: flex;
   flex-direction: column;
+  background-color: #ffffff;
   color: #2c3e50;
   min-height: 100vh;
 }
 
 .content {
   flex-grow: 1;
-  margin-top: 40px;
 }
 
 .header {
-  padding-left: 20px;
-  padding-right: 20px;
-  background-color: #e5e5e5;
+  background-color: #3D97D1;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -58,6 +60,7 @@ html {
 }
 
 .logo {
+  margin-left: 20px;
   width: 250px;
   height: 50px;
   background-image: url('../public/logo.png');
@@ -66,25 +69,23 @@ html {
 }
 
 #nav {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  display: flex;
 
   a {
+    display: block;
+    padding: 25px;
     font-weight: bold;
     font-size: 14px;
     color: #000000;
     text-decoration: none;
     text-transform: uppercase;
-    padding: 10px;    
-    border-radius: 10px;
-    opacity: 0.8;
 
     &:hover {
-      opacity: 1;
     }
 
     &.router-link-exact-active {
-      color: green;
+      background-color: #0A67A3;
+      color: #ffffff;
       transition: 0.3s ease-in-out;
     }
   }
@@ -94,20 +95,17 @@ html {
   font-size: 28px;
 }
 
-.nav-link {
-  margin-right: 20px;
-}
-
 .button {
   padding: 10px;
   width: 180px;
-  background-color: green;
+  background-color: #0A67A3;  
+  font-family: inherit;
   border: none;
+  border-bottom: 4px solid #03416A;
   font-size: 16px;
   text-transform: uppercase;
   color: #ffffff;
   text-decoration: none;
-  border-radius: 10px;
   opacity: 0.8;
   transition: 0.3s ease-in-out;
   cursor: pointer;

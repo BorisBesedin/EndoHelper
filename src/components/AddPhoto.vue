@@ -91,7 +91,6 @@ export default {
     width: 650px;
     background-color: #ffffff;
     color: #000000;
-    border-radius: 10px;
 }
 
 .form__container {
@@ -107,6 +106,7 @@ export default {
     background-color: transparent;
     border: none;
     outline: none;
+    cursor: pointer;
 
     &::after,
     &::before {
@@ -116,7 +116,7 @@ export default {
         left: -5px;
         width: 35px;
         height: 3px;
-        background-color: green;
+        background-color: #0A67A3;
     }
 
     &::after {
@@ -131,11 +131,13 @@ export default {
 select, input, textarea {
     padding: 5px;
     font-size: 16px;
-    border: 2px solid #000000;
-    border-radius: 10px;
+    background-color: #f2f2f2;
+    border: none;
+    border-bottom: 1px solid #000000;
 }
 
 textarea {
+    padding-bottom: 13px;
     resize: none;
 }
 
