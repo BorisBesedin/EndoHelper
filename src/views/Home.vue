@@ -52,7 +52,7 @@ export default {
         update(data) {
             this.isLoading = true
             axios
-                .get('https://afternoon-lowlands-89209.herokuapp.com/api/photos')
+                .get('https://endohelper.herokuapp.com/api/photos')
                 // .get('http://localhost:3000/api/photos')
                 .then(response => {
                     const index = this.atlasData[data.category].pathology.findIndex(p => p.id === data.pathology)
@@ -91,7 +91,7 @@ export default {
             
             this.isLoading = true
 
-            await axios.post('https://afternoon-lowlands-89209.herokuapp.com/api/photos', formData, {
+            await axios.post('https://endohelper.herokuapp.com/api/photos', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -119,7 +119,7 @@ export default {
     mounted() {
         this.isLoading = true
         axios
-            .get('https://afternoon-lowlands-89209.herokuapp.com/api/photos')
+            .get('https://endohelper.herokuapp.com/api/photos')
             // .get('http://localhost:3000/api/photos')
             .then(response => {
                 this.atlasData = response.data
