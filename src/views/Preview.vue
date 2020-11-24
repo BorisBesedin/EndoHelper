@@ -8,84 +8,43 @@
         <h1 class="preview__name"> {{this.title}} </h1>        
         <div class="preview__passport">            
             <p class="preview__item">
-                <span>Пациент:</span>
+                <span>Пациент</span>
                 <span>: {{patient.patient}}</span>
             </p>
             <p class="preview__item">
-                <span>Дата рождения:</span>
+                <span>Дата рождения</span>
                 <span>: {{patient.birth}}</span>
             </p>
             <p class="preview__item">
-                <span>Анестезия:</span>
+                <span>Анестезия</span>
                 <span>: {{patient.anestesia}}</span>
             </p>
             <p class="preview__item">
-                <span>Модель аппарата:</span>
+                <span>Модель аппарата</span>
                 <span>: {{doctor.endoscope}}</span>
-            </p>            
+            </p> 
+            <p class="preview__item">
+                <span>Дата исследования</span>
+                <span>: {{ date.getDate() }}.{{ date.getMonth() + 1 }}.{{ date.getFullYear() }}.
+                </span>
+            </p>             
         </div>
+
+        <PreviewGastro class="protocol" 
+                       v-if="this.procedure === 'gastroscopy'" 
+                       v-bind:description="description" />
+
+        <PreviewColono class="protocol" 
+                       v-if="this.procedure === 'colonoscopy'" 
+                       v-bind:description="description" />
+
+        <PreviewBroncho class="protocol" 
+                       v-if="this.procedure === 'bronchoscopy'" 
+                       v-bind:description="description" />       
+
         
-        <div class="preview__template preview__gastro" v-if="this.procedure === 'gastroscopy'">
-            <h3 class="preview__title">Пищевод</h3>
-            <p class="preview__item" v-for="item in this.templateGastro.esophagus" :key="item.id">
-                <span>{{item.title}}</span>
-                <span v-if="description">: {{description.esophagus[item.name]}}</span>
-            </p>
-            <h3 class="preview__title">Желудок</h3>
-            <p class="preview__item" v-for="item in this.templateGastro.gaster" :key="item.id">
-                <span> {{item.title}}</span>
-                <span v-if="description">: {{description.gaster[item.name]}}</span>
-            </p>
-            <h3 class="preview__title">ДПК</h3>
-            <p class="preview__item" v-for="item in this.templateGastro.duodenum" :key="item.id">
-                <span> {{item.title}}</span>
-                <span v-if="description">: {{description.duodenum[item.name]}}</span>
-            </p>
-
-            <h3 class="preview__title">Заключение</h3>
-            <p class="preview__item" v-if="description">{{description.diagnose}}</p>                      
-        </div>
-
-        <div class="preview__template preview__colono" v-if="this.procedure === 'colonoscopy'">
-            <p class="preview__item" v-for="item in this.templateColono.protocol" :key="item.id">
-                <span>{{item.title}}</span>
-                <span v-if="description">: {{description[item.name]}}</span>
-            </p>
-            
-            <h3 class="preview__title">Заключение</h3>
-            <p class="preview__item" v-if="description">{{description.diagnose}}</p>                      
-        </div>
-
-        <div class="preview__template preview__broncho" v-if="this.procedure === 'bronchoscopy'">
-            <p class="preview__item" v-for="item in this.templateBroncho.view" :key="item.id">
-                <span>{{item.title}}</span>
-                <span v-if="description">: {{description.view[item.name]}}</span>
-            </p>
-
-            <h3 class="preview__title">Гортань:</h3>
-            <p class="preview__item" v-for="item in this.templateBroncho.larynx" :key="item.id">
-                <span>{{item.title}}</span>
-                <span v-if="description">: {{description.larynx[item.name]}}</span>
-            </p>
-
-            <h3 class="preview__title">Трахея:</h3>
-            <p class="preview__item" v-for="item in this.templateBroncho.trachea" :key="item.id">
-                <span>{{item.title}}</span>
-                <span v-if="description">: {{description.trachea[item.name]}}</span>
-            </p>
-
-            <h3 class="preview__title">Бронхи:</h3>
-            <p class="preview__item" v-for="item in this.templateBroncho.bronhus" :key="item.id">
-                <span>{{item.title}}</span>
-                <span v-if="description">: {{description.bronhus[item.name]}}</span>
-            </p>
-            
-            <h3 class="preview__title">Заключение</h3>
-            <p class="preview__item" v-if="description">{{description.diagnose}}</p>                      
-        </div> 
-
         <p class="preview__doctor">
-            <span>Эндоскопист:</span>
+            <span>Эндоскопист</span>
             <span>: {{doctor.doctor}}</span>
         </p>
         <div class="preview__buttons">
@@ -97,32 +56,37 @@
 </template>
 
 <script>
-import gastroscopy from '../../public/data/gastroscopy'
-import colonoscopy from '../../public/data/colonoscopy'
-import bronchoscopy from '../../public/data/bronchoscopy'
+import PreviewGastro from '../components/PreviewGastro'
+import PreviewColono from '../components/PreviewColono'
+import PreviewBroncho from '../components/PreviewBroncho'
 export default {
     props: ['procedure', 'description', 'patient', 'doctor'],
+    components: {
+        PreviewGastro, PreviewColono, PreviewBroncho
+    },
     data() {
         return {
-            templateGastro: gastroscopy,
-            templateColono: colonoscopy,
-            templateBroncho: bronchoscopy,
-            title: ''
+            title: '',
+            date: new Date()
         }
     },
     mounted() {        
         if (this.doctor) {
             localStorage.setItem('doctor', JSON.stringify(this.doctor))
         }
+
+        if (this.patient) {
+            localStorage.setItem('patient', JSON.stringify(this.patient))
+        }
         switch(this.procedure) {
             case 'gastroscopy':
                 localStorage.setItem('gastroscopy', JSON.stringify(this.description))
-                this.title = 'Видеогастроскопия'
+                this.title = 'Эзофагогастродуоденоскопия'
                 break
 
             case 'colonoscopy':
                 localStorage.setItem('colonoscopy', JSON.stringify(this.description))
-                this.title = 'Видеоколоноскопия'
+                this.title = 'Колоноскопия'
                 break
             case 'bronchoscopy':
                 localStorage.setItem('bronchoscopy', JSON.stringify(this.description))
@@ -183,21 +147,6 @@ export default {
     margin-bottom: 20px;
 }
 
-.preview__item {
-    margin: 0;
-    padding-left: 10px;
-}
-.preview__title {
-    padding: 5px;
-    font-size: 14px;
-    line-height: 18px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    text-align: left;
-    text-decoration: underline;
-    background-color: #e5e5e5;
-}
-
 .preview__buttons {
     margin-top: 40px;
 }
@@ -254,6 +203,7 @@ p {
 
 .preview__item {
     display: flex;
+    font-weight: bolder;
 }
 
 .preview__doctor {

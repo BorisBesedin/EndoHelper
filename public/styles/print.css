@@ -4,11 +4,19 @@
     padding: 30px;
 }
 
+.preview__item {
+    font-weight: bolder;
+}
+
 .preview__name {
-    margin-top: 40px;
-    font-size: 18px;
+    font-size: 26px;
     text-align: center;
 }
+
+.preview__buttons {
+    display: none;
+}
+
 .preview__passport {
     margin-top: 80px;
     margin-bottom: 20px;
@@ -26,62 +34,9 @@
     color: #000;
 }
 
-.preview__item {
-    margin: 0;
-    padding-left: 10px;
-}
-.preview__title {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 18px;
-    line-height: 22px;
-    text-align: left;
-    text-decoration: underline;
-    background-color: #e5e5e5;
-}
-
-.preview__buttons {
-    margin-top: 40px;
-}
-
-.preview__button {
-    width: 50px;
-    height: 50px;
-    border: none;
-    cursor: pointer;
-    opacity: 0.8;   
-    background-color: transparent; 
-    background-repeat: no-repeat;
-    background-size: contain;
-    transition: 0.3s ease-in-out;
-}
-
-    .preview__button:hover {
-        opacity: 1;
-        transition: 0.3s ease-in-out;
-    }
-
-    .preview__button:first-child {
-        margin-right: 20px;
-    }
-
-.preview__copy {
-    background-image: url('../../public/icons/copy.png');
-}
-
-.preview__back {
-    background-image: url('../../public/icons/left-arrow.png');
-}
-
-span {    
-    text-align: left;
-    font-size: 18px;
-    line-height: 22px;
-}
-
-span:first-child {
-    font-weight: bolder;
-    flex-shrink: 0;
+h3 {
+    font-size: 22px;
+    line-height: 26px;
 }
 
 p {
@@ -89,8 +44,4 @@ p {
     text-align: left;
     font-size: 18px;
     line-height: 22px;
-}
-
-.preview__item {
-    display: flex;
 }

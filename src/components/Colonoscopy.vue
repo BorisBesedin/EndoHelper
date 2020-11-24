@@ -48,7 +48,7 @@ export default {
                 clearance: '',
                 content: '',
                 mucosa: '',
-                haustra: '',
+                folds: '',
                 tone: '',
                 sygma: '',
                 rectum: '',

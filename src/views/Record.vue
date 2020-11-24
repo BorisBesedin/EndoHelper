@@ -70,6 +70,9 @@ export default {
     if (localStorage.doctor) {
       this.doctor = JSON.parse(localStorage.doctor)
     }
+    if (localStorage.patient) {
+      this.patient = JSON.parse(localStorage.patient)
+    }
   },
   methods: {
     setTab(tab) {
@@ -79,12 +82,23 @@ export default {
       if (localStorage.doctor) {
         localStorage.doctor = ''
       }
+
+      if (localStorage.patient) {
+        localStorage.patient = ''
+      }
+
       this.doctor = {
         hospital: '',
         adress: '',
         phone: '',                
         endoscope: '',
         doctor: ''
+      }
+
+      this.patient = {
+        patient: '',
+        birth: '',
+        anestesia: '',
       }
     }
   }

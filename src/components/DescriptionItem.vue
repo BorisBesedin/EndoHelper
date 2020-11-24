@@ -25,7 +25,7 @@ export default {
     methods: {
         add(value) {
             const input = document.querySelector(`input[id="${this.sign.name + this.place}"]`)
-            input.value += value + ' '
+            input.value += ' ' + value
             input.dispatchEvent(new Event('input'))
         }
     }

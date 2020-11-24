@@ -42,7 +42,7 @@ li {
     cursor: pointer;
 
     &:hover {
-        color: green;
+        color: rgb(43, 113, 194);
     }
 }
 </style>
