@@ -79,18 +79,21 @@ export default {
                     epiglottis: "",
                     arytenoid: "",
                     glottis: "",
-                    vocal: ""     
+                    vocal: "",
+                    other: ""     
                 },
                 trachea: {
                     clearance: "",
                     content: "",
                     mucosa: "",
-                    carine: ""
+                    carine: "",
+                    other: "" 
                 },
                 bronhus: {
                     clearance: "",
                     content: "",
-                    mucosa: ""
+                    mucosa: "",
+                    other: "" 
                 },
                 diagnose: ""
             }

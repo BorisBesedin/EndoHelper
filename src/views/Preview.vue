@@ -1,7 +1,7 @@
 <template>
     <div class="preview">
         <div class="preview__hospital">
-            <p>{{doctor.hospital}}</p>
+            <p v-if="doctor.hospital">{{doctor.hospital}}</p>
             <p>{{doctor.adress}}</p>
             <p>{{doctor.phone}}</p>
         </div>
@@ -108,11 +108,13 @@ export default {
         },
         print() {
             const blockToPrint = document.querySelector('.preview')
+            const font = '<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,600;0,700;1,500&display=swap" rel="stylesheet">'
             const printCSS = '<link rel="stylesheet" href="/styles/print.css" type="text/css" />';
             let print = window.open()
 
             print.document.write(`
                 <div class="print-doc">
+                    ${font}
                     ${printCSS}
                     ${blockToPrint.innerHTML}
                 </div>

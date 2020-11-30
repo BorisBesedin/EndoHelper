@@ -4,23 +4,26 @@
             <p>
                 Осмотр {{ description.view.method}}.
             </p>
-            <p>
-                Надгортанник {{description.larynx.epiglottis}}.
-                Черпаловидные хрящи {{description.larynx.arytenoid}}.
-                Голосовая щель {{description.larynx.glottis}}.
-                Голосовые складки {{description.larynx.vocal}}.
-            </p>   
-            <p>
-                Просвет трахеи {{description.trachea.clearance}}.
-                В просвете {{description.trachea.content}}.
-                Слизистая {{description.trachea.mucosa}}.
-                Карина {{description.trachea.carine}}.
-            </p>  
-            <p>
-                Устья бронхов {{description.bronhus.clearance}}.
-                В просвете {{description.bronhus.content}}.
-                Слизистая {{description.bronhus.mucosa}}.
-            </p> 
+            <div>
+                <p v-if="description.larynx.epiglottis">Надгортанник {{description.larynx.epiglottis}}.</p>
+                <p v-if="description.larynx.arytenoid">Черпаловидные хрящи {{description.larynx.arytenoid}}.</p>
+                <p v-if="description.larynx.glottis">Голосовая щель {{description.larynx.glottis}}.</p>
+                <p v-if="description.larynx.vocal">Голосовые складки {{description.larynx.vocal}}.</p>
+                <p v-if="description.larynx.other">{{description.larynx.other}}.</p>   
+            </div>   
+            <div>
+                <p v-if="description.trachea.clearance">Просвет трахеи {{description.trachea.clearance}}.</p>
+                <p v-if="description.trachea.content">В просвете {{description.trachea.content}}.</p>
+                <p v-if="description.trachea.mucosa">Слизистая трахеи {{description.trachea.mucosa}}.</p>
+                <p v-if="description.trachea.carine">Карина {{description.trachea.carine}}.</p>
+                <p v-if="description.trachea.other">{{description.trachea.other}}.</p>   
+            </div>  
+            <div>
+                <p v-if="description.bronhus.clearance">Устья бронхов {{description.bronhus.clearance}}.</p>
+                <p v-if="description.bronhus.content">В просвете {{description.bronhus.content}}.</p>
+                <p v-if="description.bronhus.mucosa">Слизистая бронхов {{description.bronhus.mucosa}}.</p>
+                <p v-if="description.bronhus.other">{{description.bronhus.other}}.</p>   
+            </div> 
         </div>
 
         <div class="protocol__section">

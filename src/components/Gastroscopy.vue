@@ -71,7 +71,8 @@ export default {
                     mucosa: "",
                     cardia: "",
                     veins: "",
-                    zline: ""        
+                    zline: "",
+                    other: ""      
                 },
                 gaster: {
                     clearance: "",
@@ -80,13 +81,15 @@ export default {
                     peristalsis: "",
                     mucosa: "",
                     pylorus: "",
-                    retroflex: ""
+                    retroflex: "",
+                    other: "" 
                 },
                 duodenum: {
                     bulbClearance: "",
                     postbulb: "",
                     mucosa: "",
-                    bds: ""
+                    bds: "",
+                    other: "" 
                 },
                 diagnose: ""
             }

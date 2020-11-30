@@ -6,7 +6,7 @@
                 @click="$emit('clear', $event.target)"
                 autocomplete="off"
                 value="">
-        <Helper @add-input="add" class="helper" v-bind:list="sign.description"/>
+        <Helper v-if="sign.description.length" @add-input="add" class="helper" v-bind:list="sign.description"/>
     </div>
 </template>
 

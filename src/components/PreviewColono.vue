@@ -1,29 +1,29 @@
 <template>
     <div class="protocol">
         <div class="protocol__section">
-            <p>
-                Аппарат проведен {{description.level}}. 
-                Слизистая дистального отдела подвздошной кишки {{description.ileum}}. 
-                Купол слепой кишки {{description.dome}}. 
-                Баугиниева заслонка {{description.valve}}. 
-            </p>           
+            <div>
+                <p v-if="description.level">Аппарат проведен {{description.level}}.</p>
+                <p v-if="description.ileum">Слизистая дистального отдела подвздошной кишки {{description.ileum}}.</p>
+                <p v-if="description.dome">Купол слепой кишки {{description.dome}}.</p>
+                <p v-if="description.valve">Баугиниева заслонка {{description.valve}}.</p></div>           
         </div>
 
         <div class="protocol__section">
-            <p>
-                Просвет осмотренных отделов толстой кишки {{description.clearance}}. 
-                В просвете {{description.content}}. 
-                Складки {{description.folds}}. 
-                Тонус {{description.tone}}. 
-                Слизистая на всем протяжении {{description.mucosa}}. 
-            </p>
+            <div>
+                <p v-if="description.clearance">Просвет осмотренных отделов толстой кишки {{description.clearance}}.</p>
+                <p v-if="description.content">В просвете {{description.content}}.</p>
+                <p v-if="description.folds">Складки {{description.folds}}.</p>
+                <p v-if="description.tone">Тонус {{description.tone}}.</p>
+                <p v-if="description.mucosa">Слизистая на всем протяжении {{description.mucosa}}.</p>
+            </div>
         </div>
 
         <div class="protocol__section">
-            <p>
-                Сигмовидная кишка {{description.sygma}}. 
-                Слизистая прямой кишки {{description.rectum}}. 
-            </p>
+            <div>
+                <p v-if="description.sygma">Сигмовидная кишка {{description.sygma}}.</p>
+                <p v-if="description.rectum">Слизистая прямой кишки {{description.rectum}}. </p>
+                <p v-if="description.other">{{description.other}}.</p>   
+            </div>
         </div>
 
         <div class="protocol__section">

@@ -52,6 +52,7 @@ export default {
                 tone: '',
                 sygma: '',
                 rectum: '',
+                other: '',
                 diagnose: ''
             }
         }
