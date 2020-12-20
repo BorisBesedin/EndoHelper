@@ -31,6 +31,7 @@ import AtlasContent from '../components/AtlasContent'
 import Loader from '../components/Loader'
 import StatusMessage from '../components/StatusMessage'
 import AddPhoto from '../components/AddPhoto'
+import atlasTemp from '../../public/data/atlas'
 export default {
     components: {
         AtlasSection, AtlasContent, AddPhoto, Loader, StatusMessage
@@ -44,29 +45,41 @@ export default {
                 title: '',
                 text: ''
             },
-            atlasData: null,
+            atlasData: {},
             showingPathology: null
         }
     },
     methods: {
-        update(data) {
-            this.isLoading = true
+        updateAtlasData() {
+            this.isLoading = true 
+            
+            this.atlasData.esophagus.pathology.forEach(item => item.images = [])    
+            this.atlasData.gaster.pathology.forEach(item => item.images = [])
+            this.atlasData.colon.pathology.forEach(item => item.images = [])    
+            
             axios
                 .get('https://endohelper.herokuapp.com/api/photos')
                 // .get('http://localhost:3000/api/photos')
                 .then(response => {
-                    const index = this.atlasData[data.category].pathology.findIndex(p => p.id === data.pathology)
-                    this.atlasData = response.data
-                    this.closePopup()
-                    this.show(this.atlasData[data.category].pathology[index])
-                    this.isLoading = false
+                    response.data.forEach(item => {
+                        const index = this.atlasData[item.category].pathology.findIndex(elem => elem.id === item.pathology)
+
+                        this.atlasData[item.category].pathology[index].images.unshift(item)                     
                     })
+                    this.isLoading = false            
+                })
                 .catch(err => {
                     this.isLoading = false
                     this.messageIsShowing = true
-                    this.message.title = 'Ой! Что-то не так:'
+                    this.message.title = `Упс...ошибка подключения:`
                     this.message.text = err
                 })
+        },
+        updatePhoto(data) {
+            this.updateAtlasData()
+            const indexToShow = this.atlasData[data.category].pathology.findIndex(p => p.id === data.pathology)
+            this.closePopup()
+            this.show(this.atlasData[data.category].pathology[indexToShow])
         },
         show(data) {
             this.showingPathology = data
@@ -113,24 +126,12 @@ export default {
                 this.message.title = 'Ой! Что-то пошло не так:'
                 this.message.text = err
             })
-            this.update(data)
+            this.updatePhoto(data)
         }
     },
     mounted() {
-        this.isLoading = true
-        axios
-            .get('https://endohelper.herokuapp.com/api/photos')
-            // .get('http://localhost:3000/api/photos')
-            .then(response => {
-                this.atlasData = response.data
-                this.isLoading = false            
-            })
-            .catch(err => {
-                this.isLoading = false
-                this.messageIsShowing = true
-                this.message.title = `Упс...ошибка подключения:`
-                this.message.text = err
-            })
+        this.atlasData = atlasTemp
+        this.updateAtlasData()
     }
     
 }

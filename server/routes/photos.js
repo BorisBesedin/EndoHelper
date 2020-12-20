@@ -1,33 +1,39 @@
 const { Router } = require('express');
 const router = Router();
 const Photo = require('../models/Photo');
-const multer = require('multer');
+const cloudinary = require('cloudinary').v2;
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) =>{
-        cb(null, 'photos');
-    },
-    filename: (req, file, cb) =>{
-        cb(null, `${Date.now()}-${file.originalname}`);
-    }
+cloudinary.config({ 
+    cloud_name: 'hapufqksm', 
+    api_key: '171345659342734', 
+    api_secret: 'qExlWQPLmPGH7xU04TWgCQ3wEk0' 
 });
-const upload = multer({storage: storage});
 
 router.get('/', async (req, res) => {
-       res.json(await Photo.getData());
+       res.json(await Photo.find());
     });
      
-router.post('/', upload.single('photo'), async (req, res) => {  
-    const photo = new Photo(
-        req.body.author, 
-        `/${req.file.destination}/${req.file.filename}`,
-        req.body.description,
-        req.body.text
-        );
-    await photo.save(req.body.category, req.body.pathology);
-    res.redirect('/');
-    res.json({state: 'success'});
-    
+router.post('/', async (req, res) => { 
+    await cloudinary.uploader.upload(req.files.photo.tempFilePath, function(err, result) {
+        if (err) {
+            console.log(err)
+        }
+        const photo = new Photo({
+            author: req.body.author,
+            url: result.secure_url,
+            category: req.body.category,
+            pathology: req.body.pathology,
+            description: req.body.description,
+            text: req.body.text
+        })
+
+        try {
+            photo.save();
+            res.redirect('/');
+        } catch(e) {
+            console.log(e)
+        }       
+    })  
 });
 
 module.exports = router;

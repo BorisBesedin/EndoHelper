@@ -1,5 +1,5 @@
 <template>
-    <form class="form" @submit.prevent="$emit('send-photo', userData)" enctype="multipart/form-data">
+    <form id="add-photo" class="form" @submit.prevent="$emit('send-photo', userData)" enctype="multipart/form-data">
         <button class="form__close" @click="$emit('close-popup')"></button>
         <div class="form__container">        
             <p class="form__field">

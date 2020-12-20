@@ -1,0 +1,132 @@
+{
+    "esophagus": {
+        "name": "Пищевод",
+        "pathology": [
+            {
+                "name": "Рефлюкс-эзофагит",
+                "id": "reflux",
+                "images": []
+            },
+            {
+                "name": "Пищевод Барретта",
+                "id": "barrett",
+                "images": []
+            },
+            {
+                "name": "Грыжа пищеводного отверстия диафрагмы",
+                "id": "hernia",
+                "images": []
+            },
+            {
+                "name": "Варикозное расширение вен",
+                "id": "varices",
+                "images": []
+            },
+            {
+                "name": "Ахалазия",
+                "id": "achalasia",
+                "images": []
+            },
+            {
+                "name": "Дивертикул",
+                "id": "diverticulum",
+                "images": []
+            },
+            {
+                "name": "Кандидоз",
+                "id": "miotic",
+                "images": []
+            },
+            {
+                "name": "Синдром Меллори-Вейса",
+                "id": "mellory",
+                "images": []
+            },
+            {
+                "name": "Доброкачественные опухоли",
+                "id": "tumors",
+                "images": []
+            },
+            {
+                "name": "Злокачественные образования",
+                "id": "cancer",
+                "images": []
+            },
+            {
+                "name": "Разное",
+                "id": "others",
+                "images": []
+            }
+        ]
+    },
+    "gaster": {
+        "name": "Желудок",
+        "pathology": [
+            {
+                "name": "Норма",
+                "id": "normal",
+                "images": []
+            },
+            {
+                "name": "Гастропатии",
+                "id": "gastropathy",
+                "images": []
+            },
+            {
+                "name": "Язва желудка",
+                "id": "ulcer",
+                "images": []
+            },
+            {
+                "name": "Оперированный желудок",
+                "id": "operation",
+                "images": []
+            },
+            {
+                "name": "Доброкачественные образования",
+                "id": "tumors",
+                "images": []
+            },
+            {
+                "name": "Злокачественные образования",
+                "id": "cancer",
+                "images": []
+            },
+            {
+                "name": "Разное",
+                "id": "others",
+                "images": []
+            }
+        ]
+    },
+    "colon": {
+        "name": "Толстая кишка",
+        "pathology": [
+            {
+                "name": "Болеезнь Крона",
+                "id": "chrone",
+                "images": []
+            },
+            {
+                "name": "Язвенный колит",
+                "id": "ulcer-col",
+                "images": []
+            },
+            {
+                "name": "Дивертикулы",
+                "id": "diverticulum",
+                "images": []
+            },
+            {
+                "name": "Доброкачественные образования",
+                "id": "tumors",
+                "images": []
+            },
+            {
+                "name": "Злокачественные образования",
+                "id": "cancer",
+                "images": []
+            }
+        ]
+    }
+}

@@ -1,0 +1,28 @@
+[{
+    "_id": {
+        "$oid": "5fde1cf9cb6fe12dc01eb948"
+    },
+    "author": "234",
+    "url": "https://res.cloudinary.com/hapufqksm/image/upload/v1608391928/shp9edfq21jt8vwbriri.jpg",
+    "category": "gaster",
+    "pathology": "gastropathy",
+    "description": "wqe",
+    "text": "qwe",
+    "__v": {
+        "$numberInt": "0"
+    }
+},
+{
+    "_id": {
+        "$oid": "5fde181ece9fb801845505b3"
+    },
+    "author": "234",
+    "url": "https://res.cloudinary.com/hapufqksm/image/upload/v1608390686/psggeayedl4mixw3fjxg.jpg",
+    "category": "esophagus",
+    "pathology": "reflux",
+    "description": "13",
+    "text": "123",
+    "__v": {
+        "$numberInt": "0"
+    }
+}]
