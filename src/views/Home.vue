@@ -58,8 +58,8 @@ export default {
             this.atlasData.colon.pathology.forEach(item => item.images = [])    
             
             axios
-                .get('https://endohelper.herokuapp.com/api/photos')
-                // .get('http://localhost:3000/api/photos')
+                // .get('https://endohelper.herokuapp.com/api/photos')
+                .get('http://localhost:3000/api/photos')
                 .then(response => {
                     response.data.forEach(item => {
                         const index = this.atlasData[item.category].pathology.findIndex(elem => elem.id === item.pathology)
