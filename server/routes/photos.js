@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => { 
     await cloudinary.uploader.upload(req.files.photo.tempFilePath, function(err, result) {
         if (err) {
-            console.log(err)
+            throw err
         }
         const photo = new Photo({
             author: req.body.author,

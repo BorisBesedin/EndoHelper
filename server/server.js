@@ -7,12 +7,11 @@ const fileupload = require('express-fileupload');
 
 const PORT = process.env.PORT || 3000;
 
+app.use(express.urlencoded({extended: true}));
 app.use(cors());
 app.use(fileupload({
     useTempFiles: true
 }))
-app.use(express.urlencoded({extended: true}));
-app.use(express.json());
 app.use('/api/photos', require('./routes/photos'));
 app.use('/', express.static(path.join(__dirname, '../dist')));
 app.use('/photos', express.static(path.join(__dirname, '../photos')));
