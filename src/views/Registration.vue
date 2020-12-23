@@ -98,7 +98,7 @@ export default {
         register() {
             this.isLoading = true
             const isRegistated = this.checkReg()
-            const confirm = document.querySelector('#confirm')            
+            const confirm = document.querySelector('#confirm').value            
 
             if (!isRegistated && this.userData.password === confirm) {
                 const formData = new FormData()
