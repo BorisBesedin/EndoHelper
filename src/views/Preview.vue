@@ -1,9 +1,9 @@
 <template>
     <div class="preview">
         <div class="preview__hospital">
-            <p v-if="doctor.hospital">{{doctor.hospital}}</p>
-            <p>{{doctor.adress}}</p>
-            <p>{{doctor.phone}}</p>
+            <p v-if="doctor.hospital">{{doctor.hospital.name}}</p>
+            <p>{{doctor.hospital.adress}}</p>
+            <p>{{doctor.hospital.phone}}</p>
         </div>
         <h1 class="preview__name"> {{this.title}} </h1>        
         <div class="preview__passport">            
@@ -45,7 +45,7 @@
         
         <p class="preview__doctor">
             <span>Эндоскопист</span>
-            <span>: {{doctor.doctor}}</span>
+            <span>: {{doctor.name}}</span>
         </p>
         <div class="preview__buttons">
             <router-link type="button" :to="{name: 'Record', params: {tab: this.procedure}}"><button class="preview__back preview__button"></button></router-link>
@@ -71,10 +71,6 @@ export default {
         }
     },
     mounted() {        
-        if (this.doctor) {
-            localStorage.setItem('doctor', JSON.stringify(this.doctor))
-        }
-
         if (this.patient) {
             localStorage.setItem('patient', JSON.stringify(this.patient))
         }

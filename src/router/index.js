@@ -8,33 +8,43 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    props: true,
+    component: Home,
+    meta: {
+      checkAuth: true
+    }
   },
   {
     path: '/record',
     name: 'Record',
     props: true,
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Record.vue')
+    meta: {
+      checkAuth: true
+    },
+    component: () => import('../views/Record.vue')
   },
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import('../views/About.vue')
   },
   {
     path: '/preview',
     name: 'Preview',
     props: true,
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Preview.vue')
+    component: () => import('../views/Preview.vue')
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    props: true,
+    component: () => import('../views/Login.vue')
+  },
+  {
+    path: '/registration',
+    name: 'registration',
+    props: true,
+    component: () => import('../views/Registration.vue')
   }
 ]
 

@@ -2,7 +2,7 @@
     <div class="atlas">
         <div class="atlas__menu">
             <h2 class="atlas__menu-title">Атлас</h2>
-            <button class="atlas__add button small" @click="popupIsShowing = true">Добавить фото</button>
+            <button v-if="isAuth" class="atlas__add" @click="popupIsShowing = true" aria-label="добавить фото"></button>
             <AtlasSection class="atlas__menu-content" v-for="category in atlasData"
                           :key="category.category"
                           v-bind:data="category"
@@ -38,6 +38,7 @@ export default {
     },
     data() {
         return {
+            isAuth: false,
             isLoading: false,
             popupIsShowing: false,
             messageIsShowing: false,
@@ -50,6 +51,16 @@ export default {
         }
     },
     methods: {
+        checkAuth() {
+            axios.get('https://endohelper.herokuapp.com/api/auth/login')
+            // axios.get('http://localhost:3000/api/auth/login')
+                .then(res => {
+                this.isAuth = res.data.isAuth
+                })
+                .catch(e => {
+                console.log(e)
+                })
+        },
         updateAtlasData() {
             this.isLoading = true 
             
@@ -90,7 +101,7 @@ export default {
         closeMessage() {
             this.messageIsShowing = false
         },
-        async sendPhoto(data) {
+        sendPhoto(data) {
             const photo = document.querySelector('#photo')
             const formData = new FormData()
             
@@ -104,12 +115,12 @@ export default {
             
             this.isLoading = true
 
-            await axios.post('https://endohelper.herokuapp.com/api/photos', formData, {
+            axios.post('https://endohelper.herokuapp.com/api/photos', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             })
-            // await axios.post('http://localhost:3000/api/photos', formData, {
+            // axios.post('http://localhost:3000/api/photos', formData, {
             //     headers: {
             //         'Content-Type': 'multipart/form-data'
             //     }
@@ -132,6 +143,7 @@ export default {
     mounted() {
         this.atlasData = atlasTemp
         this.updateAtlasData()
+        this.checkAuth()
     }
     
 }
@@ -176,10 +188,37 @@ export default {
 }
 
 .atlas__add {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    align-self: flex-end;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    opacity: 0.6;
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    transition: 0.3s;
+
+    &::before,
+    &::after {
+        position: absolute;
+        content: "";
+        top: 13px;
+        right: 6px;
+        width: 20px;
+        height: 4px;
+        background-color: #fff;
+    }
+
+    &:after {
+        transform: rotate(-90deg);
+    }
+
+    &:hover {
+        opacity: 1;
+        transition: 0.3s;
+    }
 }
 
 ul {
@@ -192,6 +231,7 @@ ul {
 }
 
 .atlas__menu-title {
+    margin-bottom: 10px;
     padding: 20px;
     font-family: inherit;
     font-weight: normal;

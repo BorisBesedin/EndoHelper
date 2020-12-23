@@ -1,108 +1,130 @@
 <template>
-  <div class="record">    
+  <div class="record">
     <div class="record__menu">
-      <button class="record__tab"
-              v-for="procedure in procedures"
-              :key = "procedure.name"
-              v-bind:class="[{active: currentProcedure === procedure.name}]"
-              v-on:click="currentProcedure = procedure.name"> {{procedure.title}} </button>
+      <button
+        class="record__tab"
+        v-for="procedure in procedures"
+        :key="procedure.name"
+        v-bind:class="[{ active: currentProcedure === procedure.name }]"
+        v-on:click="currentProcedure = procedure.name"
+      >
+        {{ procedure.title }}
+      </button>
     </div>
-    <p class="record__file-link">Терминология: <a href="files/MST3_EE.pdf" target="_blank">МСТ 3.0</a></p>
-    
-    <Passport v-bind:patient="patient" v-bind:doctor="doctor" @clear-doctor="clearDoctorInfo" />
+    <p class="record__file-link">
+      Терминология: <a href="files/MST3_EE.pdf" target="_blank">МСТ 3.0</a>
+    </p>
 
-    <component class="record__content"
-               v-bind:is="currentComponent"
-               v-bind:patient="patient"
-               v-bind:doctor="doctor"></component>
+    <Passport
+      v-bind:patient="patient"
+      v-bind:doctor="doctor"
+      @clear-doctor="clearDoctorInfo"
+    />
+
+    <component
+      class="record__content"
+      v-bind:is="currentComponent"
+      v-bind:patient="patient"
+      v-bind:doctor="doctor"
+    ></component>
   </div>
 </template>
 
 <script>
-import Gastroscopy from '../components/Gastroscopy'
-import Colonoscopy from '../components/Colonoscopy'
-import Bronchoscopy from '../components/Bronchoscopy'
-import Passport from '../components/Passport'
+import axios from 'axios'
+import Gastroscopy from "../components/Gastroscopy";
+import Colonoscopy from "../components/Colonoscopy";
+import Bronchoscopy from "../components/Bronchoscopy";
+import Passport from "../components/Passport";
 export default {
-  name: 'Record',
-  props:['tab'],
+  name: "Record",
+  props: ["tab"],
   components: {
-    Gastroscopy, Colonoscopy, Bronchoscopy, Passport
-    },
+    Gastroscopy,
+    Colonoscopy,
+    Bronchoscopy,
+    Passport,
+  },
   data() {
     return {
       procedures: [
         {
           name: "gastroscopy",
-          title: "Гастроскопия"
+          title: "Гастроскопия",
         },
         {
           name: "colonoscopy",
-          title: "Колоноскопия"
+          title: "Колоноскопия",
         },
         {
           name: "bronchoscopy",
-          title: "Бронхоскопия"
-        }      
+          title: "Бронхоскопия",
+        },
       ],
       currentProcedure: this.tab || "gastroscopy",
       descriprion: {},
       patient: {
-        patient: '',
-        birth: '',
-        anestesia: '',
+        patient: "",
+        birth: "",
+        anestesia: "",
+        endoscope: ""
       },
-      doctor: {
-        hospital: '',
-        adress: '',
-        phone: '',                
-        endoscope: '',
-        doctor: ''
-      }
-    }
+      doctor: {},
+    };
   },
   computed: {
     currentComponent() {
-      return this.currentProcedure.toLowerCase()
-    }
+      return this.currentProcedure.toLowerCase();
+    },
   },
   mounted() {
-    if (localStorage.doctor) {
-      this.doctor = JSON.parse(localStorage.doctor)
-    }
     if (localStorage.patient) {
-      this.patient = JSON.parse(localStorage.patient)
+      this.patient = JSON.parse(localStorage.patient);
     }
+
+    this.checkAuth()
+
+    axios
+      .get("https://endohelper.herokuapp.com/api/users")
+      // .get('http://localhost:3000/api/users')
+      .then((response) => {
+        this.doctor = response.data
+      })
+      .catch((err) => {
+        console.log(err)
+      });
   },
   methods: {
+    checkAuth() {
+      axios
+        .get('https://endohelper.herokuapp.com/api/auth/login')
+        // .get('http://localhost:3000/api/auth/login')
+        .then(res => {
+          if (!res.data.isAuth) {
+            this.$router.push('/login')
+          }
+        })
+        .catch(e => {
+          console.log(e)
+        })
+    },
     setTab(tab) {
-      this.currentProcedure = tab
+      this.currentProcedure = tab;
     },
     clearDoctorInfo() {
-      if (localStorage.doctor) {
-        localStorage.doctor = ''
-      }
-
       if (localStorage.patient) {
-        localStorage.patient = ''
-      }
-
-      this.doctor = {
-        hospital: '',
-        adress: '',
-        phone: '',                
-        endoscope: '',
-        doctor: ''
+        localStorage.patient = "";
       }
 
       this.patient = {
-        patient: '',
-        birth: '',
-        anestesia: '',
-      }
-    }
-  }
-}
+        patient: "",
+        birth: "",
+        anestesia: "",
+        endoscope: ""
+      };
+    },
+  },
+};
 </script>
 
 <style lang="scss">
@@ -129,8 +151,8 @@ export default {
   }
 
   &.active {
-    border-color: #0A67A3;
-    background-color: #65A6D1;
+    border-color: #0a67a3;
+    background-color: #65a6d1;
     color: #ffffff;
     transition: 0.3s ease-in-out;
   }
@@ -144,27 +166,27 @@ export default {
 }
 
 .description__title {
-    text-align: left;
-    font-size: 18px;
-    margin-bottom: 20px;
+  text-align: left;
+  font-size: 18px;
+  margin-bottom: 20px;
 }
 .description__normal-btn {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 .description {
-    position: relative;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 700px;
-    margin: 0 auto;
+  position: relative;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 700px;
+  margin: 0 auto;
 }
 
 .description__buttons {
-    position: absolute;
-    top: 0;
-    right: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 </style>

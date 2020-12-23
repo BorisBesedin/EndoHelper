@@ -7,7 +7,7 @@
 </template>
 <script>
 export default {
-    props: ['message']
+    props: ['message', 'isShowing']
 }
 </script>
 <style lang="scss" scoped>
