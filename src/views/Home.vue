@@ -56,6 +56,7 @@ export default {
             // axios.get('http://localhost:3000/api/auth/login')
                 .then(res => {
                 this.isAuth = res.data.isAuth
+                console.log(this.isAuth)
                 })
                 .catch(e => {
                 console.log(e)
