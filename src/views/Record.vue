@@ -87,7 +87,7 @@ export default {
     }
 
     axios
-      .get('https://endohelper.herokuapp.com/api/user')
+      .get('https://endohelper.herokuapp.com/api/users')
       .then(res => {
         this.doctor = res
       })
