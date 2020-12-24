@@ -64,10 +64,12 @@ export default {
          })
     },
     logout() {
+      this.isLoading = true
       axios
         .get('https://endohelper.herokuapp.com/api/auth/logout')
         // .get('http://localhost:3000/api/auth/logout')
         .then(res => {
+          this.isLoading = false
           this.isAuth = res.data.isAuth
           if (this.$route.path !== '/login') {
             this.$router.push('/login')

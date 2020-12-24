@@ -50,7 +50,6 @@ export default {
             //     }
             // })
                 .then((res) => {
-                    console.log(res)
                     this.$emit('loading', false)
 
                     if (res.data.success) {
