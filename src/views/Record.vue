@@ -34,6 +34,7 @@
 import Gastroscopy from "../components/Gastroscopy";
 import Colonoscopy from "../components/Colonoscopy";
 import Bronchoscopy from "../components/Bronchoscopy";
+import axios from 'axios';
 import Passport from "../components/Passport";
 export default {
   name: "Record",
@@ -84,6 +85,15 @@ export default {
     if (!this.isAuth) {
       this.$router.push('/login')
     }
+
+    axios
+      .get('https://endohelper.herokuapp.com/api/user')
+      .then(res => {
+        this.doctor = res
+      })
+      .catch(e => {
+        console.log(e)
+      })
   },
   methods: {
     setTab(tab) {
