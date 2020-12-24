@@ -18,7 +18,7 @@ const store = new MongoStore({
 })
 
 app.use(cors({
-    origin: 'https://endohelper.herokuapp.com',
+    origin: 'http://endohelper.herokuapp.com',
     credentials: true
    }));
 
