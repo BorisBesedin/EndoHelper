@@ -5,7 +5,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session);
 const varMiddleware = require('../server/middleware/variables')
 const path = require('path');
-const cors = require('cors');
+// const cors = require('cors');
 const fileupload = require('express-fileupload');
 
 const PORT = process.env.PORT || 3000;
@@ -17,10 +17,10 @@ const store = new MongoStore({
     uri: MONGODB_URI
 })
 
-app.use(cors({
-    origin: ["https://endohelper.herokuapp.com"],
-    credentials: true
-   }));
+// app.use(cors({
+//     origin: ["https://endohelper.herokuapp.com"],
+//     credentials: true
+//    }));
 
 app.use(session({
     secret: 'some secret value',
