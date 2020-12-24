@@ -13,19 +13,44 @@
       </div>
     </div>  
     
-    <router-view v-bind:isAuth="isAuth" class="content"/>
+    <router-view v-bind:isAuth="isAuth" @loading="setLoader" @show-message="showMessage" class="content"/>
+
+    <Loader v-if="isLoading"/>
+
+    <div class="atlas__overlay" v-if="messageIsShowing">
+      <StatusMessage v-bind:message="message" v-if="messageIsShowing" @close-message="closeMessage" />
+    </div>
+
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Loader from '../src/components/Loader'
+import StatusMessage from '../src/components/StatusMessage'
 export default {
   data() {
     return {
-      isAuth: false
+      isLoading: false,
+      isAuth: false,
+      messageIsShowing: false,
+      message: null
     }
   },
+  components: {
+    Loader, StatusMessage
+  },
   methods: {
+    setLoader(boolean) {
+      this.isLoading = boolean
+    },
+    showMessage(message) {
+      this.message = message
+      this.messageIsShowing = true
+    },
+    closeMessage() {
+      this.messageIsShowing = false
+    },
     checkAuth() {
       axios.get('https://endohelper.herokuapp.com/api/auth/login', {
         withCredentials: true

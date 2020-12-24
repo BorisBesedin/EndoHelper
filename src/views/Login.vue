@@ -15,8 +15,7 @@
                 <router-link class="nav-link" to="/registration">Зарегистироваться</router-link>
             </p>
             <button type="submit" class="button">Войти</button>
-            </div>    
-
+        </div> 
     </form>
 </template>
 
@@ -34,6 +33,7 @@ export default {
     methods: {
         login() {
             const formData = new FormData()
+            this.$emit('loading', true)
             
             formData.append('email', this.loginData.email)
             formData.append('password', this.loginData.password)
@@ -49,11 +49,25 @@ export default {
             //         'Content-Type': 'multipart/form-data'
             //     }
             // })
-                .then(() => {
-                    this.$router.push('/')
+                .then((res) => {
+                    console.log(res)
+                    this.$emit('loading', false)
+
+                    if (res.data.success) {
+                        this.$router.push('/')
+                    } else {
+                        this.$emit('show-message', {
+                            title: 'Неверные данные',
+                            text: 'Проверьте логин и пароль'
+                        })
+                    }                    
                 })
                 .catch((e) => {
-                    console.log(e)
+                    this.$emit('loading', false)
+                    this.$emit('show-message', {
+                        title: 'Ошибка соединения',
+                        text: e
+                    })
                 })
         }
     }

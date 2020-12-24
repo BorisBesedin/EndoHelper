@@ -16,13 +16,7 @@
                       @close-popup="closePopup"
                       @send-photo="sendPhoto"
                       v-bind:atlas="atlasData" />
-        </div>
-
-        
-        <Loader v-if="isLoading"/>
-        <div class="atlas__overlay" v-if="messageIsShowing">
-            <StatusMessage v-bind:message="message" v-if="messageIsShowing" @close-message="closeMessage" />
-        </div>        
+        </div>                
     </div>
 </template>
 
@@ -30,31 +24,23 @@
 import axios from 'axios'
 import AtlasSection from '../components/AtlasSection'
 import AtlasContent from '../components/AtlasContent'
-import Loader from '../components/Loader'
-import StatusMessage from '../components/StatusMessage'
 import AddPhoto from '../components/AddPhoto'
 import atlasTemp from '../../public/data/atlas'
 export default {
     props: ['isAuth'],
     components: {
-        AtlasSection, AtlasContent, AddPhoto, Loader, StatusMessage
+        AtlasSection, AtlasContent, AddPhoto
     },
     data() {
         return {
-            isLoading: false,
             popupIsShowing: false,
-            messageIsShowing: false,
-            message: {
-                title: '',
-                text: ''
-            },
             atlasData: {},
             showingPathology: null
         }
     },
     methods: {
         updateAtlasData() {
-            this.isLoading = true 
+            this.$emit('loading', true)
             
             this.atlasData.esophagus.pathology.forEach(item => item.images = [])    
             this.atlasData.gaster.pathology.forEach(item => item.images = [])
@@ -69,13 +55,15 @@ export default {
 
                         this.atlasData[item.category].pathology[index].images.unshift(item)                     
                     })
-                    this.isLoading = false            
+                    this.$emit('loading', false)           
                 })
                 .catch(err => {
-                    this.isLoading = false
-                    this.messageIsShowing = true
-                    this.message.title = `Упс...ошибка подключения:`
-                    this.message.text = err
+                    this.$emit('loading', false)
+                    
+                    this.$emit('show-message', {
+                        title: 'Упс...ошибка подключения:',
+                        message: err
+                    })
                 })
         },
         updatePhoto(data) {
@@ -89,10 +77,7 @@ export default {
         },
         closePopup() {
             this.popupIsShowing = false          
-        },
-        closeMessage() {
-            this.messageIsShowing = false
-        },
+        },        
         sendPhoto(data) {
             const photo = document.querySelector('#photo')
             const formData = new FormData()
@@ -105,7 +90,7 @@ export default {
             formData.append('text', data.text)
             formData.append('photo', photo.files[0])
             
-            this.isLoading = true
+            this.$emit('loading', true) 
 
             axios.post('https://endohelper.herokuapp.com/api/photos', formData, {
                 headers: {
@@ -118,16 +103,18 @@ export default {
             //     }
             // })
             .then(() => {
-                this.isLoading = false
-                this.messageIsShowing = true
-                this.message.title = 'Всё хорошо!'
-                this.message.text = 'Изображение добавлено'
+                this.$emit('loading', false) 
+                this.$emit('show-message', {
+                    title: 'Всё получилось',
+                    text: 'Фото добавлено'
+                })   
             })
             .catch(err => {
-                this.isLoading = false
-                this.messageIsShowing = true
-                this.message.title = 'Ой! Что-то пошло не так:'
-                this.message.text = err
+                this.$emit('loading', false) 
+                this.$emit('show-message', {
+                    title: 'Что-то сломалось',
+                    text: err
+                })   
             })
             this.updatePhoto(data)
         }

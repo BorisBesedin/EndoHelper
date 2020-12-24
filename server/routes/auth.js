@@ -29,10 +29,10 @@ router.post('/login', async (req, res) => {
                     if(err) {
                         throw err
                     }
-                    res.redirect('/')
+                    res.send({success: true})
                 }) 
             } else {
-                res.end()
+                res.send({success: false})
             }
              
         } else {

@@ -37,28 +37,14 @@
             
             <button type="submit" class="button">Готово</button>
         </div>
-
-        <Loader v-if="isLoading"/>
-        <div class="atlas__overlay" v-if="messageIsShowing">
-            <StatusMessage v-bind:message="message" v-if="messageIsShowing" @close-message="closeMessage" />
-        </div>  
-
     </form>
 </template>
 
 <script>
 import axios from 'axios'
-import Loader from '../components/Loader'
-import StatusMessage from '../components/StatusMessage'
 export default {
     data() {
         return {
-            isLoading: false,
-            messageIsShowing: false,
-            message: {
-                title: '',
-                text: ''
-            },
             userData: {
                 email: '',
                 password: '',
@@ -71,9 +57,6 @@ export default {
                 }
             }
         }
-    },
-    components: {
-        Loader, StatusMessage
     },
     methods: {
         checkReg() {
@@ -96,7 +79,8 @@ export default {
                 })
         },
         register() {
-            this.isLoading = true
+            this.$emit('loading', true)
+
             const isRegistated = this.checkReg()
             const confirm = document.querySelector('#confirm').value            
 
@@ -123,25 +107,26 @@ export default {
                 //     }
                 // })
                 .then(() => {
-                    this.isLoading = false
+                    this.$emit('loading', false)
                 })
                 .catch(err => {
                     console.log(err)
                 })
                 .finally(() => {
-                    this.message.title = 'Успех!'
-                    this.message.text = 'Пользователь создан'
-                    this.messageIsShowing = true                    
+                    this.$emit('show-message', {
+                        title: 'Всё получилось',
+                        text: 'Новый профиль создан'
+                    })                   
                 })
             } else if (this.userData.password !== confirm) {
-                this.message.title = 'Ошибка'
-                this.message.text = 'Пароль не совпадает'
-                this.messageIsShowing = true 
-                this.isLoading = false
+                this.$emit('show-message', {
+                    title: 'Что-то не так',
+                    text: 'Пароль не совпадает'
+                })   
+                this.$emit('loading', false)
             }
         },
         closeMessage() {
-            this.messageIsShowing = false
             this.$router.push('/login')
         },
     }
