@@ -31,14 +31,13 @@
 </template>
 
 <script>
-import axios from 'axios'
 import Gastroscopy from "../components/Gastroscopy";
 import Colonoscopy from "../components/Colonoscopy";
 import Bronchoscopy from "../components/Bronchoscopy";
 import Passport from "../components/Passport";
 export default {
   name: "Record",
-  props: ["tab"],
+  props: ['tab', 'isAuth'],
   components: {
     Gastroscopy,
     Colonoscopy,
@@ -81,33 +80,12 @@ export default {
     if (localStorage.patient) {
       this.patient = JSON.parse(localStorage.patient);
     }
-
-    this.checkAuth()
-
-    axios
-      .get("https://endohelper.herokuapp.com/api/users")
-      // .get('http://localhost:3000/api/users')
-      .then((response) => {
-        this.doctor = response.data
-      })
-      .catch((err) => {
-        console.log(err)
-      });
+    
+    if (!this.isAuth) {
+      this.$router.push('/login')
+    }
   },
   methods: {
-    checkAuth() {
-      axios
-        .get('https://endohelper.herokuapp.com/api/auth/login')
-        // .get('http://localhost:3000/api/auth/login')
-        .then(res => {
-          if (!res.data.isAuth) {
-            this.$router.push('/login')
-          }
-        })
-        .catch(e => {
-          console.log(e)
-        })
-    },
     setTab(tab) {
       this.currentProcedure = tab;
     },

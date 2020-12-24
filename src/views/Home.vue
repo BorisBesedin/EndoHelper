@@ -17,6 +17,8 @@
                       @send-photo="sendPhoto"
                       v-bind:atlas="atlasData" />
         </div>
+
+        
         <Loader v-if="isLoading"/>
         <div class="atlas__overlay" v-if="messageIsShowing">
             <StatusMessage v-bind:message="message" v-if="messageIsShowing" @close-message="closeMessage" />
@@ -33,12 +35,12 @@ import StatusMessage from '../components/StatusMessage'
 import AddPhoto from '../components/AddPhoto'
 import atlasTemp from '../../public/data/atlas'
 export default {
+    props: ['isAuth'],
     components: {
         AtlasSection, AtlasContent, AddPhoto, Loader, StatusMessage
     },
     data() {
         return {
-            isAuth: false,
             isLoading: false,
             popupIsShowing: false,
             messageIsShowing: false,
@@ -51,17 +53,6 @@ export default {
         }
     },
     methods: {
-        checkAuth() {
-            axios.get('https://endohelper.herokuapp.com/api/auth/login')
-            // axios.get('http://localhost:3000/api/auth/login')
-                .then(res => {
-                this.isAuth = res.data.isAuth
-                console.log(this.isAuth)
-                })
-                .catch(e => {
-                console.log(e)
-                })
-        },
         updateAtlasData() {
             this.isLoading = true 
             
@@ -144,7 +135,6 @@ export default {
     mounted() {
         this.atlasData = atlasTemp
         this.updateAtlasData()
-        this.checkAuth()
     }
     
 }

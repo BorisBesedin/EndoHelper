@@ -13,7 +13,7 @@
       </div>
     </div>  
     
-    <router-view class="content"/>
+    <router-view v-bind:isAuth="isAuth" class="content"/>
   </div>
 </template>
 
@@ -30,6 +30,7 @@ export default {
       axios.get('https://endohelper.herokuapp.com/api/auth/login')
       // axios.get('http://localhost:3000/api/auth/login')
          .then(res => {
+           console.log(res)
            this.isAuth = res.data.isAuth
          })
          .catch(e => {
@@ -51,15 +52,12 @@ export default {
         })
     }
   },
-
   mounted() {
     this.checkAuth()
   },
   watch: {
     $route() {
-      if (this.$route.meta.checkAuth) {
-        this.checkAuth()          
-      }       
+      this.checkAuth()            
     }
   }
 }

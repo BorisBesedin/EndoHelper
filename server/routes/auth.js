@@ -4,10 +4,12 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 
 router.get('/login', (req, res) => {
-    res.send({isAuth: req.session.isAuthenticated})
+    console.log(req.session.isAuthenticated)
+    res.send({isAuth: res.locals.isAuth})
 });
 
 router.get('/logout', (req, res) => {
+    req.session.isAuthenticated = false
     req.session.destroy()
     res.end()
 });
