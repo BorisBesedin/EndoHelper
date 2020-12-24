@@ -17,7 +17,10 @@ const store = new MongoStore({
     uri: MONGODB_URI
 })
 
-app.use(cors());
+app.use(cors({
+    origin: ["https://endohelper.herokuapp.com"],
+    credentials: true
+   }));
 
 app.use(session({
     secret: 'some secret value',
