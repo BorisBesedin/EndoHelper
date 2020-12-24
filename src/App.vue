@@ -27,10 +27,12 @@ export default {
   },
   methods: {
     checkAuth() {
-      axios.get('https://endohelper.herokuapp.com/api/auth/login')
+      axios.get('https://endohelper.herokuapp.com/api/auth/login', {
+        withCredentials: true
+      })
       // axios.get('http://localhost:3000/api/auth/login')
          .then(res => {
-           console.log(res)
+           console.log('res:'+ res)
            this.isAuth = res.data.isAuth
          })
          .catch(e => {
