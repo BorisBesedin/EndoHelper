@@ -93,11 +93,6 @@ export default {
         console.log(e)
       })
   },
-  updated() {
-    if (!this.isAuth) {
-      this.$router.push('/login')
-    }
-  },
   methods: {
     setTab(tab) {
       this.currentProcedure = tab;
