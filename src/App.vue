@@ -210,6 +210,7 @@ body {
 }
 
 .form__field {
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -235,5 +236,12 @@ body {
     margin-bottom: 10px;
   }
 
+}
+.required::after {
+  position: absolute;
+  content: "*";
+  color: red;
+  top: 5px;
+  right: 5px;
 }
 </style>

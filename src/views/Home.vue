@@ -116,7 +116,9 @@ export default {
                     text: err
                 })   
             })
-            this.updatePhoto(data)
+            .finally(() => {
+                this.updatePhoto(data)
+            })            
         }
     },
     mounted() {

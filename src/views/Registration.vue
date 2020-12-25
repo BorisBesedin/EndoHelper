@@ -1,42 +1,48 @@
 <template>
     <form class="registration form" @submit.prevent="register">
         <h2 class="title">Регистрация</h2>
-        <div class="form__container">
-            <p class="form__field">
-                <label for="email">Email:</label>
-                <input v-model="userData.email" type="email" id="email" name="email" placeholder="email" required>
-            </p>
-            <p class="form__field">
-                <label for="password">Пароль:</label>
-                <input v-model="userData.password" type="password" id="password" name="password" placeholder="пароль" required>
-            </p>
-            <p class="form__field">
-                <label for="confirm">Пароль еще раз:</label>
-                <input type="password" id="confirm" name="confirm" placeholder="пароль" required>
-            </p>
-            <p class="form__field">
-                <label for="name">Ваше имя:</label>
-                <input v-model="userData.name" type="text" id="name" name="name" placeholder="имя полностью" required>
-            </p>
-            <p class="form__field">
-                <label for="city">Город:</label>
-                <input v-model="userData.city" type="text" id="city" name="city" placeholder="имя полностью" required>
-            </p>
-            <p class="form__field">
-                <label for="hospital">Место работы:</label>
-                <input v-model="userData.hospital.name" type="text" id="hospital" name="hospital" placeholder="лечебное учреждение" required>
-            </p>
-            <p class="form__field">
-                <label for="adress">Адрес:</label>
-                <input v-model="userData.hospital.adress" type="text" id="adress" name="name" placeholder="адрес ЛПУ" required>
-            </p>
-            <p class="form__field">
-                <label for="phone">Телефон:</label>
-                <input v-model="userData.hospital.phone" type="text" id="phone" name="phone" placeholder="телефон" required>
-            </p>
-            
-            <button type="submit" class="button">Готово</button>
+        <div class="form__wrapper">
+            <div class="form__section">
+                <p class="form__field required">
+                    <label for="name">Ваше имя:</label>
+                    <input v-model="userData.name" type="text" id="name" name="name" placeholder="имя полностью" required>
+                </p>
+                <p class="form__field required">
+                    <label for="email">Email:</label>
+                    <input v-model="userData.email" type="email" id="email" name="email" placeholder="email" required>
+                </p>
+                <p class="form__field required">
+                    <label for="password">Пароль:</label>
+                    <input v-model="userData.password" type="password" id="password" name="password" placeholder="пароль" required>
+                </p>
+                <p class="form__field required">
+                    <label for="confirm">Пароль еще раз:</label>
+                    <input type="password" id="confirm" name="confirm" placeholder="пароль" required>
+                </p>
+            </div>
+
+            <div class="form__section">    
+                <p class="form__field required">
+                    <label for="city">Город:</label>
+                    <input v-model="userData.city" type="text" id="city" name="city" placeholder="имя полностью" required>
+                </p>
+                <p class="form__field required">
+                    <label for="hospital">Место работы:</label>
+                    <input v-model="userData.hospital.name" type="text" id="hospital" name="hospital" placeholder="лечебное учреждение" required>
+                </p>
+                <p class="form__field required">
+                    <label for="adress">Адрес:</label>
+                    <input v-model="userData.hospital.adress" type="text" id="adress" name="name" placeholder="адрес ЛПУ" required>
+                </p>
+                <p class="form__field">
+                    <label for="phone">Телефон:</label>
+                    <input v-model="userData.hospital.phone" type="text" id="phone" name="phone" placeholder="телефон" required>
+                </p>       
+                
+            </div>
         </div>
+        <button type="submit" class="button">Готово</button>
+
     </form>
 </template>
 
@@ -142,8 +148,17 @@ export default {
     padding-bottom: 40px;
 }
 
-.form__container {
+.form__section {
+    width: 260px;
+
+    &:first-child {
+        margin-right: 60px;
+    }
+}
+
+.form__wrapper {
     margin-top: 60px;
-    width: 400px;
+    margin-bottom: 60px;
+    display: flex;
 }
 </style>
