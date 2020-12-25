@@ -82,11 +82,7 @@ export default {
   mounted() {
     if (localStorage.patient) {
       this.patient = JSON.parse(localStorage.patient);
-    }
-    
-    if (!this.isAuth) {
-      this.$router.push('/login')
-    }
+    }    
 
     axios
       .get('https://endohelper.herokuapp.com/api/users')
@@ -96,6 +92,11 @@ export default {
       .catch(e => {
         console.log(e)
       })
+  },
+  updated() {
+    if (!this.isAuth) {
+      this.$router.push('/login')
+    }
   },
   methods: {
     setTab(tab) {

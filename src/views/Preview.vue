@@ -16,10 +16,6 @@
                 <span>: {{patient.birth}}</span>
             </p>
             <p class="preview__item">
-                <span>Дата рождения</span>
-                <span>: {{patient.birth}}</span>
-            </p>
-            <p class="preview__item">
                 <span>Жалобы</span>
                 <span>: {{patient.complains}}</span>
             </p>
