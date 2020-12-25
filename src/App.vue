@@ -86,10 +86,6 @@ export default {
   watch: {
     $route() {
       this.checkAuth()    
-      
-      if (this.$route.path === '/record' && !this.isAuth) {
-        this.$router.push('/login')
-      }
     }
   }
 }

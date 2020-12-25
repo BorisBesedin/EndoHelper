@@ -112,6 +112,13 @@ export default {
       };
     },
   },
+  watch: {
+    isAuth() {
+      if(!this.isAuth) {
+        this.$router.push('/login')
+      }
+    }
+  }
 };
 </script>
 
