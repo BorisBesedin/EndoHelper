@@ -10,6 +10,14 @@
       <input type="text" id="anamnesis" v-model="patient.birth"/>
     </p>
     <p class="record__passport-item">
+      <label for="anamnesis">Жалобы:</label>
+      <input type="text" id="anamnesis" v-model="patient.complains"/>
+    </p>
+    <p class="record__passport-item">
+      <label for="anamnesis">Анамнез:</label>
+      <input type="text" id="anamnesis" v-model="patient.anamnesis"/>
+    </p>
+    <p class="record__passport-item">
       <label for="anestesia">Анестезия:</label>
       <input type="text" id="anestesia" v-model="patient.anestesia" />
     </p>

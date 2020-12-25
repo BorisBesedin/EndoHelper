@@ -5,6 +5,10 @@ const photo = new Schema({
         type: String,
         required: true
     },
+    city: {
+        type: String,
+        required: true
+    },
     url: {
         type: String,
         required: true

@@ -16,12 +16,20 @@
                 <span>: {{patient.birth}}</span>
             </p>
             <p class="preview__item">
-                <span>Анестезия</span>
-                <span>: {{patient.anestesia}}</span>
+                <span>Дата рождения</span>
+                <span>: {{patient.birth}}</span>
+            </p>
+            <p class="preview__item">
+                <span>Жалобы</span>
+                <span>: {{patient.complains}}</span>
+            </p>
+            <p class="preview__item">
+                <span>Анамнез</span>
+                <span>: {{patient.anamnesis}}</span>
             </p>
             <p class="preview__item">
                 <span>Модель аппарата</span>
-                <span>: {{doctor.endoscope}}</span>
+                <span>: {{patient.endoscope}}</span>
             </p> 
             <p class="preview__item">
                 <span>Дата исследования</span>
@@ -70,7 +78,10 @@ export default {
             date: new Date()
         }
     },
-    mounted() {        
+    mounted() {
+        if (!this.description || !this.procedure || !this.patient || !this.doctor) {
+            this.$router.push('/record')
+        }      
         if (this.patient) {
             localStorage.setItem('patient', JSON.stringify(this.patient))
         }

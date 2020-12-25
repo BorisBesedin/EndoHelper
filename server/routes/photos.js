@@ -20,6 +20,7 @@ router.post('/', async (req, res) => {
         }
         const photo = new Photo({
             author: req.session.user.name,
+            city: req.session.user.city,
             url: result.secure_url,
             category: req.body.category,
             pathology: req.body.pathology,

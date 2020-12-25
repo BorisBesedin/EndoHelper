@@ -66,6 +66,8 @@ export default {
       patient: {
         patient: "",
         birth: "",
+        complains: "",
+        anamnesis: "",
         anestesia: "",
         endoscope: ""
       },
@@ -107,6 +109,8 @@ export default {
       this.patient = {
         patient: "",
         birth: "",
+        complains: "",
+        anamnesis: "",
         anestesia: "",
         endoscope: ""
       };

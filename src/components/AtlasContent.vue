@@ -6,6 +6,7 @@
                 <img :src="image.url" width="250px" height="250px">
                 <span class="images__description"> {{ image.description }} </span>
                 <span class="images__author"> {{ image.author }} </span>
+                <span class="images__author"> {{ image.city }} </span>
             </li>
         </ul>
     </div>
