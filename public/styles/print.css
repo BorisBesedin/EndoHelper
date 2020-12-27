@@ -51,3 +51,7 @@ p {
     font-size: 18px;
     line-height: 22px;
 }
+
+.protocol__section {
+    margin-top: 20px;
+}
