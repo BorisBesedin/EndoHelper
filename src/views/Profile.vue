@@ -7,22 +7,27 @@
             <div class="form__fields">
                 <p class="form__field">
                     <label for="name">Имя пользователя:</label>
-                    <input type="text" id="name" name="name" />
+                    <input v-model="userData.name" type="text" id="name" name="name" />
+                </p>
+
+                <p class="form__field">
+                    <label for="job">Город:</label>
+                    <input v-model="userData.city" type="text" id="job" name="job" />
                 </p>
 
                 <p class="form__field">
                     <label for="job">Место работы:</label>
-                    <input type="text" id="job" name="job" />
+                    <input v-model="userData.hospital.name" type="text" id="job" name="job" />
                 </p>
 
                 <p class="form__field">
                     <label for="adress">Адрес:</label>
-                    <input type="text" id="adress" name="adress" />
+                    <input v-model="userData.hospital.adress" type="text" id="adress" name="adress" />
                 </p>
 
                 <p class="form__field">
                     <label for="phone">Телефон:</label>
-                    <input type="text" id="phone" name="phone" />
+                    <input v-model="userData.hospital.phone" type="text" id="phone" name="phone" />
                 </p>
             </div>
         </div>
