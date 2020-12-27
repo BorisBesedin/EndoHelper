@@ -17,7 +17,6 @@ const store = new MongoStore({
     uri: MONGODB_URI
 })
 
-app.use(cors());
 app.use(session({
     secret: 'some secret value',
     resave: false,
@@ -26,7 +25,7 @@ app.use(session({
 }));
 
 app.use(varMiddleware);
-
+app.use(cors());
 app.use(express.urlencoded({extended: true}));
 app.use(connectHistory())
 app.use(fileupload({

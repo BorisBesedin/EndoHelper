@@ -1,32 +1,38 @@
 <template>
   <div class="record">
-    <div class="record__menu">
-      <button
-        class="record__tab"
-        v-for="procedure in procedures"
-        :key="procedure.name"
-        v-bind:class="[{ active: currentProcedure === procedure.name }]"
-        v-on:click="currentProcedure = procedure.name"
-      >
-        {{ procedure.title }}
-      </button>
+    <div class="record__section">
+      <div class="record__menu">
+        <button
+          class="record__tab"
+          v-for="procedure in procedures"
+          :key="procedure.name"
+          v-bind:class="[{ active: currentProcedure === procedure.name }]"
+          v-on:click="currentProcedure = procedure.name, currentProcedureName = procedure.title"
+        >
+          {{ procedure.title }}
+        </button>
+
+        <p class="record__file-link">
+          Терминология: <br> <a href="files/MST3_EE.pdf" target="_blank">МСТ 3.0</a>
+        </p>
+      </div> 
     </div>
-    <p class="record__file-link">
-      Терминология: <a href="files/MST3_EE.pdf" target="_blank">МСТ 3.0</a>
-    </p>
 
-    <Passport
-      v-bind:patient="patient"
-      v-bind:doctor="doctor"
-      @clear-doctor="clearDoctorInfo"
-    />
-
-    <component
-      class="record__content"
-      v-bind:is="currentComponent"
-      v-bind:patient="patient"
-      v-bind:doctor="doctor"
-    ></component>
+    <div class="record__section">
+      <h2 class="title"> {{ currentProcedureName }} </h2>   
+      <Passport
+        class="record__passport"
+        v-bind:patient="patient"
+        v-bind:doctor="doctor"
+        @clear-doctor="clearDoctorInfo"
+      />
+      <component
+        class="record__content"
+        v-bind:is="currentComponent"
+        v-bind:patient="patient"
+        v-bind:doctor="doctor"
+      ></component>
+    </div>
   </div>
 </template>
 
@@ -62,6 +68,7 @@ export default {
         },
       ],
       currentProcedure: this.tab || "gastroscopy",
+      currentProcedureName: 'Гастроскопия',
       descriprion: {},
       patient: {
         patient: "",
@@ -96,6 +103,7 @@ export default {
   methods: {
     setTab(tab) {
       this.currentProcedure = tab;
+
     },
     clearDoctorInfo() {
       if (localStorage.patient) {
@@ -123,15 +131,56 @@ export default {
 </script>
 
 <style lang="scss">
+.record {
+  position: relative;
+  display: flex;
+  margin-top: 80px;
+  justify-content: center;
+}
+
+.title {
+  text-align: left;
+}
+
+.record__passport {  
+  width: 700px;
+  margin-top: 80px;
+}
+
+.record__section:nth-child(1) {
+  position: absolute;
+  top: 0;
+  left: 80px;
+}
+
+.record__section:nth-child(2) {
+  margin-left: 80px;
+}
+
 .record__file-link {
   margin-top: 20px;
   color: #000000;
   font-size: 16px;
 }
 .record__menu {
-  margin-top: 40px;
+  width: 200px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  &::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: -2px;
+    height: 210px;
+    width: 3px;
+    background-color: #000;
+    opacity: 0.2;
+  }
 }
 .record__tab {
+  position: relative;
   border: none;
   border-bottom: 4px solid transparent;
   background-color: #fff;
@@ -149,11 +198,7 @@ export default {
     border-color: #0a67a3;
     background-color: #65a6d1;
     color: #ffffff;
-    transition: 0.3s ease-in-out;
-  }
-
-  &:not(:last-child) {
-    margin-right: 10px;
+    transition: 0.3s ease-in-out;  
   }
 }
 .record__content {
