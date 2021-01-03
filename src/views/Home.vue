@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import {HTTP} from '../../src/axios.conf'
 import AtlasSection from '../components/AtlasSection'
 import AtlasContent from '../components/AtlasContent'
 import AddPhoto from '../components/AddPhoto'
@@ -46,9 +46,8 @@ export default {
             this.atlasData.gaster.pathology.forEach(item => item.images = [])
             this.atlasData.colon.pathology.forEach(item => item.images = [])    
             
-            axios
-                .get('https://endohelper.herokuapp.com/api/photos')
-                // .get('http://localhost:3000/api/photos')
+            HTTP
+                .get('photos')
                 .then(response => {
                     response.data.forEach(item => {
                         const index = this.atlasData[item.category].pathology.findIndex(elem => elem.id === item.pathology)
@@ -92,16 +91,11 @@ export default {
             
             this.$emit('loading', true) 
 
-            axios.post('https://endohelper.herokuapp.com/api/photos', formData, {
+            HTTP.post('photos', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             })
-            // axios.post('http://localhost:3000/api/photos', formData, {
-            //     headers: {
-            //         'Content-Type': 'multipart/form-data'
-            //     }
-            // })
             .then(() => {
                 this.$emit('loading', false) 
                 this.$emit('show-message', {

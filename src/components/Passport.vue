@@ -6,12 +6,12 @@
       <input type="text" id="diagnose" v-model="patient.patient"/>
     </p>
     <p class="passport-item">
-      <label for="anamnesis">Дата рождения:</label>
-      <input type="text" id="anamnesis" v-model="patient.birth"/>
+      <label for="birth">Дата рождения:</label>
+      <input type="text" id="birth" v-model="patient.birth"/>
     </p>
     <p class="passport-item">
-      <label for="anamnesis">Жалобы:</label>
-      <input type="text" id="anamnesis" v-model="patient.complains"/>
+      <label for="complains">Жалобы:</label>
+      <input type="text" id="complains" v-model="patient.complains"/>
     </p>
     <p class="passport-item">
       <label for="anamnesis">Анамнез:</label>

@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import {HTTP} from '../src/axios.conf'
 import Loader from '../src/components/Loader'
 import StatusMessage from '../src/components/StatusMessage'
 export default {
@@ -52,10 +52,7 @@ export default {
       this.messageIsShowing = false
     },
     checkAuth() {
-      axios.get('https://endohelper.herokuapp.com/api/auth/login', {
-        withCredentials: true
-      })
-      // axios.get('http://localhost:3000/api/auth/login')
+      HTTP.get('auth/login')
          .then(res => {
            this.isAuth = res.data.isAuth
          })
@@ -65,19 +62,17 @@ export default {
     },
     logout() {
       this.isLoading = true
-      axios
-        .get('https://endohelper.herokuapp.com/api/auth/logout')
-        // .get('http://localhost:3000/api/auth/logout')
-        .then(res => {
-          this.isLoading = false
-          this.isAuth = res.data.isAuth
-          if (this.$route.path !== '/login') {
-            this.$router.push('/login')
-          }          
-        })
-        .catch(e => {
-          console.log(e)
-        })
+      HTTP.get('auth/logout')
+          .then(res => {
+            this.isLoading = false
+            this.isAuth = res.data.isAuth
+            if (this.$route.path !== '/login') {
+              this.$router.push('/login')
+            }          
+          })
+          .catch(e => {
+            console.log(e)
+          })
     }
   },
   mounted() {

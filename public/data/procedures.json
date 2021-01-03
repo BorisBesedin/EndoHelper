@@ -1,0 +1,77 @@
+[
+    {
+        "name": "gastroscopy",
+        "title": "Гастроскопия",
+        "data": {
+            "esophagus": {
+                "clearance": "",
+                "content": "",
+                "mucosa": "",
+                "cardia": "",
+                "veins": "",
+                "zline": ""
+            },
+            "gaster": {
+                "clearance": "",
+                "content": "",
+                "folds": "",
+                "peristalsis": "",
+                "mucosa": "",
+                "pylorus": "",
+                "retroflex": ""
+            },
+            "duodenum": {
+                "bulbClearance": "",
+                "postbulb": "",
+                "mucosa": "",
+                "bds": ""
+            },
+            "diagnose": ""
+        }
+    },
+    {
+        "name": "colonoscopy",
+        "title": "Колоноскопия",
+        "data": {
+            "level": "",
+            "ileum": "",
+            "dome": "",
+            "valve": "",
+            "clearance": "",
+            "content": "",
+            "mucosa": "",
+            "folds": "",
+            "tone": "",
+            "sygma": "",
+            "rectum": "",
+            "diagnose": ""
+        }
+    },
+    {
+        "name": "bronchoscopy",
+        "title": "Бронхоскопия",
+        "data": {
+            "view": {
+                "method": ""
+            },
+            "larynx": {
+                "epiglottis": "",
+                "arytenoid": "",
+                "glottis": "",
+                "vocal": ""
+            },
+            "trachea": {
+                "clearance": "",
+                "content": "",
+                "mucosa": "",
+                "carine": ""
+            },
+            "bronhus": {
+                "clearance": "",
+                "content": "",
+                "mucosa": ""
+            },
+            "diagnose": ""
+        }
+    }
+]

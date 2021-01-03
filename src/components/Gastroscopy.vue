@@ -45,8 +45,11 @@
                       v-bind:userData="userData"/>
         </div>
 
-        <router-link class="button submit" :to="{name: 'Preview', params: {patient: patient, doctor: doctor, description: userData, procedure: 'gastroscopy'}}"
-                     v-bind:description="userData">Создать</router-link>
+        <div class="description__button">
+            <router-link class="button submit" :to="{name: 'Preview', params: {patient: patient, doctor: doctor, description: userData, procedure: 'gastroscopy'}}"
+                        v-bind:description="userData">Создать</router-link>
+            <button class="button" @click="$emit('add-temlate', userData, 'gastroscopy')">Сохранить</button>
+        </div>
     </div>
 </template>
 
@@ -164,14 +167,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.description__button {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.submit {
+    margin-right: 20px;
+}
 .part {
     width: 100%;
     margin-top: 40px;
     position: relative;
-}
-.submit {
-    margin-top: 20px;
 }
 
 .item {

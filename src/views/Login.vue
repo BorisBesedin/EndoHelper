@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import {HTTP} from '../../src/axios.conf'
 export default {
     data() {
         return {
@@ -38,17 +38,11 @@ export default {
             formData.append('email', this.loginData.email)
             formData.append('password', this.loginData.password)
 
-            axios.post('https://endohelper.herokuapp.com/api/auth/login', formData, {
+            HTTP.post('auth/login', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             })
-
-            // axios.post('http://localhost:3000/api/auth/login', formData, {
-            //     headers: {
-            //         'Content-Type': 'multipart/form-data'
-            //     }
-            // })
                 .then((res) => {
                     this.$emit('loading', false)
 

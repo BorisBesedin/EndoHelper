@@ -26,6 +26,7 @@ app.use(session({
 
 app.use(varMiddleware);
 app.use(cors());
+app.use(express.json())
 app.use(express.urlencoded({extended: true}));
 app.use(connectHistory())
 app.use(fileupload({

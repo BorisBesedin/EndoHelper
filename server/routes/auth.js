@@ -4,7 +4,6 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 
 router.get('/login', (req, res) => {
-    console.log(req.session.isAuthenticated)
     res.send({isAuth: res.locals.isAuth})
 });
 
@@ -70,6 +69,40 @@ router.post('/register', async (req, res) => {
             }
         })
 
+        await user.save()
+        res.end()
+
+    } catch(e) {
+        console.log(e)
+    }
+});
+
+router.post('/update', async (req, res) => {
+    try {
+        const { name, city, hospitalName, hospitalAdress, hospitalPhone } = req.body
+        const user = await User.findOne({email: req.session.user.email})
+
+        user.name = name
+        user.city = city
+        user.hospital.name = hospitalName
+        user.hospital.adress = hospitalAdress
+        user.hospital.phone = hospitalPhone        
+
+        await user.save()
+        res.end()
+
+    } catch(e) {
+        console.log(e)
+    }
+});
+
+router.post('/template', async (req, res) => {
+    try {
+        const template = req.body
+        
+        const user = await User.findOne({email: req.session.user.email})
+        console.log(user)
+        user.templates.push(template)
         await user.save()
         res.end()
 

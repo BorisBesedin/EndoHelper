@@ -1,50 +1,47 @@
 <template>
   <div class="record">
-    <div class="record__section">
-      <div class="record__menu">
-        <button
-          class="record__tab"
-          v-for="procedure in procedures"
-          :key="procedure.name"
-          v-bind:class="[{ active: currentProcedure === procedure.name }]"
-          v-on:click="currentProcedure = procedure.name, currentProcedureName = procedure.title"
-        >
-          {{ procedure.title }}
-        </button>
-
-        <p class="record__file-link">
-          Терминология: <br> <a href="files/MST3_EE.pdf" target="_blank">МСТ 3.0</a>
-        </p>
-      </div> 
+    <div class="record__tabs">
+      <button
+        class="record__tab"
+        v-for="procedure in procedures"
+        :key="procedure.name"
+        v-bind:class="[{ active: currentProcedure === procedure.name }]"
+        v-on:click="currentProcedure = procedure.name"
+      >
+        {{ procedure.title }}
+      </button>
     </div>
+    <!-- <p class="record__file-link">
+            Терминология: <br> <a href="files/MST3_EE.pdf" target="_blank">МСТ 3.0</a>
+          </p>           -->
 
     <div class="record__section">
-      <h2 class="title"> {{ currentProcedureName }} </h2>   
       <Passport
         class="record__passport"
         v-bind:patient="patient"
-        v-bind:doctor="doctor"
-        @clear-doctor="clearDoctorInfo"
+        @clear-doctor="clearPatient"
       />
       <component
         class="record__content"
         v-bind:is="currentComponent"
         v-bind:patient="patient"
         v-bind:doctor="doctor"
+        @add-template="addTemplate"
+        @create-protocol="createProtocol"
       ></component>
     </div>
   </div>
 </template>
 
 <script>
+import { HTTP } from "../../src/axios.conf";
 import Gastroscopy from "../components/Gastroscopy";
 import Colonoscopy from "../components/Colonoscopy";
 import Bronchoscopy from "../components/Bronchoscopy";
-import axios from 'axios';
 import Passport from "../components/Passport";
 export default {
   name: "Record",
-  props: ['tab', 'isAuth'],
+  props: ["tab", "isAuth"],
   components: {
     Gastroscopy,
     Colonoscopy,
@@ -68,15 +65,13 @@ export default {
         },
       ],
       currentProcedure: this.tab || "gastroscopy",
-      currentProcedureName: 'Гастроскопия',
-      descriprion: {},
       patient: {
         patient: "",
         birth: "",
         complains: "",
         anamnesis: "",
         anestesia: "",
-        endoscope: ""
+        endoscope: "",
       },
       doctor: {},
     };
@@ -89,23 +84,22 @@ export default {
   mounted() {
     if (localStorage.patient) {
       this.patient = JSON.parse(localStorage.patient);
-    }    
+    }
 
-    axios
-      .get('https://endohelper.herokuapp.com/api/users')
-      .then(res => {
-        this.doctor = res.data
+    HTTP.get("users")
+      .then((res) => {
+        this.doctor = res.data;
+        console.log(this.doctor)
       })
-      .catch(e => {
-        console.log(e)
-      })
+      .catch((e) => {
+        console.log(e);
+      });
   },
   methods: {
     setTab(tab) {
       this.currentProcedure = tab;
-
     },
-    clearDoctorInfo() {
+    clearPatient() {
       if (localStorage.patient) {
         localStorage.patient = "";
       }
@@ -116,7 +110,7 @@ export default {
         complains: "",
         anamnesis: "",
         anestesia: "",
-        endoscope: ""
+        endoscope: "",
       };
     },
   },
@@ -126,7 +120,7 @@ export default {
         this.$router.push('/login')
       }
     }
-  }
+  },
 };
 </script>
 
@@ -134,27 +128,31 @@ export default {
 .record {
   position: relative;
   display: flex;
-  margin-top: 80px;
-  justify-content: center;
+  flex-direction: column;
+  width: 800px;
+  margin: 0 auto;
 }
 
 .title {
-  text-align: left;
+  margin-top: 40px;
 }
 
-.record__passport {  
+.record__passport {
   width: 700px;
   margin-top: 80px;
 }
 
-.record__section:nth-child(1) {
-  position: absolute;
-  top: 0;
-  left: 80px;
-}
+.record__section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  box-shadow: 0 1px 4px 0 #666666;
 
-.record__section:nth-child(2) {
-  margin-left: 80px;
+
+  &:last-child {
+    flex-grow: 1;
+  }
 }
 
 .record__file-link {
@@ -162,43 +160,50 @@ export default {
   color: #000000;
   font-size: 16px;
 }
-.record__menu {
-  width: 200px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
 
-  &::after {
-    position: absolute;
-    content: "";
-    top: 0;
-    right: -2px;
-    height: 210px;
-    width: 3px;
-    background-color: #000;
-    opacity: 0.2;
-  }
+.menu__title {
+  padding: 20px;
+  font-family: inherit;
+  font-weight: normal;
+  font-size: 20px;
+  text-align: left;
+  color: #ffffff;
+
+  background-color: #03416a;
+}
+
+.record__tabs {
+  display: flex;
+  margin-top: 40px;
 }
 .record__tab {
-  position: relative;
-  border: none;
-  border-bottom: 4px solid transparent;
-  background-color: #fff;
+  width: 160px;
   padding: 10px;
+
   font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
   outline: none;
-  cursor: pointer;
+  transform: scale(0.98);
+  color: #2c3e50;
   font-family: inherit;
+  background-color: #e2e2e2;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
 
   &:hover {
-    background-color: #7aafd37e;
+    background-color: #88badb;
+    transition: 0.3s ease-in-out;
   }
 
   &.active {
     border-color: #0a67a3;
     background-color: #65a6d1;
     color: #ffffff;
-    transition: 0.3s ease-in-out;  
+    transition: 0.3s ease-in-out;
+    transform: scale(1.02);
   }
 }
 .record__content {
@@ -215,13 +220,10 @@ export default {
 }
 .description {
   position: relative;
-  padding-top: 40px;
   padding-bottom: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 700px;
-  margin: 0 auto;
 }
 
 .description__buttons {

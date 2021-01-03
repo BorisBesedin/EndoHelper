@@ -30,6 +30,7 @@ const user = new Schema({
             type: String,
         }
     },
+    templates: []
 });
 
 module.exports = model('User', user);

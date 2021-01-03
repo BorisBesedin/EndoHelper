@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import {HTTP} from '../../src/axios.conf'
 export default {
     data() {
         return {
@@ -66,17 +66,13 @@ export default {
     },
     methods: {
         checkReg() {
-            axios
-                .get('https://endohelper.herokuapp.com/api/auth/register', {
+            HTTP
+                .get('auth/register', {
                     params: {
                         email: this.userData.email
                     }
                 })
-                // .get('http://localhost:3000/api/auth/register', {
-                //     params: {
-                //         email: this.userData.email
-                //     }
-                // })
+
                 .then(res => {
                     return res.data
                 })
@@ -99,19 +95,14 @@ export default {
                 formData.append('city', this.userData.city)
                 formData.append('hospitalName', this.userData.hospital.name)
                 formData.append('hospitalAdress', this.userData.hospital.adress)
-                formData.append('hospitalPhone', this.userData.hospital.phone)
+                formData.append('hospitalPhone', this.userData.hospital.phone || '')
 
-                axios
-                .post('https://endohelper.herokuapp.com/api/auth/register', formData, {
+                HTTP
+                .post('auth/register', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
                 })
-                // .post('http://localhost:3000/api/auth/register', formData, {
-                //     headers: {
-                //         'Content-Type': 'multipart/form-data'
-                //     }
-                // })
                 .then(() => {
                     this.$emit('loading', false)
                 })
