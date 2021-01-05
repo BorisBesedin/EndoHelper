@@ -1,7 +1,7 @@
 <template>
-    <form class="login form" @submit.prevent="login">
-        <h2 class="title">Войти в аккаунт</h2>
+    <form class="login form" @submit.prevent="login">        
         <div class="form__container">
+            <h2 class="title">Войти в аккаунт</h2>
             <p class="form__field">
                 <label for="email">Email:</label>
                 <input v-model="loginData.email" type="text" id="email" name="email" placeholder="email" required>
@@ -72,11 +72,19 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 40px;
+    width: 500px;
+    margin: 0 auto;
+   
 }
 
 .form__container {
     margin-top: 60px;
-    width: 400px;
+    width: 100%;
+    padding: 40px;
+    box-shadow: 0 1px 4px 0 #666666;
+}
+
+.title {
+    margin-bottom: 40px;
 }
 </style>
