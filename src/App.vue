@@ -1,15 +1,15 @@
 <template>
   <div id="app">
     <div class="header">
-      <div class="logo"></div>
-      <div id="nav">
-        <router-link class="nav-link" to="/">Атлас</router-link>
+      <div class="header__logo"></div>
+      <div id="nav" class="nav header__nav">
+        <router-link class="nav__link" to="/">Атлас</router-link>
         <router-link v-if="isAuth" class="nav-link" to="/record">Создать протокол</router-link>
-        <a v-if="!isAuth" class="nav-link-disabled">Создать протокол</a>
+        <a v-if="!isAuth" class="nav__link--disabled">Создать протокол</a>
         <router-link class="nav-link" to="/about">Статьи</router-link>
-        <router-link v-if="!isAuth" class="nav-link" to="/login">Войти</router-link>
-        <router-link v-if="isAuth" class="nav-link" to="/profile">Профиль</router-link>
-        <a v-if="isAuth" class="nav-link" @click="logout">Выйти</a>
+        <router-link v-if="!isAuth" class="nav__link" to="/login">Войти</router-link>
+        <router-link v-if="isAuth" class="nav__link" to="/profile">Профиль</router-link>
+        <a v-if="isAuth" class="nav__link" @click="logout">Выйти</a>
       </div>
     </div>  
     
@@ -107,15 +107,14 @@ body {
   font-family: 'Roboto Mono', 'Arial', monospace;
 }
 
-#app {
-  
+#app {  
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
-  color: #2c3e50;
+  color: #444a4e;
   min-height: 100vh;
 }
 
@@ -124,7 +123,7 @@ body {
 }
 
 .header {
-  background-color: #3D97D1;
+  background-color:#D4E9F7;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -132,7 +131,7 @@ body {
   justify-content: space-between;
 }
 
-.logo {
+.header__logo {
   margin-left: 20px;
   width: 250px;
   height: 50px;
@@ -141,7 +140,7 @@ body {
   background-repeat: no-repeat;
 }
 
-#nav {
+.header__nav {
   display: flex;
 
   a {
@@ -156,19 +155,19 @@ body {
     transition: 0.3s;
 
     &:hover {
-      background-color: #3284bb;
+      background-color:#a2c9e4;
       transition: 0.3s;
     }
 
     &.router-link-exact-active {
-      background-color: #0A67A3;
+      background-color:#6CA0C2;
       color: #ffffff;
       transition: 0.3s ease-in-out;
     }
   }
 }
 
-.nav-link-disabled {
+.nav__link--disabled {
   opacity: 0.3;
 }
 
@@ -179,10 +178,10 @@ body {
 .button {
   padding: 10px;
   width: 180px;
-  background-color: #0A67A3;  
+  background-color: #6CA0C2;  
   font-family: inherit;
   border: none;
-  border-bottom: 4px solid #03416A;
+  border-bottom: 4px solid #426175;
   font-size: 16px;
   text-transform: uppercase;
   color: #ffffff;

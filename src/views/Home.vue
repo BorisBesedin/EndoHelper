@@ -153,7 +153,7 @@ export default {
     width: 300px;
     flex-shrink: 0;
     background-color: #ffffff;
-    border-right: 4px solid #03416A
+    border-right: 3px solid #D4E9F7
 }
 
 .atlas__menu-content {
@@ -205,15 +205,23 @@ ul {
 }
 
 .atlas__menu-title {
+    position: relative;
     margin-bottom: 10px;
     padding: 20px;
     font-family: inherit;
     font-weight: normal;
     font-size: 20px;
     text-align: left;
-    color: #ffffff;
 
-    background-color: #03416A;
+    &::after {
+        position: absolute;
+        content: "";
+        bottom: 0;
+        left: 10px;
+        height: 3px;
+        width: 80px;
+        background-color: #656F75;
+    }
 }
 
 .atlas__hidden {

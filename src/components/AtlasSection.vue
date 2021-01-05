@@ -28,13 +28,13 @@ export default {
 }
 
 h3 {
-    background-color: #afd1e7;
+    background-color: #D4E9F7;
     padding: 5px;
     cursor: pointer;
     transition: 0.3s ease-in-out;
 
     &:hover {
-        background-color: #88badb;
+        background-color: #afd5ec;
         transition: 0.3s ease-in-out;
     }
 }

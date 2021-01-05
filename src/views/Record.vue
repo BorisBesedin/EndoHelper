@@ -115,11 +115,11 @@ export default {
     },
   },
   watch: {
-    isAuth() {
-      if(!this.isAuth) {
-        this.$router.push('/login')
-      }
-    }
+    // isAuth() {
+    //   if(!this.isAuth) {
+    //     this.$router.push('/login')
+    //   }
+    // }
   },
 };
 </script>
@@ -131,6 +131,8 @@ export default {
   flex-direction: column;
   width: 800px;
   margin: 0 auto;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 .title {
@@ -148,7 +150,6 @@ export default {
   align-items: center;
   padding: 20px;
   box-shadow: 0 1px 4px 0 #666666;
-
 
   &:last-child {
     flex-grow: 1;
@@ -174,7 +175,6 @@ export default {
 
 .record__tabs {
   display: flex;
-  margin-top: 40px;
 }
 .record__tab {
   width: 160px;
@@ -186,7 +186,7 @@ export default {
   border: none;
   outline: none;
   transform: scale(0.98);
-  color: #2c3e50;
+  color: #656F75;
   font-family: inherit;
   background-color: #e2e2e2;
   border-radius: 5px 5px 0 0;
@@ -194,13 +194,13 @@ export default {
   transition: 0.3s ease-in-out;
 
   &:hover {
-    background-color: #88badb;
+    background-color: #a9cce4;
     transition: 0.3s ease-in-out;
   }
 
   &.active {
     border-color: #0a67a3;
-    background-color: #65a6d1;
+    background-color: #6CA0C2;
     color: #ffffff;
     transition: 0.3s ease-in-out;
     transform: scale(1.02);
