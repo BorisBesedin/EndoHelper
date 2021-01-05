@@ -170,7 +170,7 @@ export default {
     cursor: pointer;
     opacity: 0.6;
     background-color: transparent;
-    border: 2px solid #ffffff;
+    border: 2px solid #4d555a;
     border-radius: 50%;
     transition: 0.3s;
 
@@ -182,7 +182,7 @@ export default {
         right: 6px;
         width: 20px;
         height: 4px;
-        background-color: #fff;
+        background-color: #4d555a;
     }
 
     &:after {

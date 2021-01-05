@@ -186,7 +186,7 @@ export default {
   border: none;
   outline: none;
   transform: scale(0.98);
-  color: #656F75;
+  color: #454c50;
   font-family: inherit;
   background-color: #e2e2e2;
   border-radius: 5px 5px 0 0;
