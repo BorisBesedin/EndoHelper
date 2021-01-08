@@ -26,15 +26,22 @@
         v-bind:is="currentComponent"
         v-bind:patient="patient"
         v-bind:doctor="doctor"
-        @add-template="addTemplate"
-        @create-protocol="createProtocol"
+        v-bind:templates="templates"
+        @open-add-template="openAddTemplatePopup"
+        @delete-template="deleteTemplate"
       ></component>
     </div>
+    <div class="atlas__overlay" v-if="templatePopupIsShowing">
+      <AddTemplate v-if="templatePopupIsShowing" @close-popup="closeAddTemplatePopup" @add-template="addTemplate" />
+
+    </div>
+    
   </div>
 </template>
 
 <script>
 import { HTTP } from "../../src/axios.conf";
+import AddTemplate from "../components/AddTemplate"
 import Gastroscopy from "../components/Gastroscopy";
 import Colonoscopy from "../components/Colonoscopy";
 import Bronchoscopy from "../components/Bronchoscopy";
@@ -47,6 +54,7 @@ export default {
     Colonoscopy,
     Bronchoscopy,
     Passport,
+    AddTemplate
   },
   data() {
     return {
@@ -74,6 +82,14 @@ export default {
         endoscope: "",
       },
       doctor: {},
+      templates: [],
+      templateToAdd: {
+        id: '',
+        name: '',
+        category: '',
+        description: ''
+      },
+      templatePopupIsShowing: false
     };
   },
   computed: {
@@ -84,18 +100,71 @@ export default {
   mounted() {
     if (localStorage.patient) {
       this.patient = JSON.parse(localStorage.patient);
-    }
-
-    HTTP.get("users")
-      .then((res) => {
-        this.doctor = res.data;
-        console.log(this.doctor)
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    }    
+    this.getUserData()
   },
   methods: {
+    getUserData() {
+      HTTP.get("users")
+          .then((res) => {
+            this.doctor = res.data;
+            this.templates = this.doctor.templates.filter(temp => temp.category === this.currentProcedure)
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+    },
+    deleteTemplate(template) {
+      this.$emit('loading', true)
+      HTTP.post('auth/template/delete', template)
+          .then(() => {
+            this.$emit('loading', false)
+            this.$emit('show-message', {
+              title: 'Получилось',
+              text: `Шаблон ${template.name} удален`
+            })
+            this.getUserData()
+          })
+          .catch(e => {
+            this.$emit('loading', false)
+            this.$emit('show-message', {
+              title: 'Не вышло',
+              text: e
+            })
+          })
+    },
+    addTemplate(name) {
+      this.templatePopupIsShowing = false
+      this.$emit('loading', true)
+      this.templateToAdd.name = name
+      this.templateToAdd.category = this.currentProcedure
+      this.templateToAdd.id = new Date()
+
+      HTTP.post('auth/template', this.templateToAdd)
+          .then(() => {
+            this.$emit('loading', false)
+            this.$emit('show-message', {
+              title: 'Готово!',
+              text: `Шаблон ${this.templateToAdd.name} добавлен`
+            })
+            this.getUserData()
+          })
+          .catch(e => {
+            this.$emit('loading', false)
+            this.$emit('show-message', {
+              title: 'Не получилось:',
+              text: e
+            })
+          })
+    },
+    closeAddTemplatePopup() {
+      this.templatePopupIsShowing = false
+      this.templateToAdd.description = ''
+    },
+    openAddTemplatePopup(template) {
+      this.templatePopupIsShowing = true
+      this.templateToAdd.description = template
+    },
     setTab(tab) {
       this.currentProcedure = tab;
     },
@@ -115,6 +184,9 @@ export default {
     },
   },
   watch: {
+    currentProcedure() {
+      this.getUserData()
+    }
     // isAuth() {
     //   if(!this.isAuth) {
     //     this.$router.push('/login')
@@ -160,17 +232,6 @@ export default {
   margin-top: 20px;
   color: #000000;
   font-size: 16px;
-}
-
-.menu__title {
-  padding: 20px;
-  font-family: inherit;
-  font-weight: normal;
-  font-size: 20px;
-  text-align: left;
-  color: #ffffff;
-
-  background-color: #03416a;
 }
 
 .record__tabs {
@@ -230,5 +291,10 @@ export default {
   position: absolute;
   top: 0;
   right: 0;
+}
+.templates {
+  position: fixed;
+  top: 130px;
+  left: 0;
 }
 </style>

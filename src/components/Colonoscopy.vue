@@ -1,5 +1,6 @@
 <template>
     <div class="description" >
+        <Templates class="templates" v-bind:templates="templates" @delete-template="deleteTemplate" @set-template="setTemplate" /> 
         <div class="description__colono part">
             <div class="description__buttons">
                 <button class="button small description__normal-btn" @click="setNormal">Норма</button>
@@ -21,21 +22,24 @@
                       @clear="setFocus"
                       v-bind:userData="userData"/>
         </div>
-
-        <router-link class="button submit" :to="{name: 'Preview', params: {patient: patient, doctor: doctor, description: userData, procedure: 'colonoscopy'}}"
+        <div class="description__button">
+            <router-link class="button submit" :to="{name: 'Preview', params: {patient: patient, doctor: doctor, description: userData, procedure: 'colonoscopy'}}"
                      v-bind:description="userData">Создать</router-link>
+            <button class="button" @click="$emit('open-add-template', userData)">Шаблон</button>
+        </div> 
     </div>
 </template>
 
 <script>
+import Templates from '../components/Templates'
 import DescriptionItem from '../components/DescriptionItem'
 import data from '../../public/data/colonoscopy'
 import Diagnose from '../components/Diagnose'
 export default {
-    props: ['patient', 'doctor'],
+    props: ['patient', 'doctor', 'templates'],
     name: 'Colonoscopy',
     components: {
-        DescriptionItem, Diagnose
+        DescriptionItem, Diagnose, Templates
     },
     data() {
         return {
@@ -58,6 +62,12 @@ export default {
         }
     },
     methods: {
+        setTemplate(template) {
+            this.userData = template.description
+        },
+        deleteTemplate(template) {
+            this.$emit('delete-template', template)
+        },
         unfocus() {
             const elem = document.querySelector('.focus')
 
@@ -113,15 +123,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.description__button {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
 .part {
     width: 100%;
     margin-top: 40px;
     position: relative;
 }
 .submit {
-    margin-top: 20px;
+    margin-right: 20px;
 }
-
 .item {
     width: 100%;
 }

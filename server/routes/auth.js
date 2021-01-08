@@ -101,8 +101,22 @@ router.post('/template', async (req, res) => {
         const template = req.body
         
         const user = await User.findOne({email: req.session.user.email})
-        console.log(user)
+
         user.templates.push(template)
+        await user.save()
+        res.end()
+
+    } catch(e) {
+        console.log(e)
+    }
+});
+
+router.post('/template/delete', async (req, res) => {
+    try {
+        const template = req.body      
+        const user = await User.findOne({email: req.session.user.email})
+
+        user.templates = user.templates.filter(temp => temp.id !== template.id)
         await user.save()
         res.end()
 

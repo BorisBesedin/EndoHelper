@@ -1,5 +1,6 @@
 <template>
-    <div class="description description--gastro" >     
+    <div class="description description--gastro">
+        <Templates class="templates" v-bind:templates="templates" @delete-template="deleteTemplate" @set-template="setTemplate"/>     
         <div class="description__esophagus part">
             <div class="description__buttons">
                 <button class="button small description__normal-btn" @click="setNormal">Норма</button>
@@ -48,21 +49,22 @@
         <div class="description__button">
             <router-link class="button submit" :to="{name: 'Preview', params: {patient: patient, doctor: doctor, description: userData, procedure: 'gastroscopy'}}"
                         v-bind:description="userData">Создать</router-link>
-            <button class="button" @click="$emit('add-temlate', userData, 'gastroscopy')">Сохранить</button>
+            <button class="button" @click="$emit('open-add-template', userData)">Шаблон</button>
         </div>
     </div>
 </template>
 
 <script>
+import Templates from '../components/Templates'
 import DescriptionItem from '../components/DescriptionItem'
 import data from '../../public/data/gastroscopy'
 import Diagnose from '../components/Diagnose'
 
 export default {
-    props: ['patient', 'doctor'],
+    props: ['patient', 'doctor', 'templates'],
     name: 'Gastroscopy',
     components: {
-        DescriptionItem, Diagnose
+        DescriptionItem, Diagnose, Templates
     },
     data() {
         return {
@@ -99,6 +101,12 @@ export default {
         }
     },
     methods: {
+        setTemplate(template) {
+            this.userData = template.description
+        },
+        deleteTemplate(template) {
+            this.$emit('delete-template', template)
+        },
         unfocus() {
             const elem = document.querySelector('.focus')
 
