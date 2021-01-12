@@ -6,7 +6,7 @@
         <router-link class="nav__link" to="/">Атлас</router-link>
         <router-link v-if="isAuth" class="nav-link" to="/record">Создать протокол</router-link>
         <a v-if="!isAuth" class="nav__link--disabled">Создать протокол</a>
-        <router-link class="nav-link" to="/about">Статьи</router-link>
+        <router-link class="nav-link" to="/about">Информация</router-link>
         <router-link v-if="!isAuth" class="nav__link" to="/login">Войти</router-link>
         <router-link v-if="isAuth" class="nav__link" to="/profile">Профиль</router-link>
         <a v-if="isAuth" class="nav__link" @click="logout">Выйти</a>
