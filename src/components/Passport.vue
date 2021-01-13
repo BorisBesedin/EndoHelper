@@ -60,4 +60,8 @@ input {
         border-color: #000;
     }
 }
+
+label {
+  font-size: 14px;
+}
 </style>

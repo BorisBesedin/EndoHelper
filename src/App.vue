@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <div class="header">
-      <div class="header__logo"></div>
+      <div class="header__logo" @click="$router.push('/')">
+        <span>EndoHelper</span>
+        <span>в помощь эндоскописту</span>
+      </div>
       <div id="nav" class="nav header__nav">
         <router-link class="nav__link" to="/">Атлас</router-link>
         <router-link v-if="isAuth" class="nav-link" to="/record">Создать протокол</router-link>
@@ -104,7 +107,7 @@ html {
 }
 
 body {
-  font-family: 'Roboto Mono', 'Arial', monospace;
+  font-family: 'Roboto Mono', 'Arial', monospace;  
 }
 
 #app {  
@@ -113,13 +116,19 @@ body {
   text-align: center;
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
   color: #444a4e;
   min-height: 100vh;
+  width: 100vw;
+
+  background-image: url("assets/images/bg.png");
+  background-size: cover;
+  background-position: 300px 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .content {
-  flex-grow: 1;
+  flex-grow: 1;  
 }
 
 .header {
@@ -128,16 +137,29 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between;  
 }
 
 .header__logo {
-  margin-left: 20px;
-  width: 250px;
-  height: 50px;
-  background-image: url('../public/logo.png');
+  display: flex;
+  padding-left: 60px;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  background-image: url("../src/assets/images/endoscope.png");
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
+
+  & span:first-child {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  & span:last-child {
+    font-size: 10px;
+    font-weight: bold;
+  }
 }
 
 .header__nav {
@@ -145,9 +167,9 @@ body {
 
   a {
     display: block;
-    padding: 25px;
+    padding: 20px;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 13px;
     color: #000000;
     text-decoration: none;
     text-transform: uppercase;
@@ -214,7 +236,7 @@ body {
   & input, 
   & textarea {
     padding: 5px;
-    font-size: 16px;
+    font-size: 14px;
     background-color: #f2f2f2;
     border: none;
     border-bottom: 1px solid #000000;
@@ -225,7 +247,7 @@ body {
   }
   & label {
     align-self: end;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     margin-bottom: 10px;
   }

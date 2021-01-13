@@ -359,6 +359,7 @@ export default {
 .info {
   display: flex;
   padding-bottom: 40px;
+  background-color: #ffffff;
 }
 
 .classification {
@@ -417,7 +418,7 @@ export default {
   position: relative;
   font-family: inherit;
   font-weight: normal;
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 30px;
 
   &::after {
@@ -437,6 +438,7 @@ export default {
 
 .nav__element {
   width: 100%;
+  font-size: 16px;
   & span {
     display: block;
     width: 100%;

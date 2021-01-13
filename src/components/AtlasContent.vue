@@ -68,6 +68,7 @@ li {
         padding: 10px;
         top: 0;
         right: 0;
+        font-size: 14px;
         width: 250px;
         height: 250px;
         color: #ffffff;

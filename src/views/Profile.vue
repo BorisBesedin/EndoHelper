@@ -1,52 +1,55 @@
 <template>
   <form class="form" @submit.prevent="updateUserData">
-    <h2 class="title">Профиль</h2>
-    <div class="form__section">
-      <img class="form__avatar" src="../../public/images/avatar.png" alt="" />
+    <div class="form__wrapper">
 
-      <div class="form__fields">
-        <p class="form__field">
-          <label for="name">Имя пользователя:</label>
-          <input v-model="userData.name" type="text" id="name" name="name" />
-        </p>
+      <h2 class="title">Профиль</h2>
+      <div class="form__section">
+        <img class="form__avatar" src="../../public/images/avatar.png" alt="" />
 
-        <p class="form__field">
-          <label for="job">Город:</label>
-          <input v-model="userData.city" type="text" id="job" name="job" />
-        </p>
+        <div class="form__fields">
+          <p class="form__field">
+            <label for="name">Имя пользователя:</label>
+            <input v-model="userData.name" type="text" id="name" name="name" />
+          </p>
 
-        <p class="form__field">
-          <label for="job">Место работы:</label>
-          <input
-            v-model="userData.hospital.name"
-            type="text"
-            id="job"
-            name="job"
-          />
-        </p>
+          <p class="form__field">
+            <label for="job">Город:</label>
+            <input v-model="userData.city" type="text" id="job" name="job" />
+          </p>
 
-        <p class="form__field">
-          <label for="adress">Адрес:</label>
-          <input
-            v-model="userData.hospital.adress"
-            type="text"
-            id="adress"
-            name="adress"
-          />
-        </p>
+          <p class="form__field">
+            <label for="job">Место работы:</label>
+            <input
+              v-model="userData.hospital.name"
+              type="text"
+              id="job"
+              name="job"
+            />
+          </p>
 
-        <p class="form__field">
-          <label for="phone">Телефон:</label>
-          <input
-            v-model="userData.hospital.phone"
-            type="text"
-            id="phone"
-            name="phone"
-          />
-        </p>
+          <p class="form__field">
+            <label for="adress">Адрес:</label>
+            <input
+              v-model="userData.hospital.adress"
+              type="text"
+              id="adress"
+              name="adress"
+            />
+          </p>
+
+          <p class="form__field">
+            <label for="phone">Телефон:</label>
+            <input
+              v-model="userData.hospital.phone"
+              type="text"
+              id="phone"
+              name="phone"
+            />
+          </p>
+        </div>
       </div>
+      <button class="button" type="submit">Сохранить</button>
     </div>
-    <button class="button" type="submit">Сохранить</button>
   </form>
 </template>
 <script>
@@ -118,12 +121,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.form {
-  position: relative;
+.form__wrapper {
   width: 600px;
   margin: 0 auto;
   margin-top: 60px;
   padding-bottom: 40px;
+}
+.form {
+  position: relative;
+  background-color: #ffffff;
+  
 
   & .title {
     margin-bottom: 60px;

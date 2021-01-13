@@ -82,6 +82,7 @@ export default {
     width: 100%;
     padding: 40px;
     box-shadow: 0 1px 4px 0 #666666;
+    background-color: #ffffff;
 }
 
 .title {

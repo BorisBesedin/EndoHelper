@@ -32,6 +32,7 @@ h3 {
     padding: 5px;
     cursor: pointer;
     transition: 0.3s ease-in-out;
+    font-size: 16px;
 
     &:hover {
         background-color: #afd5ec;
@@ -47,6 +48,7 @@ ul {
 li {
     padding: 5px;
     cursor: pointer;
+    font-size: 14px;
 
     &:hover {
         text-decoration: underline;

@@ -126,7 +126,7 @@ export default {
 <style lang="scss">
 .atlas {
     display: flex;
-    flex-grow: 2;
+    flex-grow: 2;    
 }
 
 .atlas__overlay {
@@ -201,7 +201,7 @@ ul {
 
 .atlas__content {
     margin-left: 50px;
-    flex-grow: 1;
+    flex-grow: 1;    
 }
 
 .atlas__menu-title {
@@ -210,7 +210,7 @@ ul {
     padding: 20px;
     font-family: inherit;
     font-weight: normal;
-    font-size: 20px;
+    font-size: 18px;
     text-align: left;
 
     &::after {

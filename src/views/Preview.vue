@@ -1,61 +1,63 @@
 <template>
-    <div class="preview">
-        <div class="preview__hospital">
-            <p v-if="doctor.hospital">{{doctor.hospital.name}}</p>
-            <p>{{doctor.hospital.adress}}</p>
-            <p>{{doctor.hospital.phone}}</p>
+    <div class="wrapper">
+        <div class="preview">
+            <div class="preview__hospital">
+                <p v-if="doctor.hospital">{{doctor.hospital.name}}</p>
+                <p>{{doctor.hospital.adress}}</p>
+                <p>{{doctor.hospital.phone}}</p>
+            </div>
+            <h1 class="preview__name"> {{this.title}} </h1>        
+            <div class="preview__passport">            
+                <p class="preview__item">
+                    <span>Пациент</span>
+                    <span>: {{patient.patient}}</span>
+                </p>
+                <p class="preview__item">
+                    <span>Дата рождения</span>
+                    <span>: {{patient.birth}}</span>
+                </p>
+                <p class="preview__item">
+                    <span>Жалобы</span>
+                    <span>: {{patient.complains}}</span>
+                </p>
+                <p class="preview__item">
+                    <span>Анамнез</span>
+                    <span>: {{patient.anamnesis}}</span>
+                </p>
+                <p class="preview__item">
+                    <span>Модель аппарата</span>
+                    <span>: {{patient.endoscope}}</span>
+                </p> 
+                <p class="preview__item">
+                    <span>Дата исследования</span>
+                    <span>: {{ date.getDate() }}.{{ date.getMonth() + 1 }}.{{ date.getFullYear() }}.
+                    </span>
+                </p>             
+            </div>
+
+            <PreviewGastro class="protocol" 
+                        v-if="this.procedure === 'gastroscopy'" 
+                        v-bind:description="description" />
+
+            <PreviewColono class="protocol" 
+                        v-if="this.procedure === 'colonoscopy'" 
+                        v-bind:description="description" />
+
+            <PreviewBroncho class="protocol" 
+                        v-if="this.procedure === 'bronchoscopy'" 
+                        v-bind:description="description" />       
+
+            
+            <p class="preview__doctor">
+                <span>Эндоскопист</span>
+                <span>: {{doctor.name}}</span>
+            </p>
+            <div class="preview__buttons">
+                <router-link type="button" :to="{name: 'Record', params: {tab: this.procedure}}"><button class="preview__back preview__button"></button></router-link>
+                <button class="preview__copy preview__button" @click="copy"></button>
+                <button class="preview__print preview__button" @click="print"></button>
+            </div>         
         </div>
-        <h1 class="preview__name"> {{this.title}} </h1>        
-        <div class="preview__passport">            
-            <p class="preview__item">
-                <span>Пациент</span>
-                <span>: {{patient.patient}}</span>
-            </p>
-            <p class="preview__item">
-                <span>Дата рождения</span>
-                <span>: {{patient.birth}}</span>
-            </p>
-            <p class="preview__item">
-                <span>Жалобы</span>
-                <span>: {{patient.complains}}</span>
-            </p>
-            <p class="preview__item">
-                <span>Анамнез</span>
-                <span>: {{patient.anamnesis}}</span>
-            </p>
-            <p class="preview__item">
-                <span>Модель аппарата</span>
-                <span>: {{patient.endoscope}}</span>
-            </p> 
-            <p class="preview__item">
-                <span>Дата исследования</span>
-                <span>: {{ date.getDate() }}.{{ date.getMonth() + 1 }}.{{ date.getFullYear() }}.
-                </span>
-            </p>             
-        </div>
-
-        <PreviewGastro class="protocol" 
-                       v-if="this.procedure === 'gastroscopy'" 
-                       v-bind:description="description" />
-
-        <PreviewColono class="protocol" 
-                       v-if="this.procedure === 'colonoscopy'" 
-                       v-bind:description="description" />
-
-        <PreviewBroncho class="protocol" 
-                       v-if="this.procedure === 'bronchoscopy'" 
-                       v-bind:description="description" />       
-
-        
-        <p class="preview__doctor">
-            <span>Эндоскопист</span>
-            <span>: {{doctor.name}}</span>
-        </p>
-        <div class="preview__buttons">
-            <router-link type="button" :to="{name: 'Record', params: {tab: this.procedure}}"><button class="preview__back preview__button"></button></router-link>
-            <button class="preview__copy preview__button" @click="copy"></button>
-            <button class="preview__print preview__button" @click="print"></button>
-        </div>         
     </div>
 </template>
 
@@ -131,6 +133,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.wrapper {
+    background-color: #ffffff;
+}
 .preview {
     display: flex;
     flex-direction: column;

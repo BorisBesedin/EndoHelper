@@ -204,7 +204,7 @@ export default {
   width: 800px;
   margin: 0 auto;
   padding-top: 60px;
-  padding-bottom: 60px;
+  padding-bottom: 60px;  
 }
 
 .title {
@@ -213,7 +213,7 @@ export default {
 
 .record__passport {
   width: 700px;
-  margin-top: 80px;
+  margin-top: 60px;
 }
 
 .record__section {
@@ -222,6 +222,7 @@ export default {
   align-items: center;
   padding: 20px;
   box-shadow: 0 1px 4px 0 #666666;
+  background-color: #ffffff;
 
   &:last-child {
     flex-grow: 1;
@@ -241,7 +242,7 @@ export default {
   width: 160px;
   padding: 10px;
 
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   text-align: center;
   border: none;
@@ -267,13 +268,10 @@ export default {
     transform: scale(1.02);
   }
 }
-.record__content {
-  margin-top: 40px;
-}
 
 .description__title {
   text-align: left;
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 20px;
 }
 .description__normal-btn {
@@ -294,7 +292,7 @@ export default {
 }
 .templates {
   position: fixed;
-  top: 130px;
+  top: 120px;
   left: 0;
 }
 </style>

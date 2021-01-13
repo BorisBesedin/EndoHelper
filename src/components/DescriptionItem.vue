@@ -66,5 +66,6 @@ input.focus + .helper {
 
 label {
     text-align: left;
+    font-size: 14px;
 }
 </style>
