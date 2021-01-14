@@ -13,7 +13,7 @@ body {
 }
 
 .preview__name {
-    font-size: 26px;
+    font-size: 25px;
     text-align: center;
 }
 
@@ -41,15 +41,20 @@ body {
 h3 {
     margin-top: 10px;
     margin-bottom: 10px;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 18px;
+    line-height: 22px;
 }
 
 p {
     margin: 0;
     text-align: left;
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 17px;
+    line-height: 20px;
+}
+
+span {
+    font-size: 17px;
+    line-height: 19px;
 }
 
 .protocol__section {

@@ -1,8 +1,8 @@
 <template>
     <div class="wrapper">
-        <div class="preview">
+        <div class="preview" v-if="doctor">
             <div class="preview__hospital">
-                <p v-if="doctor.hospital">{{doctor.hospital.name}}</p>
+                <p>{{doctor.hospital.name}}</p>
                 <p>{{doctor.hospital.adress}}</p>
                 <p>{{doctor.hospital.phone}}</p>
             </div>
@@ -17,12 +17,20 @@
                     <span>: {{patient.birth}}</span>
                 </p>
                 <p class="preview__item">
+                    <span>Цель исследования</span>
+                    <span>: {{patient.goal}}</span>
+                </p>
+                <p class="preview__item">
                     <span>Жалобы</span>
                     <span>: {{patient.complains}}</span>
                 </p>
                 <p class="preview__item">
                     <span>Анамнез</span>
                     <span>: {{patient.anamnesis}}</span>
+                </p>
+                <p class="preview__item">
+                    <span>Анестезия</span>
+                    <span>: {{patient.anestesia}}</span>
                 </p>
                 <p class="preview__item">
                     <span>Модель аппарата</span>
@@ -72,7 +80,6 @@ export default {
     },
     data() {
         return {
-            title: '',
             date: new Date()
         }
     },
@@ -82,23 +89,7 @@ export default {
         }      
         if (this.patient) {
             localStorage.setItem('patient', JSON.stringify(this.patient))
-        }
-        switch(this.procedure) {
-            case 'gastroscopy':
-                localStorage.setItem('gastroscopy', JSON.stringify(this.description))
-                this.title = 'Эзофагогастродуоденоскопия'
-                break
-
-            case 'colonoscopy':
-                localStorage.setItem('colonoscopy', JSON.stringify(this.description))
-                this.title = 'Колоноскопия'
-                break
-            case 'bronchoscopy':
-                localStorage.setItem('bronchoscopy', JSON.stringify(this.description))
-                this.title = 'Бронхоскопия'
-                break
-        }
-        
+        }       
     },
     methods: {
         copy() {
@@ -183,15 +174,15 @@ export default {
 }
 
 .preview__copy {
-    background-image: url('../../public/icons/copy.png');
+    background-image: url('../assets/icons/copy.png');
 }
 
 .preview__print {
-    background-image: url('../../public/icons/printer.png');
+    background-image: url('../assets/icons/printer.png');
 }
 
 .preview__back {
-    background-image: url('../../public/icons/left-arrow.png');
+    background-image: url('../assets/icons/left-arrow.png');
 }
 
 span {    

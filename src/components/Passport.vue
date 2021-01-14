@@ -10,6 +10,10 @@
       <input type="text" id="birth" v-model="patient.birth"/>
     </p>
     <p class="passport-item">
+      <label for="complains">Цель исследования:</label>
+      <input type="text" id="goal" v-model="patient.goal"/>
+    </p>
+    <p class="passport-item">
       <label for="complains">Жалобы:</label>
       <input type="text" id="complains" v-model="patient.complains"/>
     </p>

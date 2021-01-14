@@ -15,8 +15,8 @@ router.get('/logout', (req, res) => {
 
 router.post('/login', async (req, res) => {
     try {
-        const {email, password} = req.body
-        const candidate = await User.findOne({ email })
+        const {login, password} = req.body
+        const candidate = await User.findOne({ login })
 
         if (candidate) {
             const areSame = await bcrypt.compare(password, candidate.password)
@@ -44,7 +44,7 @@ router.post('/login', async (req, res) => {
 });
 
 router.get('/register', async (req, res) => {
-    const user = await User.findOne({email: req.query.email})
+    const user = await User.findOne({login: req.query.login})
 
     if (user) {
         res.send(true)
@@ -55,11 +55,11 @@ router.get('/register', async (req, res) => {
 
 router.post('/register', async (req, res) => {
     try {
-        const { email, password, name, city, hospitalName, hospitalAdress, hospitalPhone } = req.body
+        const { login, password, name, city, hospitalName, hospitalAdress, hospitalPhone } = req.body
         const hashPassword = await bcrypt.hash(password, 10)
         const user = new User({
             name,
-            email,
+            login,
             password: hashPassword,
             city,
             hospital: {
@@ -80,7 +80,7 @@ router.post('/register', async (req, res) => {
 router.post('/update', async (req, res) => {
     try {
         const { name, city, hospitalName, hospitalAdress, hospitalPhone } = req.body
-        const user = await User.findOne({email: req.session.user.email})
+        const user = await User.findOne({login: req.session.user.login})
 
         user.name = name
         user.city = city
@@ -100,7 +100,7 @@ router.post('/template', async (req, res) => {
     try {
         const template = req.body
         
-        const user = await User.findOne({email: req.session.user.email})
+        const user = await User.findOne({login: req.session.user.login})
 
         user.templates.push(template)
         await user.save()
@@ -114,7 +114,7 @@ router.post('/template', async (req, res) => {
 router.post('/template/delete', async (req, res) => {
     try {
         const template = req.body      
-        const user = await User.findOne({email: req.session.user.email})
+        const user = await User.findOne({login: req.session.user.login})
 
         user.templates = user.templates.filter(temp => temp.id !== template.id)
         await user.save()

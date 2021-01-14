@@ -76,6 +76,7 @@ export default {
       patient: {
         patient: "",
         birth: "",
+        goal: "",
         complains: "",
         anamnesis: "",
         anestesia: "",
@@ -294,5 +295,6 @@ export default {
   position: fixed;
   top: 120px;
   left: 0;
+  z-index: 10;
 }
 </style>

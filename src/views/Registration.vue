@@ -8,8 +8,8 @@
                     <input v-model="userData.name" type="text" id="name" name="name" placeholder="имя полностью" required>
                 </p>
                 <p class="form__field required">
-                    <label for="email">Email:</label>
-                    <input v-model="userData.email" type="email" id="email" name="email" placeholder="email" required>
+                    <label for="login">Логин:</label>
+                    <input v-model="userData.login" type="text" id="login" name="login" placeholder="логин для входа" required>
                 </p>
                 <p class="form__field required">
                     <label for="password">Пароль:</label>
@@ -17,14 +17,14 @@
                 </p>
                 <p class="form__field required">
                     <label for="confirm">Пароль еще раз:</label>
-                    <input type="password" id="confirm" name="confirm" placeholder="пароль" required>
+                    <input type="password" id="confirm" name="confirm" placeholder="еще раз пароль" required>
                 </p>
             </div>
 
             <div class="form__section">    
                 <p class="form__field required">
                     <label for="city">Город:</label>
-                    <input v-model="userData.city" type="text" id="city" name="city" placeholder="имя полностью" required>
+                    <input v-model="userData.city" type="text" id="city" name="city" placeholder="ваш город" required>
                 </p>
                 <p class="form__field required">
                     <label for="hospital">Место работы:</label>
@@ -52,7 +52,7 @@ export default {
     data() {
         return {
             userData: {
-                email: '',
+                login: '',
                 password: '',
                 name: '',
                 city: '',
@@ -65,39 +65,57 @@ export default {
         }
     },
     methods: {
-        checkReg() {
+        register() {
+            this.$emit('loading', true)
             HTTP
                 .get('auth/register', {
                     params: {
-                        email: this.userData.email
+                        login: this.userData.login
                     }
                 })
 
                 .then(res => {
-                    return res.data
+                    const confirm = document.querySelector('#confirm').value 
+
+                    if (!res.data && this.userData.password === confirm) {
+                        this.sendRegisterData()
+                    } 
+                    if (res.data) {
+                        this.$emit('show-message', {
+                            title: 'Ошибка',
+                            text: 'Пользователь с таким логином уже существует'
+                        })   
+                        this.$emit('loading', false)
+                    } 
+                    if (this.userData.password !== confirm) {
+                        this.$emit('show-message', {
+                            title: 'Ошибка',
+                            text: 'Пароль не совпадает'
+                        })   
+                        this.$emit('loading', false)
+                    }
+                    
                 })
                 .catch(err => {
-                    console.log(err)
+                    this.$emit('show-message', {
+                        title: 'Ошибка',
+                        text: err
+                    })   
+                    this.$emit('loading', false)
                 })
         },
-        register() {
-            this.$emit('loading', true)
-
-            const isRegistated = this.checkReg()
-            const confirm = document.querySelector('#confirm').value            
-
-            if (!isRegistated && this.userData.password === confirm) {
-                const formData = new FormData()
+        sendRegisterData() {
+            const formData = new FormData()
             
-                formData.append('name', this.userData.name)
-                formData.append('email', this.userData.email)
-                formData.append('password', this.userData.password)
-                formData.append('city', this.userData.city)
-                formData.append('hospitalName', this.userData.hospital.name)
-                formData.append('hospitalAdress', this.userData.hospital.adress)
-                formData.append('hospitalPhone', this.userData.hospital.phone || '')
+            formData.append('name', this.userData.name)
+            formData.append('login', this.userData.login)
+            formData.append('password', this.userData.password)
+            formData.append('city', this.userData.city)
+            formData.append('hospitalName', this.userData.hospital.name)
+            formData.append('hospitalAdress', this.userData.hospital.adress)
+            formData.append('hospitalPhone', this.userData.hospital.phone || '')
 
-                HTTP
+            HTTP
                 .post('auth/register', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
@@ -105,26 +123,19 @@ export default {
                 })
                 .then(() => {
                     this.$emit('loading', false)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-                .finally(() => {
                     this.$emit('show-message', {
                         title: 'Всё получилось',
-                        text: 'Новый профиль создан'
-                    })                   
+                        text: 'Новый профиль создан - можно заходить'
+                    })  
+                    this.$router.push('/login')
                 })
-            } else if (this.userData.password !== confirm) {
-                this.$emit('show-message', {
-                    title: 'Что-то не так',
-                    text: 'Пароль не совпадает'
-                })   
-                this.$emit('loading', false)
-            }
-        },
-        closeMessage() {
-            this.$router.push('/login')
+                .catch(err => {
+                    this.$emit('loading', false)
+                    this.$emit('show-message', {
+                        title: 'Ошибка',
+                        text: err
+                    })  
+                })
         },
     }
 }

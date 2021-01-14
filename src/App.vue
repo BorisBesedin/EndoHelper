@@ -122,7 +122,7 @@ body {
 
   background-image: url("assets/images/bg.png");
   background-size: cover;
-  background-position: 300px 0;
+  background-position: 0 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -136,16 +136,16 @@ body {
   width: 100%;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;  
 }
 
 .header__logo {
   display: flex;
-  padding-left: 60px;
+  padding-left: 80px;
+  padding-top: 6px;
   flex-direction: column;
   align-items: flex-start;
-  height: 100%;
   background-image: url("../src/assets/images/endoscope.png");
   background-size: contain;
   background-repeat: no-repeat;

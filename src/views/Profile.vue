@@ -4,7 +4,7 @@
 
       <h2 class="title">Профиль</h2>
       <div class="form__section">
-        <img class="form__avatar" src="../../public/images/avatar.png" alt="" />
+        <img class="form__avatar" src="../assets/images/avatar.png" alt="профиль" />
 
         <div class="form__fields">
           <p class="form__field">

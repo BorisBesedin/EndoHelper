@@ -84,6 +84,7 @@ export default {
 
 .title {
     text-align: left;
+    margin-top: 0;
 }
 .add-photo {  
     margin-top: 40px;  

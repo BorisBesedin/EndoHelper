@@ -398,7 +398,7 @@ export default {
 }
 
 .info__wrapper {
-  width: 900px;
+  width: 800px;
   margin: 0 auto;
 }
 

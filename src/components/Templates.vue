@@ -2,11 +2,11 @@
     <div class="templates">
         <h3 class="templates__title">Мои шаблоны</h3>
         <p v-if="!templates.length">Шаблонов нет</p>
-        <ul v-if="templates.length" class="templates__list">
+        <ul v-if="!templates.length" class="templates__list">
             <li class="templates__item" v-for="template in templates" :key="template"> 
                 <span @click="$emit('set-template', template)">{{ templates.indexOf(template) + 1 }}.  {{ template.name }}</span>
                 <button class="templates__delete" @click="$emit('delete-template', template)"></button>
-            </li>           
+            </li>             
         </ul>
     </div>
 </template>
@@ -23,8 +23,8 @@ export default {
     padding: 20px;
     border: 3px solid #D4E9F7;
     text-align: left;
-    height: 60%;
-    overflow: scroll;
+    height: 60%;    
+    background-color: #ffffff; 
 }
 
 .templates p {
@@ -50,7 +50,7 @@ export default {
 }
 
 .templates__list {
-    margin-top: 40px;    
+    margin-top: 40px; 
 }
 
 .templates__item {

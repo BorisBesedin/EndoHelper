@@ -3,8 +3,8 @@
         <div class="form__container">
             <h2 class="title">Войти в аккаунт</h2>
             <p class="form__field">
-                <label for="email">Email:</label>
-                <input v-model="loginData.email" type="text" id="email" name="email" placeholder="email" required>
+                <label for="email">Логин:</label>
+                <input v-model="loginData.login" type="text" id="login" name="login" placeholder="email" required>
             </p>
             <p class="form__field">
                 <label for="password">Пароль:</label>
@@ -25,7 +25,7 @@ export default {
     data() {
         return {
             loginData: {
-                email: '',
+                login: '',
                 password: ''
             }            
         }
@@ -35,7 +35,7 @@ export default {
             const formData = new FormData()
             this.$emit('loading', true)
             
-            formData.append('email', this.loginData.email)
+            formData.append('login', this.loginData.login)
             formData.append('password', this.loginData.password)
 
             HTTP.post('auth/login', formData, {
@@ -86,6 +86,7 @@ export default {
 }
 
 .title {
+    margin-top: 0;
     margin-bottom: 40px;
 }
 </style>
