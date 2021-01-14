@@ -2,7 +2,7 @@
     <div class="templates">
         <h3 class="templates__title">Мои шаблоны</h3>
         <p v-if="!templates.length">Шаблонов нет</p>
-        <ul v-if="!templates.length" class="templates__list">
+        <ul v-if="templates.length" class="templates__list">
             <li class="templates__item" v-for="template in templates" :key="template"> 
                 <span @click="$emit('set-template', template)">{{ templates.indexOf(template) + 1 }}.  {{ template.name }}</span>
                 <button class="templates__delete" @click="$emit('delete-template', template)"></button>
