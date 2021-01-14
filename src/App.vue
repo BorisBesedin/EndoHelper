@@ -20,7 +20,7 @@
 
     <Loader v-if="isLoading"/>
 
-    <div class="atlas__overlay" v-if="messageIsShowing">
+    <div class="overlay" v-if="messageIsShowing">
       <StatusMessage v-bind:message="message" v-if="messageIsShowing" @close-message="closeMessage" />
     </div>
 
@@ -125,6 +125,16 @@ body {
   background-position: 0 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 15;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .content {
@@ -260,4 +270,5 @@ body {
   top: 5px;
   right: 5px;
 }
+
 </style>

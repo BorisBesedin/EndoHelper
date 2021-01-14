@@ -31,7 +31,7 @@
         @delete-template="deleteTemplate"
       ></component>
     </div>
-    <div class="atlas__overlay" v-if="templatePopupIsShowing">
+    <div class="overlay" v-if="templatePopupIsShowing">
       <AddTemplate v-if="templatePopupIsShowing" @close-popup="closeAddTemplatePopup" @add-template="addTemplate" />
 
     </div>
@@ -295,6 +295,6 @@ export default {
   position: fixed;
   top: 120px;
   left: 0;
-  z-index: 10;
+  z-index: 5;
 }
 </style>

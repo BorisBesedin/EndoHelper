@@ -10,7 +10,7 @@
         </div>
         <AtlasContent v-if="showingPathology" class="atlas__content" v-bind:showData="showingPathology" />
         <div v-if="!showingPathology" class="atlas__hidden">Выберите патологию для просмотра</div>
-        <div class="atlas__overlay" v-if="popupIsShowing">
+        <div class="overlay" v-if="popupIsShowing">
             <AddPhoto v-if="popupIsShowing"
                       class="atlas__add-photo"
                       @close-popup="closePopup"
@@ -127,16 +127,6 @@ export default {
 .atlas {
     display: flex;
     flex-grow: 2;    
-}
-
-.atlas__overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 5;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .atlas__add-photo {
