@@ -80,6 +80,7 @@ export default {
     },
     data() {
         return {
+            title: '',
             date: new Date()
         }
     },
@@ -89,7 +90,21 @@ export default {
         }      
         if (this.patient) {
             localStorage.setItem('patient', JSON.stringify(this.patient))
-        }       
+        }   
+        switch(this.procedure) {
+            case 'gastroscopy':
+                localStorage.setItem('gastroscopy', JSON.stringify(this.description))
+                this.title = 'Эзофагогастродуоденоскопия'
+                break
+            case 'colonoscopy':
+                localStorage.setItem('colonoscopy', JSON.stringify(this.description))
+                this.title = 'Колоноскопия'
+                break
+            case 'bronchoscopy':
+                localStorage.setItem('bronchoscopy', JSON.stringify(this.description))
+                this.title = 'Бронхоскопия'
+                break
+        }    
     },
     methods: {
         copy() {
