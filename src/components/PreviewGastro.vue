@@ -65,13 +65,13 @@ export default {
 }
 
 h3 {
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 14px;
+    line-height: 18px;
 }
 
 p {
     margin-top: 5px;
-    font-size: 14px;
-    line-height: 18px;
+    font-size: 12px;
+    line-height: 16px;
 }
 </style>
