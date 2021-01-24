@@ -337,15 +337,16 @@ export default {
   },
   methods: {
     menuScroll() {
-      const menuItems = document.querySelectorAll('.nav__subitem')
+      const menuItems = document.querySelectorAll('.nav__subitem')      
       smoothscroll.polyfill();
 
       menuItems.forEach(item => {
         item.addEventListener('click', () => {
+          const content = document.querySelector('.info__content')
           const target = document.querySelector(`[data-target="${item.getAttribute('data-name')}"]`)
 
-          window.scrollTo({
-            top: target.offsetTop,
+          content.scrollTo({
+            top: target.offsetTop - 80,
             behavior: "smooth"
           })
         })
@@ -358,7 +359,6 @@ export default {
 <style lang="scss" scoped>
 .info {
   display: flex;
-  padding-bottom: 40px;
   background-color: #ffffff;
 }
 
@@ -376,6 +376,7 @@ export default {
   margin-top: 40px;
   border-collapse: collapse;
   width: 100%;
+  font-size: 14px;
 
   & th,
   & td {
@@ -393,8 +394,8 @@ export default {
 }
 
 .info__content {
-  width: 100%;
-  margin-left: 270px;
+  flex-grow: 1;
+  overflow-y: scroll;
 }
 
 .info__wrapper {
@@ -403,15 +404,16 @@ export default {
 }
 
 .nav {
-  position: fixed;
   top: 120px;
   left: 0;
-  width: 260px;
-  border: 3px solid #d4e9f7;
+  width: 300px;
+  flex-shrink: 0;
+  border-right: 3px solid #d4e9f7;
   padding: 20px;
   text-align: left;
   background-color: #ffffff;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: visible;
 }
 
 .nav__title {

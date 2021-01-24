@@ -117,7 +117,7 @@ body {
   display: flex;
   flex-direction: column;
   color: #444a4e;
-  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
 
   background-image: url("assets/images/bg.png");
@@ -139,6 +139,7 @@ body {
 
 .content {
   flex-grow: 1;  
+  overflow-y: scroll;
 }
 
 .header {

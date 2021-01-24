@@ -143,7 +143,8 @@ export default {
     width: 300px;
     flex-shrink: 0;
     background-color: #ffffff;
-    border-right: 3px solid #D4E9F7
+    border-right: 3px solid #D4E9F7;
+    overflow-y: scroll;
 }
 
 .atlas__menu-content {
@@ -191,7 +192,8 @@ ul {
 
 .atlas__content {
     margin-left: 50px;
-    flex-grow: 1;    
+    flex-grow: 1; 
+    overflow-y: scroll;   
 }
 
 .atlas__menu-title {
