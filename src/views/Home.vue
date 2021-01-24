@@ -145,11 +145,7 @@ export default {
     background-color: #ffffff;
     border-right: 3px solid #D4E9F7;
     overflow-y: scroll;
-}
-
-.atlas__menu-content {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 20px;
 }
 
 .atlas__add {
@@ -198,8 +194,7 @@ ul {
 
 .atlas__menu-title {
     position: relative;
-    margin-bottom: 10px;
-    padding: 20px;
+    margin-bottom: 30px;
     font-family: inherit;
     font-weight: normal;
     font-size: 18px;
@@ -208,8 +203,8 @@ ul {
     &::after {
         position: absolute;
         content: "";
-        bottom: 0;
-        left: 10px;
+        bottom: -15px;
+        left: 0;
         height: 3px;
         width: 80px;
         background-color: #656F75;

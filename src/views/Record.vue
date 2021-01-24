@@ -1,41 +1,42 @@
 <template>
   <div class="record">
-    <div class="record__tabs">
-      <button
-        class="record__tab"
-        v-for="procedure in procedures"
-        :key="procedure.name"
-        v-bind:class="[{ active: currentProcedure === procedure.name }]"
-        v-on:click="currentProcedure = procedure.name"
-      >
-        {{ procedure.title }}
-      </button>
-    </div>
-    <!-- <p class="record__file-link">
-            Терминология: <br> <a href="files/MST3_EE.pdf" target="_blank">МСТ 3.0</a>
-          </p>           -->
+    <div class="record__container">
+      <div class="record__tabs">
+        <button
+          class="record__tab"
+          v-for="procedure in procedures"
+          :key="procedure.name"
+          v-bind:class="[{ active: currentProcedure === procedure.name }]"
+          v-on:click="currentProcedure = procedure.name"
+        >
+          {{ procedure.title }}
+        </button>
+      </div>
+      <!-- <p class="record__file-link">
+              Терминология: <br> <a href="files/MST3_EE.pdf" target="_blank">МСТ 3.0</a>
+            </p>           -->
 
-    <div class="record__section">
-      <Passport
-        class="record__passport"
-        v-bind:patient="patient"
-        @clear-doctor="clearPatient"
-      />
-      <component
-        class="record__content"
-        v-bind:is="currentComponent"
-        v-bind:patient="patient"
-        v-bind:doctor="doctor"
-        v-bind:templates="templates"
-        @open-add-template="openAddTemplatePopup"
-        @delete-template="deleteTemplate"
-      ></component>
-    </div>
-    <div class="overlay" v-if="templatePopupIsShowing">
-      <AddTemplate v-if="templatePopupIsShowing" @close-popup="closeAddTemplatePopup" @add-template="addTemplate" />
+      <div class="record__section">
+        <Passport
+          class="record__passport"
+          v-bind:patient="patient"
+          @clear-doctor="clearPatient"
+        />
+        <component
+          class="record__content"
+          v-bind:is="currentComponent"
+          v-bind:patient="patient"
+          v-bind:doctor="doctor"
+          v-bind:templates="templates"
+          @open-add-template="openAddTemplatePopup"
+          @delete-template="deleteTemplate"
+        ></component>
+      </div>
+      <div class="overlay" v-if="templatePopupIsShowing">
+        <AddTemplate v-if="templatePopupIsShowing" @close-popup="closeAddTemplatePopup" @add-template="addTemplate" />
 
+      </div>
     </div>
-    
   </div>
 </template>
 
@@ -198,7 +199,7 @@ export default {
 </script>
 
 <style lang="scss">
-.record {
+.record__container {
   position: relative;
   display: flex;
   flex-direction: column;
