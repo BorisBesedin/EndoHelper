@@ -141,6 +141,7 @@ export default {
 <style lang="scss" scoped>
 .wrapper {
     background-color: #ffffff;
+    overflow-y: scroll;
 }
 .preview {
     display: flex;
@@ -149,7 +150,7 @@ export default {
     padding-bottom: 80px;    
     width: 600px;
     margin: 0 auto;
-    color: #000;
+    color: #000;    
 }
 
 .preview__name {

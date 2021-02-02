@@ -199,6 +199,9 @@ export default {
 </script>
 
 <style lang="scss">
+.record {
+  overflow-y: scroll;
+}
 .record__container {
   position: relative;
   display: flex;
