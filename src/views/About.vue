@@ -33,6 +33,15 @@
             </ul>
           </li>
         </ul>
+
+        <ul class="nav__list">
+          <li class="nav__element">
+            <span>ЖКК</span>
+            <ul class="nav__sublist">
+              <li class="nav__subitem" data-name="bleed-forrest">Forrest</li>              
+            </ul>
+          </li>
+        </ul>
       </div>
     </nav>
 
@@ -322,6 +331,62 @@
             
             <img class="classification__image" src="../assets/images/kudo.png" alt="kudo">
 
+          </div>          
+        </section>
+
+        <section class="classification">
+          <h2 class="title">Кровотечения</h2>
+          <div class="classification__item">
+            <h3 class="classification__subtitle" data-target="bleed-forrest">Классификация Forrest</h3>
+            <table class="classification__table">
+              <tr>
+                <th>Тип</th>
+                <th>Описание</th>
+              </tr>
+              <tr>
+                <td>FIa</td>
+                <td>
+                  струйное, пульсирующее артериальное кровотечение
+                </td>
+              </tr>
+
+              <tr>
+                <td>FIb</td>
+                <td>
+                  венозное, вялое, паренхиматозное кровотечение потоком (active bleeding (oozing hemorrhage)
+                </td>
+              </tr>
+
+              <tr>
+                <td>FIIa</td>
+                <td>
+                  видимый тромбированный сосуд (visible vessel-pigmented protuberance)
+                </td>
+              </tr>
+
+              <tr>
+                <td>FIIb</td>
+                <td>
+                  фиксированный тромб или сгусток (adherent clot)
+                </td>
+              </tr> 
+
+              <tr>
+                <td>FIIc</td>
+                <td>
+                  геморрагическое пропитывание дна язвы, плоское черное пятно (black base)
+                </td>
+              </tr> 
+
+              <tr>
+                <td>FIII</td>
+                <td>
+                  чистое дно язвы, отсутствие прямых визуальных вешеперечисленных признаков (no stigmata)
+                </td>
+              </tr>           
+            </table>
+            <img class="classification__image" src="../assets/images/forrest.jpg" alt="forrest">
+
           </div>
         </section>
       </div>
@@ -368,8 +433,8 @@ export default {
 }
 
 .classification__image {
-  width: 80%;
-  margin-top: 40px;
+  width: 90%;
+  margin-top: 80px;
 }
 
 .classification__table {

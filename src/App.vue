@@ -96,15 +96,28 @@ export default {
   box-sizing: border-box;
 }
 
-::-webkit-scrollbar { /* chrome based */
-    width: 0px;  /* ширина scrollbar'a */
-    background: transparent;  /* опционально */
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
 
-html {
-    -ms-overflow-style: none;  /* IE 10+ */
-    scrollbar-width: none; /* Firefox */
-}
+// ::-webkit-scrollbar { /* chrome based */
+//     width: 0px;  /* ширина scrollbar'a */
+//     background: transparent;  /* опционально */
+// }
+
+// html {
+//     -ms-overflow-style: none;  /* IE 10+ */
+//     scrollbar-width: none; /* Firefox */
+// }
 
 body {
   font-family: 'Roboto Mono', 'Arial', monospace;  
@@ -139,7 +152,7 @@ body {
 
 .content {
   flex-grow: 1;  
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
 
 .header {
